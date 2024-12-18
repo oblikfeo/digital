@@ -29,6 +29,7 @@
 .welcomeContent {
     position: relative;
     width: 100%;
+    min-width: 1400px;
     height: 100%;
     mask-image: url('../../../img/blueMask.png');
     background-color: #6CBBE3;
@@ -52,7 +53,6 @@
 
 .girl {
     margin-left: auto;
-    margin-top: auto;
     height: 100%;
     width: auto;
 }
@@ -72,7 +72,7 @@
 }
 
 .welcomeTextContainer {
-    min-width: 437px;
+    position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 1;
