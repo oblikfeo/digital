@@ -31,7 +31,7 @@ export default function Registration() {
                     </div>
                 </form>
                 <div className={styles.buttons}>
-                    <button className={styles.enter}>Зарегестрироваться</button>
+                    <button className={styles.enter}>Зарегистрироваться</button>
                     <Link href="/">
                         <button className={styles.regestration}>У меня уже есть аккаунт</button>
                     </Link>

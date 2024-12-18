@@ -29,7 +29,7 @@
 .welcomeContent {
     position: relative;
     width: 100%;
-    min-width: 1400px;
+    min-width: 1260px;
     height: 100%;
     mask-image: url('../../../img/blueMask.png');
     background-color: #6CBBE3;

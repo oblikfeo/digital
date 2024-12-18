@@ -4,7 +4,7 @@ import "./globals.css";
 
 const font = Jost({
   subsets: ["latin"],
-  weight: ["500", "400"],
+  weight: ["500", "400", "600"],
 });
 
 

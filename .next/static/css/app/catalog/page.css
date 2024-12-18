@@ -1,0 +1,211 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/app/catalog/page.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.page_flexContainer__53VN2 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/helloUser/helloUser.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+.helloUser_authorization__vcpLv {
+    display: flex;
+    flex-direction: column;
+    width: 374px;
+    height: 100%;
+    background-color: rgba(77, 104, 135, 1);
+    padding: 80px 45px 115px 45px;
+}
+
+.helloUser_h1__J5St6 {
+    font-size: 32px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 80px;
+}
+
+.helloUser_h1__J5St6 span {
+    font-weight: 700;
+}
+
+.helloUser_panel__0kfuD {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    gap: 20px;
+}
+
+.helloUser_panelMenu__AtQAH {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    gap: 10px;
+}
+
+.helloUser_buttons__Q4mly {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1;
+}
+
+.helloUser_enter__uOCIm {
+    font-weight: 400;
+    font-size: 16px;
+    background-color: rgba(197, 26, 26);
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    height: 44px;
+    border: none;
+    cursor: pointer;
+}
+
+.helloUser_logo__NXz69 {
+    position: absolute;
+    width: 404px;
+    height: 404px;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/catalog/catalog.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.catalog_welcomeContainer__XmZ59 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-image: url(/_next/static/media/bcgWelcome.32b860a7.svg);
+    width: 100%;
+    background-size: cover;
+    padding: 20px 60px 12px 60px;
+}
+
+.catalog_header__49Tvi {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.catalog_contacts__8_VVd {
+    display: flex;
+    gap: 30px;
+}
+
+.catalog_link__9DeDu {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.catalog_logo__kMv1O {
+    position: absolute;
+    z-index: 3;
+}
+
+.catalog_hello__M_bq8 {
+    margin-top: 20px;
+    height: 176px;
+    width: 100%;
+    background-color: white;
+}
+
+.catalog_sideA__69x5_ {
+    position: absolute;
+    height: 88px;
+    width: 135px;
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    z-index: 2;
+}
+
+.catalog_sideB__GF6Rb {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(195, 226, 241, 1);
+    bottom: 0px;
+    left: 115px;
+    z-index: 1;
+}
+
+.catalog_container__F73_X {
+    position: relative;
+    display: flex;
+    height: 88px;
+    width: 100%;
+}
+
+.catalog_text__oy0z9 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: auto 0 auto 135px;
+    background-color: rgba(195, 226, 241, 1);
+}
+
+.catalog_text__oy0z9 span {
+    margin-left: 20px;
+    font-size: 32px;
+    font-weight: 500;
+    color: rgba(38, 71, 148, 1);
+    width: 100%;
+}
+
+.catalog_menu__r1QlT {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 88px;
+    background-color: rgba(195, 226, 241, 1);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding: 25px 20px;
+    gap: 10px;
+}
+
+.catalog_search__F9VHb {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.catalog_input__b1gWU {
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    height: 50px;
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 50px;
+}
+
+.catalog_search__F9VHb:focus-visible {
+    outline: none;
+}
+
+.catalog_searchImg__WuF8Q {
+    position: absolute;
+    right: 22px;
+}
+
+.catalog_view__FogZc {
+    min-height: 50px;
+    min-width: 50px;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
