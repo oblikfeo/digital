@@ -1,133 +1,120 @@
-.welcomeContainer {
-    flex-grow: 1;
+.wrapper {
     display: flex;
-    flex-direction: column;
-    background-image: url('../../../img/bcgWelcome.svg');
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
     width: 100%;
-    background-size: cover;
-    padding: 20px 60px 12px 60px;
-}
-
-.header {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.contacts {
-    display: flex;
+    padding: 40px 60px;
     gap: 30px;
 }
 
-.link {
+.cart {
     display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: calc(25% - 23px);
+    min-width: 264px;
+    height: 423px;
+    padding: 10px;
+    background-color: white;
+}
+
+.productImg {
+    height: 220px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 34px;
+    width: 100%;
+    padding: 0px 10px;
+}
+
+.priceArea {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
 }
 
-.logo {
-    position: absolute;
-    z-index: 3;
+.mainPrice {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(38, 71, 148, 1);
 }
 
-.hello {
-    margin-top: 20px;
-    height: 176px;
+.subPrice {
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: line-through;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.have {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(114, 194, 247, 1);
+}
+
+.havent {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(197, 26, 26, 1);
+}
+
+.discription {
+    height: 72px;
     width: 100%;
-    background-color: white;
+    padding: 0px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
 }
 
-.sideA {
-    position: absolute;
-    height: 88px;
-    width: 135px;
-    background-color: white;
-    border-bottom-right-radius: 20px;
-    z-index: 2;
-}
-
-.sideB {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    background-color: rgba(195, 226, 241, 1);
-    bottom: 0px;
-    left: 115px;
-    z-index: 1;
-}
-
-.container {
-    position: relative;
-    display: flex;
-    height: 88px;
+.buttonArea {
+    height: 44px;
     width: 100%;
 }
 
-.text {
+.add {
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    margin: auto 0 auto 135px;
-    background-color: rgba(195, 226, 241, 1);
-}
-
-.text span {
-    margin-left: 20px;
-    font-size: 32px;
-    font-weight: 500;
-    color: rgba(38, 71, 148, 1);
-    width: 100%;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 88px;
-    background-color: rgba(195, 226, 241, 1);
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    padding: 25px 20px;
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 10px;
+    border: none;
     gap: 10px;
-}
-
-.search {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-}
-
-.input {
-    width: 100%;
-    background-color: white;
-    border-radius: 5px;
-    height: 50px;
-    border: none;
-    font-size: 16px;
-    padding-left: 20px;
-    padding-right: 50px;
-}
-
-.search:focus-visible {
-    outline: none;
-}
-
-.searchImg {
-    position: absolute;
-    right: 22px;
-}
-
-.view {
-    min-height: 50px;
-    min-width: 50px;
-    border: none;
-    background-color: white;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+.disableAdd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(197, 26, 26, 0.4);
+    border-radius: 10px;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.disableAdd {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.add span {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
 }

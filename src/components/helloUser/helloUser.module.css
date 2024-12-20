@@ -1,8 +1,15 @@
+.sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
 .authorization {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 374px;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(77, 104, 135, 1);
     padding: 80px 45px 115px 45px;
 }

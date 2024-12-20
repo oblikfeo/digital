@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function HelloUser() {
     return (
-        <div>
+        <div className={styles.sticky}>
             <div className={styles.authorization}>
                 <h1 className={styles.h1}>Рады видеть вас <span>Admin</span></h1>
 

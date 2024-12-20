@@ -4,16 +4,34 @@
 .page_flexContainer__53VN2 {
     display: flex;
     width: 100%;
+    background-color: rgba(245, 245, 245, 1)
+}
+
+.page_flex__8xyS_ {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
+    background-image: url(/_next/static/media/bcgWelcome.32b860a7.svg);
+    background-size: 100%;
+    background-repeat: repeat;
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/helloUser/helloUser.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************/
+.helloUser_sticky__MYcHV {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
 .helloUser_authorization__vcpLv {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 374px;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(77, 104, 135, 1);
     padding: 80px 45px 115px 45px;
 }
@@ -73,30 +91,29 @@
     bottom: 0;
     pointer-events: none;
 }
-/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/catalog/catalog.module.css ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************/
-.catalog_welcomeContainer__XmZ59 {
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/catalogHeader/catalogHeader.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+.catalogHeader_welcomeContainer__u_Lik {
+    position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-image: url(/_next/static/media/bcgWelcome.32b860a7.svg);
     width: 100%;
-    background-size: cover;
-    padding: 20px 60px 12px 60px;
+    padding: 20px 60px 0 60px;
 }
 
-.catalog_header__49Tvi {
+.catalogHeader_header__N4WDp {
     display: flex;
     justify-content: flex-end;
 }
 
-.catalog_contacts__8_VVd {
+.catalogHeader_contacts__Hxb5D {
     display: flex;
     gap: 30px;
 }
 
-.catalog_link__9DeDu {
+.catalogHeader_link___6PZa {
     display: flex;
     gap: 10px;
     text-align: center;
@@ -104,28 +121,28 @@
     color: black;
 }
 
-.catalog_logo__kMv1O {
+.catalogHeader_logo__XbM1G {
     position: absolute;
     z-index: 3;
 }
 
-.catalog_hello__M_bq8 {
+.catalogHeader_hello__GYj_3 {
     margin-top: 20px;
     height: 176px;
     width: 100%;
-    background-color: white;
+    background-color: rgba(245, 245, 245, 1)
 }
 
-.catalog_sideA__69x5_ {
+.catalogHeader_sideA__2_8C7 {
     position: absolute;
     height: 88px;
     width: 135px;
-    background-color: white;
+    background-color: rgba(245, 245, 245, 1);
     border-bottom-right-radius: 20px;
     z-index: 2;
 }
 
-.catalog_sideB__GF6Rb {
+.catalogHeader_sideB__pzIen {
     position: absolute;
     height: 20px;
     width: 20px;
@@ -135,14 +152,14 @@
     z-index: 1;
 }
 
-.catalog_container__F73_X {
+.catalogHeader_container__W_lk0 {
     position: relative;
     display: flex;
     height: 88px;
     width: 100%;
 }
 
-.catalog_text__oy0z9 {
+.catalogHeader_text__t1hVS {
     display: flex;
     align-items: center;
     height: 100%;
@@ -153,7 +170,7 @@
     background-color: rgba(195, 226, 241, 1);
 }
 
-.catalog_text__oy0z9 span {
+.catalogHeader_text__t1hVS span {
     margin-left: 20px;
     font-size: 32px;
     font-weight: 500;
@@ -161,7 +178,7 @@
     width: 100%;
 }
 
-.catalog_menu__r1QlT {
+.catalogHeader_menu__h9Y0n {
     display: flex;
     align-items: center;
     width: 100%;
@@ -174,14 +191,14 @@
     gap: 10px;
 }
 
-.catalog_search__F9VHb {
+.catalogHeader_search__SrRGm {
     display: flex;
     align-items: center;
     position: relative;
     width: 100%;
 }
 
-.catalog_input__b1gWU {
+.catalogHeader_input__94FNH {
     width: 100%;
     background-color: white;
     border-radius: 5px;
@@ -192,20 +209,143 @@
     padding-right: 50px;
 }
 
-.catalog_search__F9VHb:focus-visible {
+.catalogHeader_search__SrRGm:focus-visible {
     outline: none;
 }
 
-.catalog_searchImg__WuF8Q {
+.catalogHeader_searchImg__klQ_M {
     position: absolute;
     right: 22px;
 }
 
-.catalog_view__FogZc {
+.catalogHeader_view__rOGef {
     min-height: 50px;
     min-width: 50px;
     border: none;
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./src/components/catalog/catalog.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.catalog_wrapper__CfLxZ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 40px 60px;
+    gap: 30px;
+}
+
+.catalog_cart__fja2o {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: calc(25% - 23px);
+    min-width: 264px;
+    height: 423px;
+    padding: 10px;
+    background-color: white;
+}
+
+.catalog_productImg__V6n98 {
+    height: 220px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.catalog_price__PurSy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 34px;
+    width: 100%;
+    padding: 0px 10px;
+}
+
+.catalog_priceArea__Rh7O_ {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.catalog_mainPrice__Lfkuv {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(38, 71, 148, 1);
+}
+
+.catalog_subPrice__KKBo4 {
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: line-through;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.catalog_have__InT9x {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(114, 194, 247, 1);
+}
+
+.catalog_havent__m22jh {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(197, 26, 26, 1);
+}
+
+.catalog_discription__Bineh {
+    height: 72px;
+    width: 100%;
+    padding: 0px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
+}
+
+.catalog_buttonArea__emDZc {
+    height: 44px;
+    width: 100%;
+}
+
+.catalog_add__BKK86 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 10px;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.catalog_disableAdd__h2_EP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(197, 26, 26, 0.4);
+    border-radius: 10px;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.catalog_disableAdd__h2_EP {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.catalog_add__BKK86 span {
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
 }
