@@ -23,19 +23,23 @@ export default function Welcome() {
                     </a>
                 </div>
             </div>
-            <div className={styles.welcomeContent}>
-                <div className={styles.welcomeTextContainer}>
-                    <h2 className={styles.mainText}>Добро пожаловать</h2>
-                    <span className={styles.text}>
-                        На сайт магазина
-                        <br /> «300 ветмир»
-                    </span>
-                    <span className={styles.subText}>
-                        Мы осознаем ценность жизни <br /> ваших питомцев
-                    </span>
-                </div>
+
+            <div className={styles.contentContainer}>
                 <Image className={styles.girl} src={img} alt='' />
+                <div className={styles.container}>
+                    <div className={styles.sideA}></div>
+                    <div className={styles.sideB}></div>
+                    <div className={styles.sideC}></div>
+                </div>
+                <div className={styles.sideD}>
+                    <div className={styles.textContainer}>
+                        <h2>Добро пожаловать</h2>
+                        <span className={styles.text}>На сайт магазина<br />«300 ветмир»</span>
+                        <span className={styles.subText}>Мы осознаем ценность жизни<br />ваших питомцев</span>
+                    </div>
+                </div>
             </div>
+
             <div className={styles.footer}>
                 <span className={styles.redline}>300 ветмир</span>
                 <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>

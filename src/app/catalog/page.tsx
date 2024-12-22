@@ -1,12 +1,12 @@
 import styles from "./page.module.css"
-import HelloUser from "@/components/helloUser/helloUser";
+import Login from "@/components/login/login";
 import CatalogHeader from "@/components/catalogHeader/catalogHeader";
 import Catalog from "@/components/catalog/catalog";
 
 export default function Forgot() {
     return (
         <div className={styles.flexContainer}>
-            <HelloUser />
+            <Login />
             <div className={styles.flex}>
                 <CatalogHeader />
                 <Catalog />

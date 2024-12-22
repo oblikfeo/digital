@@ -1,4 +1,5 @@
 .welcomeContainer {
+    position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -11,6 +12,7 @@
 .header {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
 .contacts {
@@ -26,23 +28,6 @@
     color: black;
 }
 
-.welcomeContent {
-    position: relative;
-    width: 100%;
-    min-width: 1260px;
-    height: 100%;
-    mask-image: url('../../../img/blueMask.png');
-    background-color: #6CBBE3;
-    mask-size: cover;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    margin-top: 20px;
-}
-
 .logo {
     width: 170px;
     height: 150px;
@@ -51,10 +36,93 @@
     z-index: 99;
 }
 
-.girl {
-    margin-left: auto;
+.contentContainer {
+    position: relative;
+    width: 100%;
+    min-width: 1145px;
+    height: calc(100%);
+    background-color: rgba(245, 245, 245, 1);
+}
+
+.container {
+    position: relative;
+    display: flex;
+    height: 130px;
+    width: 100%;
+}
+
+.sideA {
+    position: absolute;
+    height: 130px;
+    width: 185px;
+    background-color: rgba(245, 245, 245, 1);
+    border-bottom-right-radius: 20px;
+    z-index: 2;
+}
+
+.sideB {
     height: 100%;
-    width: auto;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: 185px;
+    background-color: rgba(108, 187, 227, 1);
+    z-index: 1;
+}
+
+.sideC {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: rgba(108, 187, 227, 1);
+    bottom: 0;
+    left: 165px;
+    z-index: 1;
+}
+
+.sideD {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(100% - 153px);
+    background-color: rgba(108, 187, 227, 1);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.textContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    margin-left: 60px;
+}
+
+.textContainer h2 {
+    color: #fff;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.text {
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.subText {
+    color: #fff;
+    font-size: 28px;
+}
+
+.girl {
+    height: calc(100% - 23px);
+    position: absolute;
+    bottom: 23px;
+    right: 0;
+    border-bottom-right-radius: 20px;
+    z-index: 2;
 }
 
 .footer {
@@ -69,29 +137,4 @@
 
 .footerText {
     padding-left: 10px;
-}
-
-.welcomeTextContainer {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    margin-left: 60px;
-}
-
-.mainText {
-    color: #FFFFFF;
-    font-size: 50px;
-    margin-bottom: 10px;
-}
-
-.text {
-    color: #FFFFFF;
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-.subText {
-    color: #FFFFFF;
-    font-size: 28px;
 }

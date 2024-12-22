@@ -1,9 +1,9 @@
-import styles from "./helloUser.module.css";
+import styles from "./login.module.css";
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import Link from "next/link";
 
-export default function HelloUser() {
+export default function Login() {
     return (
         <div className={styles.sticky}>
             <div className={styles.authorization}>

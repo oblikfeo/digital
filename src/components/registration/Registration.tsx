@@ -1,9 +1,12 @@
 import styles from './Registration.module.css'
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
-import Link from "next/link";
 
-export default function Registration() {
+interface Props {
+    setCurrentComponent: (value: string) => void;
+}
+
+export default function Registration({ setCurrentComponent }: Props) {
     return (
         <div>
             <div className={styles.authorization}>
@@ -32,9 +35,10 @@ export default function Registration() {
                 </form>
                 <div className={styles.buttons}>
                     <button className={styles.enter}>Зарегистрироваться</button>
-                    <Link href="/">
-                        <button className={styles.regestration}>У меня уже есть аккаунт</button>
-                    </Link>
+                    <button
+                        className={styles.regestration}
+                        onClick={() => setCurrentComponent('authorization')}
+                    >У меня уже есть аккаунт</button>
                 </div>
                 <Image className={styles.logo} src={logo} alt="" />
             </div>
