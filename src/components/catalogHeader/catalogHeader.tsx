@@ -2,7 +2,11 @@ import styles from './catalogHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 
-export default function CatalogHeader() {
+interface Props {
+    setView: (value: string) => void;
+}
+
+export default function CatalogHeader({ setView }: Props) {
     return (
         <div className={styles.welcomeContainer}>
             <Image className={styles.logo} src={logo} alt='' />
@@ -35,12 +39,12 @@ export default function CatalogHeader() {
                             <path fillRule="evenodd" clipRule="evenodd" d="M2.00059 8.99975C2.00059 5.13465 5.13467 2.00057 8.99977 2.00057C12.8658 2.00057 15.9999 5.13465 15.9999 8.99975C15.9999 10.8831 15.2555 12.5932 14.0462 13.8512C14.0106 13.8784 13.9759 13.9084 13.9431 13.9412C13.9103 13.974 13.8803 14.0087 13.8531 14.0443C12.595 15.2556 10.8841 15.9999 8.9997 15.9999C5.1346 15.9999 2.00059 12.8658 2.00059 8.99975ZM14.619 16.0308C13.0787 17.2627 11.1259 17.9995 8.99977 17.9995C4.02926 17.9995 0 13.9703 0 8.99977C0 4.02926 4.02926 0 8.99977 0C13.9703 0 17.9995 4.02926 17.9995 8.99977C17.9995 11.1241 17.2636 13.0768 16.0327 14.6161L19.7075 18.2909C20.0975 18.6818 20.0975 19.3146 19.7075 19.7055C19.3166 20.0955 18.6838 20.0955 18.2929 19.7055L14.619 16.0308Z" fill="#C51A1A" />
                         </svg>
                     </div>
-                    <button className={styles.view}>
+                    <button onClick={() => setView('list')} className={styles.view}>
                         <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" fill="#264794" />
                         </svg>
                     </button>
-                    <button className={styles.view}>
+                    <button onClick={() => setView('square')} className={styles.view}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M0 4H4V0H0V4ZM6 16H10V12H6V16ZM0 16H4V12H0V16ZM0 10H4V6H0V10ZM6 10H10V6H6V10ZM12 0V4H16V0H12ZM6 4H10V0H6V4ZM12 10H16V6H12V10ZM12 16H16V12H12V16Z" fill="#040D23" />
                         </svg>

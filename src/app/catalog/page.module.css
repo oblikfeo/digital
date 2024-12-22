@@ -13,3 +13,17 @@
     background-size: 100%;
     background-repeat: repeat;
 }
+
+.square {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 40px 60px;
+    gap: 30px;
+}
+
+.list {
+    padding: 40px 60px;
+}

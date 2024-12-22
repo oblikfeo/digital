@@ -4,7 +4,7 @@ import ForgotPassword from "@/components/forgotPassword/ForgotPassword";
 import Registration from "@/components/registration/Registration";
 import Welcome from "@/components/welcome/welcome";
 import styles from "./page.module.css"
-import { JSX, useState } from "react";
+import { useState } from "react";
 import { redirect } from "next/navigation";
 
 const authUser = (name: string, pass: string) => {
@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   // switch кейсы рендеринга
-  let renderedComponent: JSX.Element | null = null;
+  let renderedComponent;
   switch (currentComponent) {
     case "authorization":
       renderedComponent = (

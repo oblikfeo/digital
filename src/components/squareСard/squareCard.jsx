@@ -1,12 +1,11 @@
-import styles from './catalog.module.css';
+import styles from './squareCard.module.css'
 import Image from 'next/image';
 import catalogjson from '../../catalog.json'
 import img from '/img/product.png'
 
-export default function Catalog() {
-
+export default function SquareCard() {
     return (
-        <div className={styles.wrapper}>
+        <>
             {catalogjson.map((item) => (
                 <div className={styles.cart}>
                     <div className={styles.productImg}>
@@ -33,6 +32,6 @@ export default function Catalog() {
                 </div>
             )
             )}
-        </div>
+        </>
     )
 }

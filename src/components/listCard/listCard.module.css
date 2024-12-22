@@ -1,0 +1,97 @@
+.wrapper {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 264px;
+    height: 100px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(236, 245, 255, 1);
+    background-color: white;
+    gap: 30px;
+}
+
+.discription {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    max-width: 330px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
+}
+
+.have {
+    min-width: 101px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(114, 194, 247, 1);
+}
+
+.havent {
+    min-width: 101px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(197, 26, 26, 1);
+}
+
+.counter {
+    display: flex;
+    background-color: rgba(236, 245, 255, 1);
+    border-radius: 6px;
+    min-width: 126px;
+    height: 34px;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.button {
+    padding: 0 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.price {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    width: 166px;
+    height: 66px;
+}
+
+.mainPrice {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(38, 71, 148, 1);
+}
+
+.allPrice {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.subPrice {
+    font-weight: 400;
+    font-size: 10px;
+    text-decoration: line-through;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.buy {
+    cursor: pointer;
+}
