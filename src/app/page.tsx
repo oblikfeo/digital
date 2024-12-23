@@ -11,7 +11,7 @@ const authUser = (name: string, pass: string) => {
   return new Promise((res, rej) => setTimeout(() => {
     if (name === "admin" && pass === "admin") {
       res("Auth")
-      redirect("/Catalog")
+      redirect("/catalog")
     }
     rej("error")
   }, 1000))
