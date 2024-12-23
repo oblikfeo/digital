@@ -6,6 +6,7 @@ import Welcome from "@/components/welcome/welcome";
 import styles from "./page.module.css"
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import { Toaster, toaster } from "@/components/ui/toaster"
 
 const authUser = (name: string, pass: string) => {
   return new Promise((res, rej) => setTimeout(() => {
@@ -14,10 +15,18 @@ const authUser = (name: string, pass: string) => {
       redirect("/catalog")
     }
     rej("error")
+    toaster.create({
+      title: "Ошибка авторизации",
+      description: "Неверный логин или пароль",
+      type: "error",
+      duration: 3000,
+    })
   }, 1000))
 }
 
 export default function Home() {
+
+
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,6 +39,7 @@ export default function Home() {
     }
     authUser(email, password);
   };
+
 
   // switch кейсы рендеринга
   let renderedComponent;
@@ -65,6 +75,7 @@ export default function Home() {
     <div className={styles.flexContainer}>
       {renderedComponent}
       <Welcome />
+      <Toaster />
     </div>
   );
 }

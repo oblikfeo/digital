@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
+import { Provider } from "@/components/ui/provider";
 
 const font = Jost({
   subsets: ["latin"],
@@ -19,9 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <body className={`${font.className}`}>
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
