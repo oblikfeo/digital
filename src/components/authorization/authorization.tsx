@@ -60,7 +60,7 @@ export default function Authorization({ email, setEmail, password, setPassword, 
                     </button>
                     <button
                         onClick={() => setCurrentComponent('registration')}
-                        className={styles.regestration}>
+                        className={styles.registration}>
                         Регистрация
                     </button>
                 </div>

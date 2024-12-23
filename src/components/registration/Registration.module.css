@@ -30,8 +30,13 @@
     border: none;
 }
 
-.input:focus {
-    border: 1px solid rgba(197, 26, 26, 1);
+.input:hover {
+    border: 1px solid rgba(38, 71, 148, 0.3)
+}
+
+.input:focus-visible {
+    outline: none;
+    border: 1px solid rgba(38, 71, 148, 1);
 }
 
 .input::placeholder {
@@ -67,7 +72,15 @@
     cursor: pointer;
 }
 
-.regestration {
+.enter:hover {
+    box-shadow: 0px 0px 14px 0px rgba(197, 26, 26, 0.6);
+}
+
+.enter:active {
+    background-color: rgba(161, 18, 18, 1);
+}
+
+.registration {
     font-size: 16px;
     border-radius: 10px;
     width: 100%;
@@ -76,6 +89,15 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
+}
+
+.registration:hover {
+    box-shadow: 0px 0px 14px 0px rgba(197, 26, 26, 0.6);
+    background-color: rgba(197, 26, 26, 1);
+}
+
+.registration:active {
+    background-color: rgba(161, 18, 18, 1);
 }
 
 .logo {

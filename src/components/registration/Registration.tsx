@@ -36,7 +36,7 @@ export default function Registration({ setCurrentComponent }: Props) {
                 <div className={styles.buttons}>
                     <button className={styles.enter}>Зарегистрироваться</button>
                     <button
-                        className={styles.regestration}
+                        className={styles.registration}
                         onClick={() => setCurrentComponent('authorization')}
                     >У меня уже есть аккаунт</button>
                 </div>
