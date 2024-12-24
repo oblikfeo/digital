@@ -143,6 +143,9 @@
 }
 
 .view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 50px;
     min-width: 50px;
     border: none;

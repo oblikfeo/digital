@@ -2,11 +2,21 @@
 import styles from "./page.module.css"
 import Login from "@/components/login/login";
 import CatalogHeader from "@/components/catalogHeader/catalogHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListCard from '../../components/listCard/listCard'
 import SquareCard from '../../components/squareСard/squareCard'
+import { Toaster, toaster } from "@/components/ui/toaster"
 
 export default function Catalog() {
+
+    useEffect(() => {
+        toaster.create({
+            title: "Успешная авторизация",
+            description: "Добро пожаловать admin",
+            type: "success",
+            duration: 4000,
+        })
+    })
 
     // switch кейсы переключения вида каталога
     const [view, setView] = useState('list')
@@ -36,6 +46,7 @@ export default function Catalog() {
                     {viewCatalog}
                 </div>
             </div>
+            <Toaster />
         </div>
     );
 }
