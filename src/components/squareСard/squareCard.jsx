@@ -3,6 +3,7 @@ import Image from 'next/image';
 import catalogjson from '../../catalog.json'
 import img from '/img/product.png'
 import { useState } from 'react';
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 export default function SquareCard() {
 
@@ -50,6 +51,15 @@ export default function SquareCard() {
         );
     };
 
+    const toastError = () => {
+        toaster.create({
+            title: "Навигация",
+            description: "Вы находитесь на 1 странице",
+            type: "error",
+            duration: 3000,
+        })
+    }
+
     return (
         <>
             <div className={styles.square}>
@@ -82,16 +92,35 @@ export default function SquareCard() {
             </div>
             <nav>
                 <ul className={styles.pagination}>
-                    <svg className={styles.svg} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={() => {
+                        if (currentPage == 1) {
+                            toaster.create({
+                                title: "Навигация",
+                                description: "Вы находитесь на первой странице",
+                                type: "error",
+                                duration: 2000,
+                            })
+                        }
+                    }} className={styles.svg} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.4 1.4L6 0L0 6L6 12L7.4 10.6L2.8 6L7.4 1.4Z" fill="#264794" />
                     </svg>
                     {renderPaginationButtons()}
-                    <svg className={styles.svg} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={() => {
+                        if (currentPage == pageCount) {
+                            toaster.create({
+                                title: "Навигация",
+                                description: "Вы находитесь на последней странице",
+                                type: "error",
+                                duration: 2000,
+                            })
+                        }
+                    }} className={styles.svg} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9999 7.4L12.3999 6L18.3999 12L12.3999 18L10.9999 16.6L15.5999 12L10.9999 7.4Z" fill="#C51A1A" />
                         <circle cx="7" cy="12" r="2" fill="#C51A1A" />
                     </svg>
                 </ul>
             </nav>
+            <Toaster />
         </>
     )
 }
