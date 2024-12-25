@@ -6,7 +6,9 @@
 }
 
 .flex:hover {
-    background-color: #ebebeb;
+    box-shadow: inset 1px 1px 5px rgba(50, 50, 50, 0.2);
+    border-radius: 8px;
+    padding-left: 2px;
 }
 
 .middleText {
