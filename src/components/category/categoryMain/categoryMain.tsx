@@ -16,7 +16,7 @@ export default function CategoryMain() {
             <div className={styles.categoryMain}>
                 <div onClick={shows} className={styles.flex}>
                     <span className={styles.MainText}>Домашние животные</span>
-                    <Image className={styles.icon} src={icon} alt="" />
+                    <Image className={!show ? styles.icon : styles.none} src={icon} alt="" />
                 </div>
                 <div className={show ? styles.showTrue : styles.showFalse}>
                     <CategoryMiddle />

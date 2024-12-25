@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 interface Props {
     setView: (value: string) => void;
-    select: (value: boolean) => void;
 }
 
 export default function CatalogHeader({ setView }: Props) {

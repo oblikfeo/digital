@@ -15,7 +15,7 @@ export default function CategoryMiddle() {
         <>
             <div onClick={click} className={styles.flex}>
                 <span className={styles.middleText}>Кошки</span>
-                <Image className={styles.icon} src={icon} alt="" />
+                <Image className={open ? styles.icon : styles.none} src={icon} alt="" />
             </div>
             <div className={open ? styles.categoryLowFalse : styles.categoryLowTrue}>
                 <div className={styles.lowText}><span className={styles.hover}>Кошачья еда</span></div>
