@@ -65,3 +65,7 @@
 .hover:active {
     color: rgba(197, 26, 26, 1);
 }
+
+.icon {
+    transform: scaleY(-1);
+}
