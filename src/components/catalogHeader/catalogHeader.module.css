@@ -129,8 +129,15 @@
     align-items: center;
     min-height: 50px;
     min-width: 50px;
-    border: none;
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.borderTrue {
+    border: 2px solid rgba(197, 26, 26, 1);
+}
+
+.borderFalse {
+    border: none;
 }

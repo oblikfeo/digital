@@ -2,12 +2,31 @@ import styles from './catalogHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import CustomSelect from '../select/customSelect'
+import { useState } from 'react';
 
 interface Props {
     setView: (value: string) => void;
+    select: (value: boolean) => void;
 }
 
 export default function CatalogHeader({ setView }: Props) {
+
+    const [borderList, setBorderList] = useState(true)
+    const [borderSquare, setBorderSquare] = useState(false)
+
+    const selectList = () => {
+        if (!borderList) {
+            setBorderList(!borderList)
+            setBorderSquare(!borderSquare)
+        }
+    }
+
+    const selectSquare = () => {
+        if (!borderSquare) {
+            setBorderList(!borderList)
+            setBorderSquare(!borderSquare)
+        }
+    }
 
     return (
         <div className={styles.welcomeContainer}>
@@ -44,12 +63,20 @@ export default function CatalogHeader({ setView }: Props) {
 
                     <CustomSelect />
 
-                    <button onClick={() => setView('list')} className={styles.view}>
+                    <button onClick={() => {
+                        setView('list');
+                        selectList();
+                    }}
+                        className={`${styles.view} ${borderList ? styles.borderTrue : styles.borderFalse}`}>
                         <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" fill="#264794" />
                         </svg>
                     </button>
-                    <button onClick={() => setView('square')} className={styles.view}>
+                    <button onClick={() => {
+                        setView('square')
+                        selectSquare();
+                    }}
+                        className={`${styles.view} ${borderSquare ? styles.borderTrue : styles.borderFalse}`}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M0 4H4V0H0V4ZM6 16H10V12H6V16ZM0 16H4V12H0V16ZM0 10H4V6H0V10ZM6 10H10V6H6V10ZM12 0V4H16V0H12ZM6 4H10V0H6V4ZM12 10H16V6H12V10ZM12 16H16V12H12V16Z" fill="#040D23" />
                         </svg>
