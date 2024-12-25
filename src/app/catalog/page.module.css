@@ -27,3 +27,21 @@
 .list {
     padding: 40px 60px;
 }
+
+.footer {
+    font-size: 14px;
+    margin-left: 60px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+
+
+}
+
+.redline {
+    border-right: 1px solid rgba(197, 26, 26, 1);
+    padding-right: 10px;
+}
+
+.footerText {
+    padding-left: 10px;
+}

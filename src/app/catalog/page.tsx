@@ -45,6 +45,10 @@ export default function Catalog() {
                 <div className={view === 'list' ? styles.list : styles.square}>
                     {viewCatalog}
                 </div>
+                <div className={styles.footer}>
+                    <span className={styles.redline}>300 ветмир</span>
+                    <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
+                </div>
             </div>
             <Toaster />
         </div>

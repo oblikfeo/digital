@@ -96,3 +96,43 @@
 .buy {
     cursor: pointer;
 }
+
+.square {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 40px 60px;
+    gap: 30px;
+}
+
+.pagination {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.hover {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(38, 71, 148, 1);
+}
+
+.hover:hover {
+    color: rgba(197, 26, 26, 1);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.svg {
+    margin: 0px 40px;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}

@@ -2,12 +2,58 @@ import styles from './listCard.module.css'
 import Image from 'next/image';
 import catalogjson from '../../catalog.json'
 import img from '/img/product.png'
+import { useState } from 'react';
 
 export default function ListCard() {
+
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const itemsPerPage = 7;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = catalogjson.slice(indexOfFirstItem, indexOfLastItem);
+
+    const pageCount = Math.ceil(catalogjson.length / itemsPerPage);
+
+    const getPagesArray = () => {
+        if (pageCount <= 10) {
+            return Array.from({ length: pageCount }, (_, i) => i + 1);
+        }
+        let pagesArray = [];
+        for (let i = 0; i < 5; i++) {
+            pagesArray.push(i + 1);
+        }
+        pagesArray.push('...');
+        for (let i = pageCount - 1; i < pageCount; i++) {
+            pagesArray.push(i + 1);
+        }
+        return pagesArray;
+    };
+
+    const renderPaginationButtons = () => {
+        const pagesArray = getPagesArray();
+        return (
+            <div className={styles.pagination}>
+                {pagesArray.map((item, index) => {
+                    if (typeof item === 'number') {
+                        return (
+                            <button className={styles.hover} key={index} onClick={() => setCurrentPage(item)}>
+                                {item}
+                            </button>
+                        );
+                    } else {
+                        return <span key={index}>{item}</span>;
+                    }
+                })}
+            </div>
+        );
+    };
+
     return (
         <>
             <div className={styles.wrapper}>
-                {catalogjson.map((item) => (
+                {currentItems.map((item) => (
                     <div className={styles.cart}>
                         <Image src={img} alt='' width={80} height={80} />
                         <div className={styles.discription}>
@@ -43,6 +89,18 @@ export default function ListCard() {
 
                 )
                 )}
+                <nav className={styles.nav}>
+                    <ul className={styles.pagination}>
+                        <svg className={styles.svg} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.4 1.4L6 0L0 6L6 12L7.4 10.6L2.8 6L7.4 1.4Z" fill="#264794" />
+                        </svg>
+                        {renderPaginationButtons()}
+                        <svg className={styles.svg} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9999 7.4L12.3999 6L18.3999 12L12.3999 18L10.9999 16.6L15.5999 12L10.9999 7.4Z" fill="#C51A1A" />
+                            <circle cx="7" cy="12" r="2" fill="#C51A1A" />
+                        </svg>
+                    </ul>
+                </nav>
             </div>
         </>
     )
