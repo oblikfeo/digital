@@ -1,0 +1,48 @@
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.middleText {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(4, 13, 35, 1);
+}
+
+.lowText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(4, 13, 35, 1);
+}
+
+.categoryLowTrue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.categoryLowFalse {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.hover {
+    padding: 6px 20px;
+    cursor: pointer;
+}
+
+.hover:hover {
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.icon {
+    transform: scaleY(-1);
+}

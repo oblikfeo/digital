@@ -5,7 +5,7 @@ import CatalogHeader from "@/components/catalogHeader/catalogHeader";
 import { useEffect, useState } from "react";
 import ListCard from '../../components/listCard/listCard'
 import SquareCard from '../../components/squareСard/squareCard'
-import { Toaster, toaster } from "@/components/ui/toaster"
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 export default function Catalog() {
 
@@ -16,7 +16,7 @@ export default function Catalog() {
             type: "success",
             duration: 4000,
         })
-    })
+    }, [])
 
     // switch кейсы переключения вида каталога
     const [view, setView] = useState('list')

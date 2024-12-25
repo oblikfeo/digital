@@ -2,6 +2,7 @@ import styles from "./login.module.css";
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import Link from "next/link";
+import Category from "../category/category";
 
 export default function Login() {
     return (
@@ -32,6 +33,7 @@ export default function Login() {
 
                 <Image className={styles.logo} src={logo} alt="" />
             </div>
+            <Category />
         </div>
     );
 }

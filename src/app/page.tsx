@@ -6,7 +6,7 @@ import Welcome from "@/components/welcome/welcome";
 import styles from "./page.module.css"
 import { useState } from "react";
 import { redirect } from "next/navigation";
-import { Toaster, toaster } from "@/components/ui/toaster"
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 const authUser = (name: string, pass: string) => {
   return new Promise((res, rej) => setTimeout(() => {
