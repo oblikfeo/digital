@@ -51,15 +51,6 @@ export default function SquareCard() {
         );
     };
 
-    const toastError = () => {
-        toaster.create({
-            title: "Навигация",
-            description: "Вы находитесь на 1 странице",
-            type: "error",
-            duration: 3000,
-        })
-    }
-
     return (
         <>
             <div className={styles.square}>
