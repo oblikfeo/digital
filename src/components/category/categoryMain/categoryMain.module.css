@@ -28,6 +28,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+}
+
+.flex:hover {
+    background-color: #ebebeb;
 }
 
 .showTrue {

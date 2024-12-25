@@ -2,6 +2,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+}
+
+.flex:hover {
+    background-color: #ebebeb;
 }
 
 .middleText {
@@ -36,6 +41,7 @@
     padding: 6px 20px;
     cursor: pointer;
 }
+
 
 .hover:hover {
     background-color: rgba(197, 26, 26, 1);
