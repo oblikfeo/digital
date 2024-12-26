@@ -25,7 +25,11 @@ export default function SquareCard() {
         for (let i = 0; i < 5; i++) {
             pagesArray.push(i + 1);
         }
-        pagesArray.push('...');
+        if (currentPage > 5 && currentPage != pageCount) {
+            pagesArray.push(currentPage);
+        } else {
+            pagesArray.push('...');
+        }
         for (let i = pageCount - 1; i < pageCount; i++) {
             pagesArray.push(i + 1);
         }
@@ -39,7 +43,13 @@ export default function SquareCard() {
                 {pagesArray.map((item, index) => {
                     if (typeof item === 'number') {
                         return (
-                            <button className={styles.hover} key={index} onClick={() => setCurrentPage(item)}>
+                            <button className={styles.hover}
+                                style={{
+                                    fontSize: item === currentPage ? '24px' : '16px',
+                                    color: item === currentPage ? "red" : "rgba(38, 71, 148, 1)"
+                                }}
+                                key={index}
+                                onClick={() => setCurrentPage(item)}>
                                 {item}
                             </button>
                         );
@@ -84,7 +94,9 @@ export default function SquareCard() {
             <nav>
                 <ul className={styles.pagination}>
                     <svg onClick={() => {
-                        if (currentPage == 1) {
+                        if (currentPage !== 1) {
+                            setCurrentPage(currentPage - 1)
+                        } else {
                             toaster.create({
                                 title: "Навигация",
                                 description: "Вы находитесь на первой странице",
@@ -97,7 +109,9 @@ export default function SquareCard() {
                     </svg>
                     {renderPaginationButtons()}
                     <svg onClick={() => {
-                        if (currentPage == pageCount) {
+                        if (currentPage !== pageCount) {
+                            setCurrentPage(currentPage + 1)
+                        } else {
                             toaster.create({
                                 title: "Навигация",
                                 description: "Вы находитесь на последней странице",
