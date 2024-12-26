@@ -121,7 +121,7 @@
 }
 
 .hover:hover {
-    color: rgba(197, 26, 26, 1);
+    color: rgba(197, 26, 26, 1) !important;
     font-weight: 600;
     cursor: pointer;
 }
