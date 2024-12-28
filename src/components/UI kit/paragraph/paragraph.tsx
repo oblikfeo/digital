@@ -1,6 +1,11 @@
 import styles from "./paragraph.module.css"
 
-export default function Paragraph({ text, props }) {
+interface MyInterface {
+    text: string;
+    props: string
+}
+
+export default function Paragraph({ text, props }: MyInterface) {
 
     return (
         <div className={styles.paragraph}>
