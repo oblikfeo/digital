@@ -30,7 +30,7 @@ export default function Catalog() {
 
         case "square":
             viewCatalog = (
-                <SquareCard />
+                <SquareCard props={8} />
             )
             break;
     }

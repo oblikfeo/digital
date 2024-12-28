@@ -4,6 +4,7 @@ import catalogjson from '../../catalog.json'
 import img from '/img/product.png'
 import { useState } from 'react';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { redirect } from 'next/navigation';
 
 export default function ListCard() {
 
@@ -67,12 +68,12 @@ export default function ListCard() {
         <>
             <div className={styles.wrapper}>
                 {currentItems.map((item) => (
-                    <div className={styles.cart}>
-                        <Image src={img} alt='' width={80} height={80} />
-                        <div className={styles.discription}>
+                    <div className={styles.cart} key={item.id}>
+                        <Image className={styles.link} onClick={() => redirect("catalog/product")} src={img} alt='' width={80} height={80} />
+                        <div onClick={() => redirect("catalog/product")} className={styles.discription}>
                             {item.description}
                         </div>
-                        <div className={item.have > 0 ? styles.have : styles.havent}>{item.have === 0 ? 'Нет в наличии' : 'В наличии'}</div>
+                        <div className={item.quantity > 0 ? styles.have : styles.havent}>{item.quantity === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         <div className={styles.counter}>
                             <div className={styles.button}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +117,7 @@ export default function ListCard() {
                                 })
                             }
                         }} className={styles.svg} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.4 1.4L6 0L0 6L6 12L7.4 10.6L2.8 6L7.4 1.4Z" fill="#264794" />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M7.4 1.4L6 0L0 6L6 12L7.4 10.6L2.8 6L7.4 1.4Z" fill="#264794" />
                         </svg>
                         {renderPaginationButtons()}
                         <svg onClick={() => {
@@ -131,7 +132,7 @@ export default function ListCard() {
                                 })
                             }
                         }} className={styles.svg} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9999 7.4L12.3999 6L18.3999 12L12.3999 18L10.9999 16.6L15.5999 12L10.9999 7.4Z" fill="#C51A1A" />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M10.9999 7.4L12.3999 6L18.3999 12L12.3999 18L10.9999 16.6L15.5999 12L10.9999 7.4Z" fill="#C51A1A" />
                             <circle cx="7" cy="12" r="2" fill="#C51A1A" />
                         </svg>
                     </ul>

@@ -22,7 +22,7 @@ export function useColorMode() {
   }
   return {
     colorMode: resolvedTheme,
-    setColorMode: setTheme,
+    setColorMode: "light",
     toggleColorMode,
   }
 }

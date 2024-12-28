@@ -69,6 +69,7 @@
     font-size: 16px;
     font-weight: 400;
     color: rgba(4, 13, 35, 1);
+    cursor: pointer;
 }
 
 .buttonArea {
@@ -100,12 +101,7 @@
     border: none;
     gap: 10px;
     cursor: pointer;
-}
-
-.disableAdd {
     color: white;
-    font-weight: 400;
-    font-size: 16px;
 }
 
 .add span {
@@ -146,5 +142,9 @@
 
 .svg {
     margin: 0px 40px;
+    cursor: pointer;
+}
+
+.link {
     cursor: pointer;
 }

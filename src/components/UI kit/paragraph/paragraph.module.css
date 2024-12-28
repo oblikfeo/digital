@@ -1,0 +1,30 @@
+.paragraph {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paragraph h2 {
+    color: rgba(38, 71, 148, 1);
+    white-space: nowrap;
+}
+
+.paragraph h3 {
+    color: rgba(4, 13, 35, 1);
+    white-space: nowrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.border {
+    width: 100%;
+    padding: 12px 10px 0px 12px;
+}
+
+.borderItem {
+    padding-top: 6px;
+    width: 100%;
+    border-bottom: 1px dashed rgba(38, 71, 148, 0.4);
+}

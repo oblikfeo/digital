@@ -1,0 +1,209 @@
+.wrapper {
+    width: 100%;
+    padding: 0 60px;
+    height: 100%;
+    margin-top: 40px;
+}
+
+.product {
+    min-width: 1010px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.content {
+    background-color: #FFFFFF;
+    display: flex;
+    gap: 30px;
+}
+
+.shadow {
+    box-shadow: 0px 0px 50px 0px rgba(4, 13, 35, 0.08);
+    border-radius: 10px;
+    width: 322px;
+    height: 322px;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    height: 91px;
+    border-bottom: 1px solid rgba(236, 245, 255, 1);
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(38, 71, 148, 1);
+}
+
+.have {
+    text-align: center;
+    min-width: 101px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(114, 194, 247, 1);
+    text-align: center;
+    margin-top: 8px;
+}
+
+.havent {
+    min-width: 101px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(197, 26, 26, 1);
+    text-align: center;
+    margin-top: 8px;
+}
+
+.description {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.right {
+
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    width: 224px;
+}
+
+.paragraph {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paragraph h2 {
+    color: rgba(38, 71, 148, 1);
+    white-space: nowrap;
+}
+
+.paragraph h3 {
+    color: rgba(4, 13, 35, 1);
+    white-space: nowrap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.border {
+    width: 100%;
+    padding: 12px 10px 0px 12px;
+}
+
+.borderItem {
+    padding-top: 6px;
+    width: 100%;
+    border-bottom: 1px dashed rgba(38, 71, 148, 0.4);
+}
+
+.counter {
+    display: flex;
+    background-color: rgba(236, 245, 255, 1);
+    border-radius: 6px;
+    min-width: 126px;
+    height: 34px;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.button {
+    padding: 0 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.calc {
+    display: flex;
+}
+
+.h4 {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(38, 71, 148, 0.4);
+    white-space: nowrap;
+}
+
+.buttonArea {
+    height: 44px;
+    width: 100%;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 10px;
+    border: none;
+    gap: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.flex {
+    display: flex;
+    cursor: pointer;
+}
+
+.flex span {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(197, 26, 26, 1);
+}
+
+.transform {
+    transform: scaleY(-1)
+}
+
+.h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(38, 71, 148, 1);
+    margin-left: 60px;
+}
+
+.footer {
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-top: 80px;
+}
+
+.redline {
+    border-right: 1px solid rgba(197, 26, 26, 1);
+    padding-right: 10px;
+}
+
+.footerText {
+    padding-left: 10px;
+}
+
+.minicatalog {
+    margin-top: 80px;
+}

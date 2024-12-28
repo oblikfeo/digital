@@ -25,6 +25,7 @@
     font-size: 16px;
     font-weight: 400;
     color: rgba(4, 13, 35, 1);
+    cursor: pointer;
 }
 
 .have {
@@ -33,6 +34,7 @@
     font-weight: 400;
     font-size: 16px;
     color: rgba(114, 194, 247, 1);
+    text-align: center;
 }
 
 .havent {
@@ -40,6 +42,7 @@
     font-weight: 400;
     font-size: 16px;
     color: rgba(197, 26, 26, 1);
+    text-align: center;
 }
 
 .counter {
@@ -135,4 +138,8 @@
     display: flex;
     justify-content: center;
     margin-top: 60px;
+}
+
+.link {
+    cursor: pointer;
 }
