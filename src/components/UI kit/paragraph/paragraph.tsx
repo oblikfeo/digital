@@ -1,6 +1,6 @@
 import styles from "./paragraph.module.css"
 
-export default function Paragraph({ targetItem, text, props }) {
+export default function Paragraph({ text, props }) {
 
     return (
         <div className={styles.paragraph}>
