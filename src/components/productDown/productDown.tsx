@@ -8,18 +8,18 @@ export default function ProductDown({ targetItem }) {
             <h2 className={styles.h2}>Основные характеристики</h2>
             <div className={styles.flex}>
 
-                <Paragraph targetItem={targetItem} text={"Форма выпуска:"} props={targetItem?.form} />
-                <Paragraph targetItem={targetItem} text={"Возраст животного:"} props={targetItem?.forage} />
+                <Paragraph text={"Форма выпуска:"} props={targetItem?.form} />
+                <Paragraph text={"Возраст животного:"} props={targetItem?.forage} />
             </div>
             <h2 className={styles.h2}>Дополнительные характеристики</h2>
             <div className={styles.flex}>
 
-                <Paragraph targetItem={targetItem} text={"Особенности:"} props={targetItem?.peculiarities} />
-                <Paragraph targetItem={targetItem} text={"Возраст животного:"} props={targetItem?.age} />
-                <Paragraph targetItem={targetItem} text={"Особенности:"} props={targetItem?.productcode} />
-                <Paragraph targetItem={targetItem} text={"Назначение::"} props={targetItem?.purpose} />
-                <Paragraph targetItem={targetItem} text={"Применение:"} props={targetItem?.application} />
-                <Paragraph targetItem={targetItem} text={"Объем, в миллилитрах:"} props={targetItem?.volume} />
+                <Paragraph text={"Особенности:"} props={targetItem?.peculiarities} />
+                <Paragraph text={"Возраст животного:"} props={targetItem?.age} />
+                <Paragraph text={"Особенности:"} props={targetItem?.productcode} />
+                <Paragraph text={"Назначение::"} props={targetItem?.purpose} />
+                <Paragraph text={"Применение:"} props={targetItem?.application} />
+                <Paragraph text={"Объем, в миллилитрах:"} props={targetItem?.volume} />
             </div>
             <h2 className={styles.h2}>Состав</h2>
             <div className={styles.flex}>

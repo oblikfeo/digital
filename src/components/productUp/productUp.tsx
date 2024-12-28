@@ -34,15 +34,15 @@ export default function ProductUp() {
                         <div className={styles.description}>
 
                             <div className={styles.left}>
-                                <Paragraph targetItem={targetItem} text={"Проивзводитель:"} props={targetItem?.manufacturer} />
-                                <Paragraph targetItem={targetItem} text={"Страна производитель:"} props={targetItem?.country} />
-                                <Paragraph targetItem={targetItem} text={"Категория товара:"} props={targetItem?.category} />
-                                <Paragraph targetItem={targetItem} text={"Остаток:"} props={targetItem?.quantity} />
-                                <Paragraph targetItem={targetItem} text={"Минимальный объем заказа:"} props={targetItem?.minforbuy} />
+                                <Paragraph text={"Проивзводитель:"} props={targetItem?.manufacturer} />
+                                <Paragraph text={"Страна производитель:"} props={targetItem?.country} />
+                                <Paragraph text={"Категория товара:"} props={targetItem?.category} />
+                                <Paragraph text={"Остаток:"} props={targetItem?.quantity} />
+                                <Paragraph text={"Минимальный объем заказа:"} props={targetItem?.minforbuy} />
                             </div>
 
                             <div className={styles.right}>
-                                <Paragraph targetItem={targetItem} text={"Цена:"} props={targetItem?.price} />
+                                <Paragraph text={"Цена:"} props={targetItem?.price} />
 
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
