@@ -7,7 +7,7 @@
 .wrapper {
     display: flex;
     width: 100%;
-    background-image: url(/digital/_next/static/media/bcgWelcome.32b860a7.svg);
+    background-image: url("../../../../img/bcgWelcome.svg");
     background-size: 100%;
     background-repeat: repeat;
     flex-direction: column;
