@@ -13,7 +13,6 @@ export default function ProductUp() {
     const [open, setOpen] = useState(false)
 
     const targetItem = catalogjson.find(item => item.id === 1);
-    console.log(targetItem)
 
     return (
         <div className={styles.wrapper}>
