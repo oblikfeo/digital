@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
-import { Provider } from "@/components/Toaster/provider";
+import { Provider } from "@/components/Provider";
+
 
 const font = Jost({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body className={`${font.className}`}>
-        <Provider>{children}</Provider>
+        <Provider>
+          {children}
+        </Provider>
       </body>
     </html>
   );

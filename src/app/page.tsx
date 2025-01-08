@@ -21,7 +21,7 @@ const authUser = (name: string, pass: string) => {
       type: "error",
       duration: 3000,
     })
-  }, 1000))
+  }, 0))
 }
 
 export default function Home() {

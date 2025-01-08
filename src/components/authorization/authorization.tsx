@@ -54,9 +54,6 @@ export default function Authorization({ email, setEmail, password, setPassword, 
                 </form>
                 <div className={styles.buttons}>
                     <button
-                        onKeyDown={(e) => {
-                            console.log(e.code)
-                        }}
                         onClick={handleSubmit}
                         className={styles.enter}>
                         Войти

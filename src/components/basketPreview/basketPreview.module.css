@@ -1,0 +1,136 @@
+.wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 125px;
+    padding: 20px 20px 40px 20px;
+    border-radius: 10px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding-bottom: 20px;
+    min-width: 650px;
+    border-bottom: 1px solid rgba(236, 245, 255, 1);
+}
+
+.leftCard {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 440px;
+}
+
+.description {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
+}
+
+.counter {
+    display: flex;
+    background-color: rgba(236, 245, 255, 1);
+    border-radius: 6px;
+    min-width: 126px;
+    height: 34px;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.number {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.button {
+    padding: 0 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.price {
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    width: 166px;
+    height: 66px;
+}
+
+.mainPrice {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(38, 71, 148, 1);
+}
+
+.allPrice {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.subPrice {
+    font-weight: 400;
+    font-size: 10px;
+    text-decoration: line-through;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.buy {
+    cursor: pointer;
+
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.next {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    gap: 20px;
+}
+
+.but {
+    width: 260px;
+    height: 44px;
+    background-color: rgba(197, 26, 26, 1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.img {
+    pointer-events: none;
+    position: absolute;
+    bottom: -50px;
+    right: 100px;
+    z-index: 1;
+}
+
+.itogo {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(38, 71, 148, 0.4);
+    margin-right: 10px;
+}
+
+.totalAmount {
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(38, 71, 148, 1);
+}
