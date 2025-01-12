@@ -24,8 +24,7 @@
         "PriceForContrAgent1": 100,
         "PriceForContrAgent2": 110,
         "PriceForContrAgent3": 120,
-        "PriceForContrAgent4": 130,
-        "stack": 0
+        "PriceForContrAgent4": 130
     },
     {
         "id": 2,

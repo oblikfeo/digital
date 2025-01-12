@@ -113,7 +113,7 @@
 .square {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100%;
     width: 100%;
     padding: 40px 60px;

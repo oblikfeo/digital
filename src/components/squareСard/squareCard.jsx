@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import { redirect } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../../redux/features/cartSlice';
+import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 
 export default function SquareCard({ props }) {
 
@@ -80,7 +80,7 @@ export default function SquareCard({ props }) {
                 {currentItems.map((item) => (
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
-                            <Image className={styles.link} onClick={() => redirect("catalog/product")} src={img} alt='' width={200} height={200} />
+                            <Image className={styles.link} onClick={() => redirect(`catalog/${item.id}`)} src={img} alt='' width={200} height={200} />
                         </div>
                         <div className={styles.price}>
                             <div className={styles.priceArea}>
@@ -89,7 +89,7 @@ export default function SquareCard({ props }) {
                             </div>
                             <div className={item.quantity > 0 ? styles.have : styles.havent}>{item.quantity === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         </div>
-                        <div onClick={() => redirect("catalog/product")} className={styles.discription}>
+                        <div onClick={() => redirect(`catalog/${item.id}`)} src={img} className={styles.discription}>
                             {item.description}
                         </div>
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?

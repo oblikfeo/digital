@@ -4,7 +4,7 @@ import Image from 'next/image';
 import img from '/img/product.png'
 import basketImg from '../../../img/basketImg.png'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems, selectTotalAmount, removeFromCart, addToCart } from '../../redux/features/cartSlice';
+import { selectCartItems, selectTotalAmount, removeFromCart, addToCart } from '../../redux/slices/cartSlice';
 import { toaster } from "@/components/Toaster/toaster"
 
 export default function BasketPreview() {

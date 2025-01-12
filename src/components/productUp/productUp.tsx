@@ -1,3 +1,4 @@
+'use client'
 import styles from "./productUp.module.css"
 import catalogjson from "../../catalog.json"
 import img from '/img/product.png'
@@ -6,13 +7,19 @@ import Paragraph from "../UI kit/paragraph/paragraph";
 import ProductDown from "../productDown/productDown";
 import { useState } from "react";
 import SquareCard from "../squareСard/squareCard";
+import { usePathname } from "next/navigation";
+import { useSelector } from 'react-redux';
+import { CartState } from '../../redux/slices/cartSlice';
+
 
 
 export default function ProductUp() {
 
-    const [open, setOpen] = useState(false)
+    const pathname = usePathname()
 
-    const targetItem = catalogjson.find(item => item.id === 1);
+    const [open, setOpen] = useState(false)
+    const targetItem = catalogjson.find(item => item.id === Number(pathname?.split('/').pop()));
+    const stack = useSelector((state: CartState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop()))?.stack);
 
     return (
         <div className={styles.wrapper}>
@@ -23,7 +30,7 @@ export default function ProductUp() {
                     <div className={styles.card}>
                         <div className={styles.head}>
                             <div className={styles.name}>
-                                {targetItem?.description}
+                                <div>{targetItem?.description}</div>
                             </div>
                             <div className={targetItem.quantity > 0 ? styles.have : styles.havent}>
                                 {targetItem?.quantity === 0 ? 'Нет в наличии' : 'В наличии'}
@@ -34,7 +41,7 @@ export default function ProductUp() {
                         <div className={styles.description}>
 
                             <div className={styles.left}>
-                                <Paragraph text={"Проивзводитель:"} props={targetItem?.manufacturer} />
+                                <Paragraph text={"Производитель:"} props={targetItem?.manufacturer} />
                                 <Paragraph text={"Страна производитель:"} props={targetItem?.country} />
                                 <Paragraph text={"Категория товара:"} props={targetItem?.category} />
                                 <Paragraph text={"Остаток:"} props={targetItem?.quantity} />
@@ -52,7 +59,7 @@ export default function ProductUp() {
                                                 <rect x="5" y="9" width="10" height="2" fill="#264794" />
                                             </svg>
                                         </div>
-                                        <div className={styles.number}>1 шт</div>
+                                        <div className={styles.number}>{stack || "0"} шт</div>
                                         <div className={styles.button}>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="20" height="20" fill="#ECF5FF" />

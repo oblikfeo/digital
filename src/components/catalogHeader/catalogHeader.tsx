@@ -10,8 +10,8 @@ interface Props {
 
 export default function CatalogHeader({ setView }: Props) {
 
-    const [borderList, setBorderList] = useState(true)
-    const [borderSquare, setBorderSquare] = useState(false)
+    const [borderList, setBorderList] = useState(false)
+    const [borderSquare, setBorderSquare] = useState(true)
 
     const selectList = () => {
         if (!borderList) {

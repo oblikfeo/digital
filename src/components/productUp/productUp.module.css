@@ -38,6 +38,10 @@
     color: rgba(38, 71, 148, 1);
 }
 
+.name div {
+    max-width: 550px;
+}
+
 .have {
     text-align: center;
     min-width: 101px;
@@ -97,6 +101,7 @@
 .card {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .border {

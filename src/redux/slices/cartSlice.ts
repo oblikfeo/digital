@@ -6,7 +6,7 @@ interface CartItem extends Product {
     stack: number;
 }
 
-interface CartState {
+export interface CartState {
     items: CartItem[];
     quantity: number;
     totalPrice: number;
