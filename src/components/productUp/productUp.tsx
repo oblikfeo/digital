@@ -9,7 +9,7 @@ import { useState } from "react";
 import SquareCard from "../squareСard/squareCard";
 import { usePathname } from "next/navigation";
 import { useSelector } from 'react-redux';
-import { CartState } from '../../redux/slices/cartSlice';
+import { AppState } from '../../redux/slices/cartSlice';
 
 
 
@@ -19,7 +19,7 @@ export default function ProductUp() {
 
     const [open, setOpen] = useState(false)
     const targetItem = catalogjson.find(item => item.id === Number(pathname?.split('/').pop()));
-    const stack = useSelector((state: CartState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop()))?.stack);
+    const stack = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop()))?.stack);
 
     return (
         <div className={styles.wrapper}>

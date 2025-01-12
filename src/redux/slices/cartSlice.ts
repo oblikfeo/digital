@@ -6,6 +6,10 @@ interface CartItem extends Product {
     stack: number;
 }
 
+export type AppState = {
+    cart: CartState;
+};
+
 export interface CartState {
     items: CartItem[];
     quantity: number;
