@@ -8,18 +8,30 @@ import ProductDown from "../productDown/productDown";
 import { useState } from "react";
 import SquareCard from "../squareСard/squareCard";
 import { usePathname } from "next/navigation";
-import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/slices/cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
+import { toaster } from "@/components/Toaster/toaster"
+
 
 
 
 export default function ProductUp() {
 
+    const dispatch = useDispatch();
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+    };
+    const handleRemoveFromCart = (productId) => {
+        dispatch(removeFromCart(productId));
+    };
+
     const pathname = usePathname()
 
     const [open, setOpen] = useState(false)
     const targetItem = catalogjson.find(item => item.id === Number(pathname?.split('/').pop()));
-    const stack = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop()))?.stack);
+    const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop())));
+    console.log(targetItem)
 
     return (
         <div className={styles.wrapper}>
@@ -53,23 +65,58 @@ export default function ProductUp() {
 
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
-                                        <div className={styles.button}>
+                                        <div onClick={() => {
+                                            if (item?.quantity === 0) {
+                                                toaster.create({
+                                                    title: "Ошибка",
+                                                    description: "Товар отсутствует на складе",
+                                                    type: "error",
+                                                    duration: 3000,
+                                                })
+                                            } else {
+                                                handleRemoveFromCart(targetItem)
+                                            }
+                                        }} className={styles.button}>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="20" height="20" fill="#ECF5FF" />
                                                 <rect x="5" y="9" width="10" height="2" fill="#264794" />
                                             </svg>
                                         </div>
-                                        <div className={styles.number}>{stack || "0"} шт</div>
-                                        <div className={styles.button}>
+                                        <div className={styles.number}>{item?.stack || "0"} шт</div>
+                                        <div onClick={() => {
+                                            if (item?.quantity === 0) {
+                                                toaster.create({
+                                                    title: "Ошибка",
+                                                    description: "Товар отсутствует на складе",
+                                                    type: "error",
+                                                    duration: 3000,
+                                                })
+                                            } else {
+                                                handleAddToCart(targetItem)
+                                            }
+                                        }}
+                                            className={styles.button}>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="20" height="20" fill="#ECF5FF" />
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className={styles.h4}>= 100 ₽</div>
+                                    <div className={styles.h4}>= {targetItem?.price * item?.stack || 0} ₽</div>
                                 </div>
-                                <div className={styles.buyButton}>
+                                <div onClick={() => {
+                                    if (item?.quantity === 0) {
+                                        toaster.create({
+                                            title: "Ошибка",
+                                            description: "Товар отсутствует на складе",
+                                            type: "error",
+                                            duration: 3000,
+                                        })
+                                    } else {
+                                        handleAddToCart(targetItem)
+                                    }
+                                }}
+                                    className={styles.buyButton}>
                                     <div className={styles.buttonArea}>
                                         <button className={styles.add}>
                                             <span>Добавить в корзину</span>

@@ -141,6 +141,8 @@
 
 .calc {
     display: flex;
+    min-width: 220px;
+    justify-content: space-around;
 }
 
 .h4 {
