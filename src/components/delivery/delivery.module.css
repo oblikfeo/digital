@@ -1,0 +1,111 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 125px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.wrapper h1 {
+    color: rgba(38, 71, 148, 1);
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.way {
+    border-radius: 10px;
+    display: flex;
+    background-color: rgba(236, 245, 255, 1);
+    padding: 4px;
+}
+
+.ways {
+    padding: 11px 51px;
+    cursor: pointer;
+}
+
+.pick {
+    padding: 11px 51px;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    gap: 12px;
+}
+
+.mainFlex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.adress {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.input {
+    background-color: rgba(236, 245, 255, 1);
+    padding: 13px 20px;
+    border-radius: 10px;
+    width: 111px;
+}
+
+.input:focus-visible {
+    outline: none;
+}
+
+.mainInputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.upInputs {
+    display: flex;
+    gap: 10px;
+}
+
+.inputBig {
+    background-color: rgba(236, 245, 255, 1);
+    border-radius: 10px;
+    padding: 16px 20px 85px 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.inputBig:focus-visible {
+    outline: none;
+}
+
+.inputBig::placeholder {
+    font-size: 16px;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.who {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.number {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(38, 71, 148, 1);
+}
+
+.name {
+    color: rgba(4, 13, 35, 1);
+}
+
+.change {
+    color: rgba(197, 26, 26, 1);
+    cursor: pointer;
+}
