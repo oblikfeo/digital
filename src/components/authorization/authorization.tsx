@@ -1,14 +1,6 @@
 import styles from "./authorization.module.css";
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
-//import axios from "axios"
-
-//const authUser = async () => {
-//    const response = await axios.post('http://localhost:3228/login', { name: "admin", pass: "admin" })
-//    if (response.status === 200) {
-//        redirect("/catalog")
-//    }
-//}
 
 interface Props {
     email: string;

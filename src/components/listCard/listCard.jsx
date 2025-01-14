@@ -80,8 +80,8 @@ export default function ListCard() {
             <div className={styles.wrapper}>
                 {currentItems.map((item) => (
                     <div className={styles.cart} key={item.id}>
-                        <Image props={item.id} className={styles.link} onClick={() => redirect("catalog/product")} src={img} alt='' width={80} height={80} />
-                        <div props={item.id} onClick={() => redirect("catalog/product")} className={styles.discription}>
+                        <Image props={item.id} className={styles.link} onClick={() => redirect(`catalog/${item.id}`)} src={img} alt='' width={80} height={80} />
+                        <div props={item.id} onClick={() => redirect(`catalog/${item.id}`)} className={styles.discription}>
                             {item.description}
                         </div>
                         <div className={item.quantity > 0 ? styles.have : styles.havent}>{item.quantity === 0 ? 'Нет в наличии' : 'В наличии'}</div>

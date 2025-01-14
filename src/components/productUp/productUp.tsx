@@ -31,7 +31,6 @@ export default function ProductUp() {
     const [open, setOpen] = useState(false)
     const targetItem = catalogjson.find(item => item.id === Number(pathname?.split('/').pop()));
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop())));
-    console.log(targetItem)
 
     return (
         <div className={styles.wrapper}>
