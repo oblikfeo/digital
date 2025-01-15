@@ -4,18 +4,18 @@ import Image from 'next/image';
 import img from '/img/product.png'
 import basketImg from '../../../img/basketImg.png'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems, selectTotalAmount, removeFromCart, addToCart } from '../../redux/slices/cartSlice';
-import { toaster } from "@/components/Toaster/toaster"
-import { useState } from "react";
+import { selectCartItems, selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity, clearCart } from '../../redux/slices/cartSlice';
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
+import { useEffect } from "react";
 
-export default function BasketPreview() {
-
-    const [open, setOpen] = useState(false)
+export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange }) {
 
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
     const totalAmount = useSelector(selectTotalAmount);
+    const quantity = useSelector(selectTotalQuantity);
+
 
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
@@ -24,6 +24,12 @@ export default function BasketPreview() {
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
     };
+
+    useEffect(() => {
+        if (!quantity) {
+            setOpen(false)
+        }
+    }, [quantity])
 
     return (
         <div className={styles.open}>
@@ -38,18 +44,7 @@ export default function BasketPreview() {
                         </div>
                         <div className={styles.counter}>
                             <div
-                                onClick={() => {
-                                    if (item.quantity === 0) {
-                                        toaster.create({
-                                            title: "Ошибка",
-                                            description: "Товар отсутствует на складе",
-                                            type: "error",
-                                            duration: 3000,
-                                        })
-                                    } else {
-                                        handleRemoveFromCart(item)
-                                    }
-                                }}
+                                onClick={() => handleRemoveFromCart(item)}
                                 className={styles.button}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="20" height="20" fill="#ECF5FF" />
@@ -58,18 +53,7 @@ export default function BasketPreview() {
                             </div>
                             <div className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
                             <div
-                                onClick={() => {
-                                    if (item.quantity === 0) {
-                                        toaster.create({
-                                            title: "Ошибка",
-                                            description: "Товар отсутствует на складе",
-                                            type: "error",
-                                            duration: 3000,
-                                        })
-                                    } else {
-                                        handleAddToCart(item)
-                                    }
-                                }}
+                                onClick={() => handleAddToCart(item)}
                                 className={styles.button}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="20" height="20" fill="#ECF5FF" />
@@ -92,14 +76,42 @@ export default function BasketPreview() {
                         </div>
                     </div>
                 ))}
-                <div className={styles.next}>
+                {!open && <div className={styles.next}>
                     <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
-                    <button onClick={() => setOpen(true)} className={styles.but}>Перейти к оформлению заказа</button>
-                </div>
+                    <button
+                        onClick={() => {
+                            if (quantity === 0) {
+                                toaster.create({
+                                    title: "Ошибка",
+                                    description: "Корзина пуста, добавьте товары",
+                                    type: "error",
+                                    duration: 3000,
+                                })
+                            } else {
+                                setOpen(true)
+                            }
+                        }}
+                        className={styles.but}>
+                        Перейти к оформлению заказа
+                    </button>
+                </div>}
+                {open && <div className={styles.next}>
+                    <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
+                    <button onClick={() => {
+                        setModalSuccess(true)
+                        setOpen(false)
+                        dispatch(clearCart())
+                    }}
+                        className={styles.but}>
+                        Оформить заказ
+                    </button>
+                </div>}
                 <Image className={styles.img} src={basketImg} alt="" />
             </div>
-            {open ? <Delivery /> : <></>}
+            {open ? <Delivery setModalChange={setModalChange} /> : <></>}
+            <Toaster />
         </div>
+
 
     )
 }

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
 
-export default function basketHeader() {
+export default function basketHeader({ title }) {
 
     return (
         <div className={styles.welcomeContainer}>
@@ -37,7 +37,7 @@ export default function basketHeader() {
                                 Вернуться в каталог
                             </div>
                         </Link>
-                        <span>Корзина</span>
+                        <span>{title}</span>
                     </div>
                 </div>
                 <div className={styles.menu}></div>

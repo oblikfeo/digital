@@ -7,7 +7,7 @@
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
     gap: 20px;
-    height: 600px;
+    max-height: 670px;
 }
 
 .wrapper h1 {
@@ -109,4 +109,30 @@
 .change {
     color: rgba(197, 26, 26, 1);
     cursor: pointer;
+}
+
+.writeAdress {
+    background-color: rgba(236, 245, 255, 1);
+    padding: 13px 20px 13px 45px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.writeAdress:focus-visible {
+    outline: none;
+}
+
+.writeAdress::placeholder {
+    font-size: 16px;
+    color: rgba(38, 71, 148, 0.4);
+}
+
+.geoImg {
+    position: absolute;
+    left: 20px;
+    top: 13px;
+}
+
+.position {
+    position: relative;
 }
