@@ -2,11 +2,8 @@ import styles from './lkHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
-import { useState } from 'react';
 
-export default function LkHeader({ title }) {
-
-    const [chapter, setChapter] = useState("about")
+export default function LkHeader({ title, chapter, setChapter }) {
 
     return (
         <div className={styles.welcomeContainer}>
