@@ -13,9 +13,9 @@ export default function Change() {
             </div>
             <div className={styles.right}>
                 <h1>Изменение пароля</h1>
-                <div className={styles.position}><input type="text" placeholder="Текущий пароль" /></div>
-                <div className={styles.position}><input type="text" placeholder="Новый пароль" /></div>
-                <div className={styles.position}><input type="text" placeholder="Повторить пароль" /></div>
+                <div className={styles.position}><input type="password" placeholder="Текущий пароль" /></div>
+                <div className={styles.position}><input type="password" placeholder="Новый пароль" /></div>
+                <div className={styles.position}><input type="password" placeholder="Повторить пароль" /></div>
                 <div className={styles.buttons}>
                     <button className={styles.save}>Сохранить изменения</button>
                     <button className={styles.delete}>Отмена</button>

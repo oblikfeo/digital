@@ -30,7 +30,9 @@ export default function Login() {
                 <div className={styles.panel}>
                     <div className={styles.panelMenu}>
                         {lkImg}
-                        <span className={styles.hover}>Личный кабинет</span>
+                        <Link href="/lk">
+                            <span className={styles.hover}>Личный кабинет</span>
+                        </Link>
                     </div>
                     <div className={styles.panelMenu}>
                         {basketImg}{totalQuantity === 0 ? "" : basketImg2}
