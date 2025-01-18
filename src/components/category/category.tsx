@@ -1,6 +1,4 @@
 import styles from "./category.module.css"
-import Image from "next/image"
-import resetButton from "../../../img/menu.svg"
 import CategoryMain from "./categoryMain/categoryMain"
 
 export default function Category() {
@@ -10,7 +8,6 @@ export default function Category() {
 
             <div className={styles.head}>
                 <span className={styles.reset}>Сбросить</span>
-                <Image src={resetButton} alt="" />
             </div>
 
             <div className={styles.content}>

@@ -159,3 +159,8 @@
     border-bottom: 2px solid rgba(197, 26, 26, 1);
     padding: 10px 20px;
 }
+
+.font {
+    font-weight: 600;
+    color: rgba(4, 13, 35, 1);
+}

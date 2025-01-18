@@ -140,3 +140,8 @@
 .borderFalse {
     border: none;
 }
+
+.font {
+    font-weight: 600;
+    color: rgba(4, 13, 35, 1);
+}

@@ -16,7 +16,7 @@ export default function ProductDown({ targetItem }) {
 
                 <Paragraph text={"Особенности:"} props={targetItem?.peculiarities} />
                 <Paragraph text={"Возраст животного:"} props={targetItem?.age} />
-                <Paragraph text={"Особенности:"} props={targetItem?.productcode} />
+                <Paragraph text={"Код товара:"} props={targetItem?.productcode} />
                 <Paragraph text={"Назначение::"} props={targetItem?.purpose} />
                 <Paragraph text={"Применение:"} props={targetItem?.application} />
                 <Paragraph text={"Объем, в миллилитрах:"} props={targetItem?.volume} />

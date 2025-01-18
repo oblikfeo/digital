@@ -142,7 +142,7 @@
 .calc {
     display: flex;
     min-width: 220px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .h4 {

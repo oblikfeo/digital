@@ -6,6 +6,7 @@ import BasketPreview from "@/components/basketPreview/basketPreview"
 import { useState } from "react";
 import girl from '../../../img/image.png'
 import Image from "next/image"
+import { redirect } from "next/navigation"
 
 export default function Basket() {
 
@@ -33,7 +34,9 @@ export default function Basket() {
                     <div onClick={() => setModalSuccess(false)} className={styles.close}>{close}</div>
                     <div className={styles.first}>Спасибо</div>
                     <div className={styles.order}>Заказ успешно зарегистрирован.</div>
-                    <div className={styles.lk}>Вы можете отследить статус заказа в личном кабинете</div>
+                    <div className={styles.lk}>
+                        Вы можете отследить статус заказа в <span onClick={() => redirect('/lk')} className={styles.lkLink}>личном кабинете</span>
+                    </div>
                     <div className={styles.modalWindow}>
                         <Image className={styles.girl} src={girl} alt={""} />
                     </div>
@@ -54,7 +57,7 @@ export default function Basket() {
                         {number}
                         <input className={styles.input} type="text" placeholder="Телефон" />
                     </div>
-                    <button className={styles.but}>Подтвердить</button>
+                    <button onClick={() => setModalChange(false)} className={styles.but}>Подтвердить</button>
                 </div>}
             </div>
         </div>

@@ -9,7 +9,9 @@ import { redirect } from "next/navigation";
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 const authUser = (name: string, pass: string) => {
+
   return new Promise((res, rej) => setTimeout(() => {
+
     if (name === "admin" && pass === "admin") {
       res("Auth")
       redirect("/catalog")

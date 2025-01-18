@@ -120,3 +120,9 @@
     bottom: 0;
     pointer-events: none;
 }
+
+.mark {
+    position: absolute;
+    bottom: 10px;
+    pointer-events: none;
+}
