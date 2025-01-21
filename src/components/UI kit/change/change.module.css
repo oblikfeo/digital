@@ -8,6 +8,8 @@
     padding: 20px;
     margin-bottom: 100px;
     gap: 30px;
+    position: relative;
+    z-index: 5;
 }
 
 .left h1 {

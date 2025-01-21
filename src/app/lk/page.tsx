@@ -6,6 +6,11 @@ import LkAbout from "@/components/lkAbout/lkAbout"
 import Change from "@/components/UI kit/change/change"
 import { useState } from "react"
 import NowOrder from "@/components/nowOrder/nowOrder"
+import Paw1 from "@/components/UI kit/paws1/paws"
+import Paw2 from "@/components/UI kit/paws2/paws"
+import Paw3 from "@/components/UI kit/paws3/paws"
+import Paw4 from "@/components/UI kit/paws4/paws"
+import Paw5 from "@/components/UI kit/paws5/paws"
 
 export default function Lk() {
 
@@ -16,6 +21,11 @@ export default function Lk() {
         <div className={styles.flexContainer}>
             <Login />
             <div className={styles.wrapper}>
+                <Paw1 />
+                <Paw2 />
+                <Paw3 />
+                <Paw4 />
+                <Paw5 />
                 <LkHeader chapter={chapter} setChapter={setChapter} title={"Личный кабинет"} />
                 {chapter === "about" && <LkAbout setOpen={setOpen} open={open} />}
                 {open && chapter === "about" && <Change />}

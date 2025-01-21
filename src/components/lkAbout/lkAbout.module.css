@@ -5,6 +5,8 @@
     border-radius: 10px;
     margin-top: 40px;
     padding: 20px;
+    position: relative;
+    z-index: 5;
 }
 
 .left {

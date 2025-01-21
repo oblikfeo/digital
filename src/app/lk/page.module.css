@@ -7,8 +7,8 @@
 .wrapper {
     position: relative;
     width: 100%;
-    background-image: url('../../../img/bcgWelcome.svg');
-    background-size: 100%;
+    background-image: url('../../../img/pawsBCG.svg');
+    background-size: cover;
     background-repeat: repeat;
     padding: 20px 60px 0 60px;
 }
@@ -17,6 +17,7 @@
     position: absolute;
     font-size: 14px;
     bottom: 10px;
+    z-index: 5;
 }
 
 .redline {
