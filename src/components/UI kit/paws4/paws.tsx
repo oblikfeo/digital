@@ -48,7 +48,7 @@ const StepAnimation = ({ steps }) => {
                     height: 'auto',
                     transformOrigin: 'bottom center', // Центр вращения внизу
                     position: 'absolute', // Позволяет позиционировать относительно родителя
-                    bottom: '0', // Начинаем анимацию от нижней части контейнера
+                    bottom: '7vh', // Начинаем анимацию от нижней части контейнера
                     left: '68vw',
                     zIndex: 1,
 
