@@ -11,6 +11,7 @@ export default function CategoryMain() {
         setShow(!show);
     }
 
+
     return (
         <div className={styles.categoryMiddle}>
             <div className={styles.categoryMain}>
