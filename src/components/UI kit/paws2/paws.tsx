@@ -47,7 +47,7 @@ const StepAnimation = ({ steps }) => {
                     position: 'absolute', // Позволяет позиционировать относительно родителя
                     bottom: '0px', // Начинаем анимацию от нижней части контейнера
                     left: '1vw',
-                    zIndex: 1,
+                    zIndex: 9999,
 
                 }}
             />
