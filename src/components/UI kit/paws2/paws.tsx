@@ -34,7 +34,7 @@ const StepAnimation = ({ steps }) => {
 
 
     return (
-        <div style={{ position: 'relative', height: '100vh', width: '200px' }}>
+        <div style={{ position: 'relative', height: '100%', width: '200px', top: '0' }}>
             <Image
                 ref={ref}
                 src={img} // Укажите путь до вашего PNG-файла
@@ -46,9 +46,9 @@ const StepAnimation = ({ steps }) => {
                     transformOrigin: 'bottom center', // Центр вращения внизу
                     position: 'absolute', // Позволяет позиционировать относительно родителя
                     bottom: '0px', // Начинаем анимацию от нижней части контейнера
-                    left: '1vw',
+                    left: '17vw',
                     zIndex: 9999,
-
+                    pointerEvents: 'none',
                 }}
             />
         </div>
@@ -59,7 +59,7 @@ export default function Paw2() {
     const steps = Array.from({ length: 10 }, (_, i) => -(i * 15)); // Меньшие шаги анимации
 
     return (
-        <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', top: '0' }}>
             <StepAnimation steps={steps} />
         </div>
     );
