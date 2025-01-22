@@ -2,10 +2,20 @@ import styles from './welcome.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
+import Paw1 from "@/components/UI kit/paws1/paws"
+import Paw2 from "@/components/UI kit/paws2/paws"
+import Paw3 from "@/components/UI kit/paws3/paws"
+import Paw4 from "@/components/UI kit/paws4/paws"
+import Paw5 from "@/components/UI kit/paws5/paws"
 
 export default function Welcome() {
     return (
         <div className={styles.welcomeContainer}>
+            <Paw1 />
+            <Paw2 />
+            <Paw3 />
+            <Paw4 />
+            <Paw5 />
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>

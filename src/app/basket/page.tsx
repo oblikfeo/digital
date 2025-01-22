@@ -7,6 +7,11 @@ import { useState } from "react";
 import girl from '../../../img/image.png'
 import Image from "next/image"
 import { redirect } from "next/navigation"
+import Paw1 from "@/components/UI kit/paws1/paws"
+import Paw2 from "@/components/UI kit/paws2/paws"
+import Paw3 from "@/components/UI kit/paws3/paws"
+import Paw4 from "@/components/UI kit/paws4/paws"
+import Paw5 from "@/components/UI kit/paws5/paws"
 
 export default function Basket() {
 
@@ -18,6 +23,11 @@ export default function Basket() {
         <div className={styles.flexContainer}>
             <Login />
             <div className={styles.wrapper}>
+                <Paw1 />
+                <Paw2 />
+                <Paw3 />
+                <Paw4 />
+                <Paw5 />
                 <BasketHeader title={open ? "Оформление заказа" : "Корзина"} />
                 <BasketPreview
                     open={open}

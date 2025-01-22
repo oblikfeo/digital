@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef } from 'react';
 import img from '../../../../img/firstpaws.png'
 import Image from 'next/image';

@@ -6,6 +6,11 @@ import { useEffect, useState } from "react";
 import ListCard from '../../components/listCard/listCard'
 import SquareCard from '../../components/squareСard/squareCard'
 import { Toaster, toaster } from "@/components/Toaster/toaster"
+import Paw1 from "@/components/UI kit/paws1/paws"
+import Paw2 from "@/components/UI kit/paws2/paws"
+import Paw3 from "@/components/UI kit/paws3/paws"
+import Paw4 from "@/components/UI kit/paws4/paws"
+import Paw5 from "@/components/UI kit/paws5/paws"
 
 export default function Catalog() {
 
@@ -39,6 +44,11 @@ export default function Catalog() {
         <div className={styles.flexContainer}>
             <Login />
             <div className={styles.flex}>
+                <Paw1 />
+                <Paw2 />
+                <Paw3 />
+                <Paw4 />
+                <Paw5 />
                 <CatalogHeader
                     setView={setView}
                 />
