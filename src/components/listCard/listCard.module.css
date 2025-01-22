@@ -6,6 +6,7 @@
 }
 
 .cart {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -143,4 +144,10 @@
 
 .link {
     cursor: pointer;
+}
+
+.skid {
+    position: absolute;
+    top: 10px;
+    left: 0;
 }

@@ -36,7 +36,7 @@ const StepAnimation = ({ steps }) => {
 
 
     return (
-        <div style={{ position: 'relative', height: '100%', width: '300px', top: '0' }}>
+        <div style={{ position: 'relative', height: '100%', width: '300px', top: '0', pointerEvents: 'none' }}>
             <Image
                 ref={ref}
                 src={img} // Укажите путь до вашего PNG-файла
