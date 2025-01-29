@@ -65,7 +65,7 @@ export default function ProductUp() {
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
                                         <div onClick={() => {
-                                            if (item?.quantity === 0) {
+                                            if (targetItem?.quantity === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
                                                     description: "Товар отсутствует на складе",
@@ -83,7 +83,7 @@ export default function ProductUp() {
                                         </div>
                                         <div className={styles.number}>{item?.stack || "0"} шт</div>
                                         <div onClick={() => {
-                                            if (item?.quantity === 0) {
+                                            if (targetItem?.quantity === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
                                                     description: "Товар отсутствует на складе",

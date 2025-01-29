@@ -76,7 +76,13 @@ export default function Home() {
   return (
     <div className={styles.flexContainer}>
       {renderedComponent}
-      <Welcome />
+      <Welcome
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleSubmit={handleSubmit}
+        setCurrentComponent={setCurrentComponent} />
       <Toaster />
     </div>
   );

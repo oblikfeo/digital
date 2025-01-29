@@ -40,8 +40,8 @@
 .contentContainer {
     position: relative;
     width: 100%;
-    min-width: 1145px;
     height: calc(100%);
+    overflow: hidden;
 }
 
 .container {
@@ -144,4 +144,256 @@
 .font {
     font-weight: 600;
     color: rgba(4, 13, 35, 1);
+}
+
+.closeMobile {
+    width: 100px;
+    height: 100%;
+    padding: 10px;
+}
+
+.whiteClose {
+    display: none;
+    border-right: 1px solid white;
+    width: 60px;
+    height: 100%;
+}
+
+.whiteSvg {
+    display: none;
+}
+
+@media (max-width:1880px) {
+    .welcomeContainer {
+        padding: 20px 50px 20px 50px;
+    }
+
+    .girl {
+        right: -20px;
+    }
+}
+
+@media (max-width:1840px) {
+    .welcomeContainer {
+        padding: 20px 40px 20px 40px;
+    }
+
+    .girl {
+        right: -40px;
+    }
+}
+
+@media (max-width:1800px) {
+    .welcomeContainer {
+        padding: 20px 30px 20px 30px;
+    }
+
+    .girl {
+        right: -60px;
+    }
+}
+
+@media (max-width:1750px) {
+    .welcomeContainer {
+        padding: 20px 25px 20px 25px;
+    }
+
+    .girl {
+        right: -80px;
+    }
+}
+
+@media (max-width:1720px) {
+
+    .girl {
+        right: -110px;
+    }
+}
+
+@media (max-width:1690px) {
+
+    .girl {
+        right: -140px;
+    }
+}
+
+@media (max-width:1660px) {
+
+    .girl {
+        right: -170px;
+    }
+}
+
+@media (max-width:1630px) {
+
+    .girl {
+        right: -200px;
+    }
+}
+
+@media (max-width:1600px) {
+
+    .girl {
+        right: -230px;
+    }
+}
+
+@media (max-width:1570px) {
+    .girl {
+        right: -260px;
+    }
+}
+
+@media (max-width:1540px) {
+    .girl {
+        right: -290px;
+    }
+}
+
+@media (max-width:1500px) {
+    .girl {
+        right: -320px;
+    }
+}
+
+@media (max-width:1440px) {
+    .girl {
+        right: 0;
+    }
+}
+
+@media (max-width:1140px) {
+    .girl {
+        right: -30px;
+    }
+}
+
+@media (max-width:1110px) {
+    .girl {
+        right: -60px;
+    }
+}
+
+@media (max-width:1080px) {
+    .girl {
+        right: -90px;
+    }
+}
+
+@media (max-width:1050px) {
+    .girl {
+        right: -120px;
+    }
+}
+
+@media (max-width:1020px) {
+    .girl {
+        right: -150px;
+    }
+}
+
+@media (max-width:990px) {
+    .girl {
+        right: -180px;
+    }
+}
+
+@media (max-width:960px) {
+    .girl {
+        right: -210px;
+    }
+}
+
+@media (max-width:930px) {
+    .girl {
+        right: -240px;
+    }
+}
+
+@media (max-width:900px) {
+    .girl {
+        right: -270px;
+    }
+}
+
+@media (max-width:870px) {
+    .girl {
+        right: -300px;
+    }
+}
+
+@media (max-width:840px) {
+    .girl {
+        right: -330px;
+    }
+}
+
+@media (max-width:800px) {
+    .girl {
+        right: -360px;
+    }
+}
+
+@media (max-width:10px) {
+
+    .welcomeContainer {
+        padding: 10px 34px 12px 34px;
+    }
+
+    .whiteSvg {
+        display: flex;
+        position: absolute;
+        margin-left: 5px;
+    }
+
+    .whiteClose {
+        display: flex;
+    }
+
+    .font {
+        display: none;
+    }
+
+    .adaptive {
+        display: none;
+    }
+
+    .girl {
+        display: none;
+    }
+
+    .textContainer {
+        display: none;
+    }
+
+    .sideA {
+        width: 110px;
+        height: 70px;
+    }
+
+    .sideD {
+        background-color: rgba(77, 104, 135, 1);
+        height: calc(100% - 90px);
+    }
+
+    .sideB {
+        background-color: rgba(77, 104, 135, 1);
+        margin-left: 110px;
+    }
+
+    .sideC {
+        background-color: rgba(77, 104, 135, 1);
+        left: 92px;
+    }
+
+    .logo {
+        width: 96px;
+        height: 96px;
+        top: 10px;
+    }
+
+    .container {
+        height: 70px;
+    }
+
 }

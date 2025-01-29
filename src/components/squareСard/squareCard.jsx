@@ -4,9 +4,9 @@ import catalogjson from '../../catalog.json'
 import img from '/img/product.png'
 import { useState } from 'react';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
-import { redirect } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
+import Link from 'next/link';
 
 export default function SquareCard({ props }) {
 
@@ -21,6 +21,7 @@ export default function SquareCard({ props }) {
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
     };
+
 
     const itemsPerPage = props;
 
@@ -80,7 +81,9 @@ export default function SquareCard({ props }) {
                 {currentItems.map((item) => (
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
-                            <Image className={styles.link} onClick={() => redirect(`catalog/${item.id}`)} src={img} alt='' width={200} height={200} />
+                            <Link href={`/catalog/${item.id}`}>
+                                <Image className={styles.link} src={img} alt='' width={200} height={200} />
+                            </Link>
                         </div>
                         <div className={styles.price}>
                             <div className={styles.priceArea}>
