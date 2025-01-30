@@ -1,13 +1,10 @@
+'use client'
 import styles from './welcome.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
-import Paw1 from "@/components/UI kit/paws1/paws"
-import Paw2 from "@/components/UI kit/paws2/paws"
-import Paw3 from "@/components/UI kit/paws3/paws"
-import Paw4 from "@/components/UI kit/paws4/paws"
-import Paw5 from "@/components/UI kit/paws5/paws"
 import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
+import { useState } from 'react';
 
 interface Props {
     email: string;
@@ -18,14 +15,13 @@ interface Props {
     setCurrentComponent: (value: string) => void;
 }
 
+
 export default function Welcome({ email, setEmail, password, setPassword, handleSubmit, setCurrentComponent }: Props) {
+
+    const [toggle, setToggle] = useState(true)
+
     return (
         <div className={styles.welcomeContainer}>
-            <Paw1 />
-            <Paw2 />
-            <Paw3 />
-            <Paw4 />
-            <Paw5 />
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>
@@ -41,30 +37,31 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
             </div>
 
             <div className={styles.contentContainer}>
-                <Image className={styles.girl} src={img} alt='' />
+                {toggle && <Image className={styles.girl} src={img} alt='' />}
                 <div className={styles.container}>
                     <div className={styles.sideA}></div>
-                    <div className={styles.sideB}></div>
-                    <div className={styles.sideC}></div>
+                    <div className={toggle ? styles.sideB : styles.sideB2}></div>
+                    <div className={toggle ? styles.sideC : styles.sideC2}></div>
                 </div>
-                <div className={styles.sideD}>
-                    <div className={styles.closeMobile}>
+                <div className={toggle ? styles.sideD : styles.sideD2}>
+                    {toggle && <div onClick={() => setToggle(!toggle)} className={styles.toggle}>{toggleMenu}</div>}
+                    {!toggle && <div className={styles.closeMobile}>
                         {white}
                         <div className={styles.whiteClose}></div>
-                    </div>
-                    <AuthAdaptive
+                    </div>}
+                    {!toggle && <AuthAdaptive
                         email={email}
                         setEmail={setEmail}
                         password={password}
                         setPassword={setPassword}
                         handleSubmit={handleSubmit}
                         setCurrentComponent={setCurrentComponent}
-                    />
-                    <div className={styles.textContainer}>
+                    />}
+                    {toggle && <div className={styles.textContainer}>
                         <h2>Добро пожаловать</h2>
                         <span className={styles.text}>На сайт магазина<br />«300 ветмир»</span>
                         <span className={styles.subText}>Мы осознаем ценность жизни<br />ваших питомцев</span>
-                    </div>
+                    </div>}
                 </div>
             </div>
 
@@ -88,4 +85,10 @@ const white = <svg className={styles.whiteSvg} width="40" height="40" viewBox="0
     <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0C1.79086 0 0 1.79086 0 4V36C0 38.2091 1.79086 40 4 40H36C38.2091 40 40 38.2091 40 36V4C40 1.79086 38.2091 0 36 0H4Z" fill="#4D6887" />
     <path fill-rule="evenodd" clip-rule="evenodd" d="M27 14.4L25.6 13L20 18.6L14.4 13L13 14.4L18.6 20L13 25.6L14.4 27L20 21.4L25.6 27L27 25.6L21.4 20L27 14.4Z" fill="white" />
 </svg>
+
+const toggleMenu = <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0C1.79086 0 0 1.79086 0 4V36C0 38.2091 1.79086 40 4 40H36C38.2091 40 40 38.2091 40 36V4C40 1.79086 38.2091 0 36 0H4Z" fill="#4D6887" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 26H29V24H11V26ZM11 21H29V19H11V21ZM11 14V16H29V14H11Z" fill="white" />
+</svg>
+
 
