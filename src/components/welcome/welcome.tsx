@@ -6,6 +6,7 @@ import img from '../../../img/GirlDog.png'
 import { useState } from 'react';
 import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
 import AuthRegistration from '../adaptive/authRegistration/authRegistration';
+import AuthForgot from '../adaptive/authForgot/authForgot';
 
 interface Props {
     email: string;
@@ -61,6 +62,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
                         setCurrentComponent={setCurrentComponent}
                     />}
                     {!toggle && currentComponent == "registration" && <AuthRegistration setCurrentComponent={setCurrentComponent} />}
+                    {!toggle && currentComponent == "forgotPassword" && <AuthForgot setCurrentComponent={setCurrentComponent} />}
                     {toggle && <div className={styles.textContainer}>
                         <h2>Добро пожаловать</h2>
                         <span className={styles.text}>На сайт магазина<br />«300 ветмир»</span>

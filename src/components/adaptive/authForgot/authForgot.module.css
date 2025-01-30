@@ -2,17 +2,19 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 374px;
+    width: 415px;
     height: 100vh;
-    background-color: rgba(77, 104, 135, 1);
-    padding: 80px 45px 0 45px;
+    padding: 0;
+    padding-left: 40px;
+    top: 40px;
+    z-index: 9999;
 }
 
 .h1 {
     font-size: 32px;
     font-weight: 500;
     color: white;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .form {
@@ -82,10 +84,10 @@
 
 .logo {
     position: absolute;
-    width: 404px;
-    height: 404px;
-    left: 0;
+    right: 0;
     bottom: 0;
+    width: 252px;
+    height: 252px;
     pointer-events: none;
 }
 
@@ -113,11 +115,6 @@
 .mark {
     position: absolute;
     bottom: 10px;
+    left: 155px;
     pointer-events: none;
-}
-
-@media (max-width:1440px) {
-    .authorization {
-        display: none;
-    }
 }
