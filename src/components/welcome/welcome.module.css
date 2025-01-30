@@ -206,7 +206,7 @@
     cursor: pointer;
 }
 
-@media (max-width:1880px) and (min-height: 1080px) {
+@media (max-width:1880px) {
     .welcomeContainer {
         padding: 20px 50px 20px 50px;
     }
@@ -216,7 +216,7 @@
     }
 }
 
-@media (max-width:1840px) and (min-height: 1080px) {
+@media (max-width:1840px) {
     .welcomeContainer {
         padding: 20px 40px 20px 40px;
     }
@@ -226,7 +226,7 @@
     }
 }
 
-@media (max-width:1800px) and (min-height: 1080px) {
+@media (max-width:1800px) {
     .welcomeContainer {
         padding: 20px 30px 20px 30px;
     }
@@ -236,7 +236,7 @@
     }
 }
 
-@media (max-width:1750px) and (min-height: 1080px) {
+@media (max-width:1750px) {
     .welcomeContainer {
         padding: 20px 25px 20px 25px;
     }
@@ -246,60 +246,60 @@
     }
 }
 
-@media (max-width:1720px) and (min-height: 1080px) {
+@media (max-width:1720px) {
 
     .girl {
         right: -110px;
     }
 }
 
-@media (max-width:1690px) and (min-height: 1080px) {
+@media (max-width:1690px) {
 
     .girl {
         right: -140px;
     }
 }
 
-@media (max-width:1660px) and (min-height: 1080px) {
+@media (max-width:1660px) {
 
     .girl {
         right: -170px;
     }
 }
 
-@media (max-width:1630px) and (min-height: 1080px) {
+@media (max-width:1630px) {
 
     .girl {
         right: -200px;
     }
 }
 
-@media (max-width:1600px) and (min-height: 1080px) {
+@media (max-width:1600px) {
 
     .girl {
         right: -230px;
     }
 }
 
-@media (max-width:1570px) and (min-height: 1080px) {
+@media (max-width:1570px) {
     .girl {
         right: -260px;
     }
 }
 
-@media (max-width:1540px) and (min-height: 1080px) {
+@media (max-width:1540px) {
     .girl {
         right: -290px;
     }
 }
 
-@media (max-width:1500px) and (min-height: 1080px) {
+@media (max-width:1500px) {
     .girl {
         right: -320px;
     }
 }
 
-@media (max-width:1440px) and (min-height: 1080px) {
+@media (max-width:1440px) {
     .girl {
         right: 0;
     }
@@ -309,73 +309,73 @@
     }
 }
 
-@media (max-width:1140px) and (min-height: 1080px) {
+@media (max-width:1140px) {
     .girl {
         right: -30px;
     }
 }
 
-@media (max-width:1110px) and (min-height: 1080px) {
+@media (max-width:1110px) {
     .girl {
         right: -60px;
     }
 }
 
-@media (max-width:1080px) and (min-height: 1080px) {
+@media (max-width:1080px) {
     .girl {
         right: -90px;
     }
 }
 
-@media (max-width:1050px) and (min-height: 1080px) {
+@media (max-width:1050px) {
     .girl {
         right: -120px;
     }
 }
 
-@media (max-width:1020px) and (min-height: 1080px) {
+@media (max-width:1020px) {
     .girl {
         right: -150px;
     }
 }
 
-@media (max-width:990px) and (min-height: 1080px) {
+@media (max-width:990px) {
     .girl {
         right: -180px;
     }
 }
 
-@media (max-width:960px) and (min-height: 1080px) {
+@media (max-width:960px) {
     .girl {
         right: -210px;
     }
 }
 
-@media (max-width:930px) and (min-height: 1080px) {
+@media (max-width:930px) {
     .girl {
         right: -240px;
     }
 }
 
-@media (max-width:900px) and (min-height: 1080px) {
+@media (max-width:900px) {
     .girl {
         right: -270px;
     }
 }
 
-@media (max-width:870px) and (min-height: 1080px) {
+@media (max-width:870px) {
     .girl {
         right: -300px;
     }
 }
 
-@media (max-width:840px) and (min-height: 1080px) {
+@media (max-width:840px) {
     .girl {
         right: -330px;
     }
 }
 
-@media (max-width:800px) and (min-height: 1080px) {
+@media (max-width:800px) {
     .girl {
         right: -360px;
     }
