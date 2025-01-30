@@ -114,3 +114,9 @@
     bottom: 10px;
     pointer-events: none;
 }
+
+@media (max-width:1440px) {
+    .authorization {
+        display: none;
+    }
+}

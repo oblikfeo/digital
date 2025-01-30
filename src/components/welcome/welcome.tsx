@@ -3,8 +3,9 @@ import styles from './welcome.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
-import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
 import { useState } from 'react';
+import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
+import AuthRegistration from '../adaptive/authRegistration/authRegistration';
 
 interface Props {
     email: string;
@@ -13,12 +14,14 @@ interface Props {
     setPassword: (value: string) => void;
     handleSubmit: () => void;
     setCurrentComponent: (value: string) => void;
+    currentComponent: string
 }
 
 
-export default function Welcome({ email, setEmail, password, setPassword, handleSubmit, setCurrentComponent }: Props) {
+export default function Welcome({ email, setEmail, password, setPassword, handleSubmit, setCurrentComponent, currentComponent }: Props) {
 
     const [toggle, setToggle] = useState(true)
+
 
     return (
         <div className={styles.welcomeContainer}>
@@ -45,11 +48,11 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
                 </div>
                 <div className={toggle ? styles.sideD : styles.sideD2}>
                     {toggle && <div onClick={() => setToggle(!toggle)} className={styles.toggle}>{toggleMenu}</div>}
-                    {!toggle && <div className={styles.closeMobile}>
+                    {!toggle && <div onClick={() => setToggle(!toggle)} className={styles.closeMobile}>
                         {white}
                         <div className={styles.whiteClose}></div>
                     </div>}
-                    {!toggle && <AuthAdaptive
+                    {!toggle && currentComponent == "authorization" && <AuthAdaptive
                         email={email}
                         setEmail={setEmail}
                         password={password}
@@ -57,6 +60,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
                         handleSubmit={handleSubmit}
                         setCurrentComponent={setCurrentComponent}
                     />}
+                    {!toggle && currentComponent == "registration" && <AuthRegistration setCurrentComponent={setCurrentComponent} />}
                     {toggle && <div className={styles.textContainer}>
                         <h2>Добро пожаловать</h2>
                         <span className={styles.text}>На сайт магазина<br />«300 ветмир»</span>

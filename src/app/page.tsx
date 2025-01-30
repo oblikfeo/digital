@@ -82,6 +82,7 @@ export default function Home() {
         password={password}
         setPassword={setPassword}
         handleSubmit={handleSubmit}
+        currentComponent={currentComponent}
         setCurrentComponent={setCurrentComponent} />
       <Toaster />
     </div>

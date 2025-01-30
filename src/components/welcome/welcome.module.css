@@ -411,7 +411,8 @@
     .logo {
         width: 96px;
         height: 96px;
-        top: 10px;
+        top: 25px;
+        left: 30px;
     }
 
     .container {

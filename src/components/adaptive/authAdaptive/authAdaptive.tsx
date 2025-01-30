@@ -54,9 +54,9 @@ export default function AuthAdaptive({ email, setEmail, password, setPassword, h
                     </button>
                 </div>
                 <div onClick={() => setCurrentComponent('forgotPassword')} className={styles.forgot}>Забыли пароль?</div>
-                <Image className={styles.logo} src={logo} alt="" />
-                <Image className={styles.mark} src={mark} alt="" />
             </div>
+            <Image className={styles.logo} src={logo} alt="" />
+            <Image className={styles.mark} src={mark} alt="" />
         </>
     );
 }
