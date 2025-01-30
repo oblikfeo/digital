@@ -73,6 +73,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
 
             <div className={styles.footer}>
                 <span className={styles.redline}>300 ветмир</span>
+                <div className={styles.red2}></div>
                 <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
             </div>
         </div>
