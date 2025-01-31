@@ -41,7 +41,7 @@
     position: relative;
     width: 100%;
     height: calc(100%);
-    min-height: 700px;
+    min-height: 750px;
     overflow: hidden;
     border-bottom-right-radius: 20px;
 }
@@ -544,5 +544,10 @@
 
     .girl2 {
         display: flex;
+        max-width: 700px;
     }
+
+
 }
+
+@media (max-height:800px) {}
