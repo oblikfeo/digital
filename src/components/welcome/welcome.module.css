@@ -7,7 +7,7 @@
     width: 100%;
     background-size: cover;
     padding: 20px 60px 12px 60px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .header {
@@ -41,6 +41,7 @@
     position: relative;
     width: 100%;
     height: calc(100%);
+    min-height: 700px;
     overflow: hidden;
     border-bottom-right-radius: 20px;
 }
@@ -155,10 +156,19 @@
     height: calc(100% - 23px);
     width: auto;
     position: absolute;
-    bottom: 23px;
+    bottom: 20px;
     right: 0;
     border-bottom-right-radius: 20px;
     z-index: 2;
+}
+
+.girl2 {
+    display: none;
+    position: absolute;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
 }
 
 .footer {
@@ -481,6 +491,7 @@
     .textContainer {
         margin-left: 85px;
         top: -30px;
+        width: 323px;
     }
 
     .text {
@@ -523,5 +534,15 @@
         right: 0;
         border-bottom-right-radius: 8px;
         z-index: 2;
+    }
+}
+
+@media (max-width:450px) {
+    .girl {
+        display: none;
+    }
+
+    .girl2 {
+        display: flex;
     }
 }

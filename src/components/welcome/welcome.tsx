@@ -3,6 +3,7 @@ import styles from './welcome.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
+import img2 from '../../../img/girlMobile.png'
 import { useState } from 'react';
 import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
 import AuthRegistration from '../adaptive/authRegistration/authRegistration';
@@ -42,6 +43,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
 
             <div className={styles.contentContainer}>
                 {toggle && <Image className={styles.girl} src={img} alt='' />}
+                {toggle && <Image className={styles.girl2} src={img2} alt='' />}
                 <div className={styles.container}>
                     <div className={styles.sideA}></div>
                     <div className={toggle ? styles.sideB : styles.sideB2}></div>
