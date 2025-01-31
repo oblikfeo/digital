@@ -558,4 +558,13 @@
         min-height: 680px;
     }
 
+
+}
+
+@media (max-width:400px) {
+    .subText {
+        font-size: 15px;
+    }
+
+
 }
