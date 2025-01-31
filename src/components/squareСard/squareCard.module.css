@@ -174,3 +174,9 @@
     align-items: center;
     cursor: pointer;
 }
+
+@media (max-width:1200px) {
+    .square {
+        padding: 40px 38px;
+    }
+}
