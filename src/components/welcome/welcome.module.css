@@ -561,9 +561,29 @@
 
 }
 
-@media (max-width:400px) {
-    .subText {
-        font-size: 15px;
+@media (max-width:450px) {
+    .sideA {
+        width: 70px;
+        height: 40px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .sideB2 {
+        margin-left: 70px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .sideC2 {
+        left: 52px;
+    }
+
+    .sideD2 {
+        align-items: flex-start;
+        height: calc(100% - 60px);
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
     }
 
 

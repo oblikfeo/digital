@@ -118,3 +118,43 @@
     left: 155px;
     pointer-events: none;
 }
+
+@media (max-width:450px) {
+
+    .h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .authorization {
+        padding: 10px 20px 0 10px;
+        top: -50px;
+    }
+
+    .input {
+        width: 250px;
+        height: 40px;
+
+    }
+
+    .inputIcon {
+        top: 8px;
+    }
+
+    .enter {
+        width: 250px;
+    }
+
+    .registration {
+        width: 250px;
+    }
+
+    .logo {
+        width: 201px;
+        height: 201px;
+    }
+
+    .mark {
+        left: 80px;
+    }
+}
