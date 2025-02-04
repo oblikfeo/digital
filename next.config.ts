@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/catalog/:path*",
-        destination: "http://digital-theta-lemon.vercel.app/:path*",
+        source: '/api/:path*',
+        destination: 'http://147.45.157.15:8000/api/:path*', // ваш API URL
       },
     ];
   },

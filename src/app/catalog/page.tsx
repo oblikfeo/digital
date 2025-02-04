@@ -22,7 +22,7 @@ export default function Catalog() {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`http://147.45.157.15:8000/api/v1/shop/products?page=${currentPage}`).then((response) => {
+        axios.get(`/api/v1/shop/products?page=${currentPage}`).then((response) => {
             setProductsFetch(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
