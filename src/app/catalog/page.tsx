@@ -18,13 +18,15 @@ export default function Catalog() {
     const [productsFetch, setProductsFetch] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPage, setTotalPage] = useState(1)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
+        setIsLoading(true)
         axios.get(`http://147.45.157.15:8000/api/v1/shop/products?page=${currentPage}`).then((response) => {
             setProductsFetch(response.data.data)
-            setCurrentPage(response.data.from)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
+            .finally(() => setIsLoading(false))
         console.log(currentPage)
     }, [currentPage])
 
@@ -70,7 +72,7 @@ export default function Catalog() {
                     setView={setView}
                 />
                 <div className={view === 'list' ? styles.list : styles.square}>
-                    {viewCatalog}
+                    {isLoading ? <><span>ЗАГРУЖАЮ</span></> : viewCatalog}
                 </div>
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>
