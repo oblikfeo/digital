@@ -8,7 +8,7 @@ export default function Category() {
     const [category, setCategory] = useState([])
 
     useEffect(() => {
-        axios.get(`http://147.45.157.15:8000/api/v1/shop/categories`).then((response) => {
+        axios.get(`/api/v1/shop/categories`).then((response) => {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])

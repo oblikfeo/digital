@@ -73,7 +73,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
                             <Link href={`/catalog/${item.id}`}>
-                                <Image className={styles.link} src={item.images[0] ?? img} alt='' width={200} height={200} />
+                                <Image className={styles.link} src={`/storage${item.images[0].replace('http://147.45.157.15/', '')}` ?? img} alt='' width={200} height={200} />
                             </Link>
                         </div>
                         <div className={styles.price}>
@@ -83,7 +83,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                             </div>
                             <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         </div>
-                        <div onClick={() => redirect(`catalog/${item.id}`)} src={img} className={styles.discription}>
+                        <div onClick={() => redirect(`catalog/${item.id}`)} className={styles.discription}>
                             {item.title}
                         </div>
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?
