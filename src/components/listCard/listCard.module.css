@@ -28,6 +28,7 @@
     font-weight: 400;
     color: rgba(4, 13, 35, 1);
     cursor: pointer;
+    line-height: 20px;
 }
 
 .have {
@@ -150,4 +151,32 @@
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+@media (max-width:1200px) {
+    .discription {
+        font-size: 14px;
+        height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .cart {
+        gap: 20px;
+    }
+
+    .mainPrice {
+        font-size: 18px;
+    }
+
+    .allPrice {
+        font-size: 12px;
+    }
+
+    .subPrice {
+        font-size: 8px;
+    }
 }

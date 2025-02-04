@@ -15,7 +15,6 @@
 }
 
 .productImg {
-    height: 220px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -177,6 +176,107 @@
 
 @media (max-width:1200px) {
     .square {
-        padding: 40px 38px;
+        padding: 20px 0px;
+    }
+
+    .cart {
+        min-width: 212px;
+        height: 339px;
+    }
+
+    .link {
+        height: 135px;
+        width: 137px;
+    }
+
+    .price {
+        height: 24px;
+        padding: 0;
+    }
+
+    .have {
+        font-size: 13px;
+    }
+
+    .havent {
+        font-size: 13px;
+    }
+
+    .mainPrice {
+        font-size: 17px;
+    }
+
+    .subPrice {
+        font-size: 11px;
+    }
+
+    .discription {
+        padding: 0;
+        font-size: 13px;
+
+    }
+}
+
+@media (max-width:700px) {
+
+    .cart {
+        min-width: 179px;
+        height: 286px;
+        gap: 10px;
+    }
+
+    .link {
+        height: 91px;
+        width: auto;
+    }
+
+    .price {
+        height: 40px;
+        padding: 0;
+        flex-wrap: wrap;
+    }
+
+    .have {
+        font-size: 13px;
+    }
+
+    .havent {
+        font-size: 13px;
+    }
+
+    .mainPrice {
+        font-size: 17px;
+    }
+
+    .subPrice {
+        font-size: 11px;
+    }
+
+    .discription {
+        padding: 0;
+        font-size: 13px;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .square {
+        gap: 16px;
+        min-height: 600px;
+    }
+
+    .priceArea {
+        width: 100%;
+    }
+
+    .add span {
+        display: none;
+    }
+
+    .disableAdd span {
+        display: none;
     }
 }

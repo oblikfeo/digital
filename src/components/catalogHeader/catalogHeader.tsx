@@ -6,6 +6,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '@/redux/slices/cartSlice';
+import CategoryAdaptive from '../categoryAdaptive/category';
+import { useMediaPredicate } from 'react-media-hook'
 
 
 interface Props {
@@ -18,6 +20,18 @@ export default function CatalogHeader({ setView }: Props) {
 
     const [borderList, setBorderList] = useState(false)
     const [borderSquare, setBorderSquare] = useState(true)
+    const [catalogButton, setCatalogButton] = useState(true)
+
+    const isSmallScreen = useMediaPredicate("(max-width: 700px)")
+    const isLargeScreen = useMediaPredicate("(min-width: 700px)")
+
+    let text = "Стандартный текст"
+
+    if (isSmallScreen) {
+        text = "Каталог"
+    } else if (isLargeScreen) {
+        text = "Добро пожаловать в каталог"
+    }
 
     const selectList = () => {
         if (!borderList) {
@@ -61,7 +75,7 @@ export default function CatalogHeader({ setView }: Props) {
                 <div className={styles.container}>
                     <div className={styles.sideA}></div>
                     <div className={styles.sideB}></div>
-                    <div className={styles.text}><span>Добро пожаловать в каталог</span></div>
+                    <div className={styles.text}><span>{text}</span></div>
                 </div>
                 <div className={styles.menu}>
                     <div className={styles.search}>
@@ -73,26 +87,31 @@ export default function CatalogHeader({ setView }: Props) {
 
                     <CustomSelect />
 
-                    <button onClick={() => {
-                        setView('list');
-                        selectList();
-                    }}
-                        className={`${styles.view} ${borderList ? styles.borderTrue : styles.borderFalse}`}>
-                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" fill="#264794" />
-                        </svg>
+                    <button
+                        onClick={() => { setCatalogButton(!catalogButton) }}>
+                        {catalogButton ? disableCatalog : activeCatalog}
                     </button>
-                    <button onClick={() => {
-                        setView('square')
-                        selectSquare();
-                    }}
-                        className={`${styles.view} ${borderSquare ? styles.borderTrue : styles.borderFalse}`}>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M0 4H4V0H0V4ZM6 16H10V12H6V16ZM0 16H4V12H0V16ZM0 10H4V6H0V10ZM6 10H10V6H6V10ZM12 0V4H16V0H12ZM6 4H10V0H6V4ZM12 10H16V6H12V10ZM12 16H16V12H12V16Z" fill="#040D23" />
-                        </svg>
+                    <button
+                        className={`${styles.view} ${borderList ? styles.borderTrue : styles.borderFalse}`}
+                        onClick={() => {
+                            setView('list');
+                            selectList();
+                        }}>
+                        {listImg}
+                    </button>
+                    <button
+                        className={`${styles.view} ${borderSquare ? styles.borderTrue : styles.borderFalse}`}
+                        onClick={() => {
+                            setView('square')
+                            selectSquare();
+                        }}>
+                        {squareImg}
                     </button>
                 </div>
             </div>
+            {!catalogButton && (
+                <CategoryAdaptive setCatalogButton={setCatalogButton} />
+            )}
         </div>
     );
 }
@@ -116,4 +135,24 @@ const basketImg2 = <svg className={styles.basketImg2} width="40" height="40" vie
 
 const lkImg = <svg className={styles.lkimg} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9.99992 20C6.93302 20 4.19946 18.6224 2.3559 16.4444C2.28906 16.3776 2.24479 16.3333 2.20052 16.2665C0.822046 14.5555 0 12.3776 0 10C0 4.48868 4.48868 0 10 0C15.5114 0 20 4.48868 20 10C20 12.3776 19.178 14.5556 17.7778 16.2665C17.7336 16.3333 17.6893 16.4002 17.6224 16.4444C15.8004 18.6224 13.0668 20 9.99992 20ZM9.99992 11.5998C12.6224 11.5998 15.0884 12.5998 16.9557 14.4002C17.7552 13.1337 18.2222 11.6224 18.2222 9.99998C18.2222 5.46708 14.5329 1.77773 9.99996 1.77773C5.46706 1.77773 1.77772 5.46708 1.77772 9.99998C1.77772 11.6224 2.24474 13.1338 3.04421 14.4002C4.91139 12.5998 7.37747 11.5998 9.99992 11.5998ZM9.99992 9.99993C8.15529 9.99993 6.66658 8.51122 6.66658 6.66659C6.66658 4.82196 8.15529 3.33325 9.99992 3.33325C11.8445 3.33325 13.3333 4.82196 13.3333 6.66659C13.3333 8.51122 11.8445 9.99993 9.99992 9.99993Z" fill="#C51A1A" />
+</svg>
+
+const listImg = <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M0 12H18V10H0V12ZM0 7H18V5H0V7ZM0 0V2H18V0H0Z" fill="#264794" />
+</svg>
+
+const squareImg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M0 4H4V0H0V4ZM6 16H10V12H6V16ZM0 16H4V12H0V16ZM0 10H4V6H0V10ZM6 10H10V6H6V10ZM12 0V4H16V0H12ZM6 4H10V0H6V4ZM12 10H16V6H12V10ZM12 16H16V12H12V16Z" fill="#040D23" />
+</svg>
+
+const disableCatalog = <svg className={styles.catalogButton} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="4" fill="white" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4419 13.7469C10.7033 13.7469 10.1047 14.3456 10.1047 15.0841V28.1251C10.1047 28.8636 10.7033 29.4624 11.4419 29.4624H28.5581C29.2967 29.4624 29.8953 28.8636 29.8953 28.1251V19.4651C29.8953 18.7266 29.2967 18.1279 28.5581 18.1279H21.0849C20.1472 18.1279 19.2657 17.6809 18.7117 16.9246L16.7846 14.2939C16.5327 13.9501 16.132 13.7469 15.7058 13.7469H11.4419ZM8.5 15.0841C8.5 13.4594 9.81712 12.1423 11.4419 12.1423H15.7058C16.6435 12.1423 17.5249 12.5892 18.079 13.3456L20.0061 15.9763C20.258 16.3201 20.6587 16.5233 21.0849 16.5233H28.5581C30.1829 16.5233 31.5 17.8404 31.5 19.4651V28.1251C31.5 29.7499 30.1829 31.067 28.5581 31.067H11.4419C9.81712 31.067 8.5 29.7499 8.5 28.1251V15.0841Z" fill="#C51A1A" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1047 9.73531C10.1047 9.2922 10.4639 8.93298 10.907 8.93298H17.3105C18.2481 8.93298 19.1296 9.37994 19.6837 10.1363L21.6107 12.767C21.8627 13.1108 22.2633 13.3139 22.6895 13.3139H30.1628C30.6059 13.3139 30.9651 13.6732 30.9651 14.1163C30.9651 14.5594 30.6059 14.9186 30.1628 14.9186H22.6895C21.7519 14.9186 20.8704 14.4716 20.3163 13.7153L18.3893 11.0846C18.1373 10.7408 17.7367 10.5376 17.3105 10.5376H10.907C10.4639 10.5376 10.1047 10.1784 10.1047 9.73531Z" fill="#C51A1A" />
+</svg>
+
+const activeCatalog = <svg className={styles.catalogButton} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="40" height="40" rx="4" fill="#C51A1A" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4419 13.7471C10.7033 13.7471 10.1047 14.3457 10.1047 15.0843V28.1253C10.1047 28.8637 10.7033 29.4625 11.4419 29.4625H28.5581C29.2967 29.4625 29.8953 28.8637 29.8953 28.1253V19.4652C29.8953 18.7267 29.2967 18.128 28.5581 18.128H21.0849C20.1472 18.128 19.2657 17.6811 18.7117 16.9247L16.7846 14.294C16.5327 13.9502 16.132 13.7471 15.7058 13.7471H11.4419ZM8.5 15.0843C8.5 13.4595 9.81712 12.1424 11.4419 12.1424H15.7058C16.6435 12.1424 17.5249 12.5894 18.079 13.3458L20.0061 15.9764C20.258 16.3202 20.6587 16.5234 21.0849 16.5234H28.5581C30.1829 16.5234 31.5 17.8405 31.5 19.4652V28.1253C31.5 29.75 30.1829 31.0671 28.5581 31.0671H11.4419C9.81712 31.0671 8.5 29.75 8.5 28.1253V15.0843Z" fill="white" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1047 9.73543C10.1047 9.29232 10.4639 8.93311 10.907 8.93311H17.3105C18.2481 8.93311 19.1296 9.38007 19.6837 10.1365L21.6107 12.7671C21.8627 13.1109 22.2633 13.3141 22.6895 13.3141H30.1628C30.6059 13.3141 30.9651 13.6733 30.9651 14.1164C30.9651 14.5595 30.6059 14.9187 30.1628 14.9187H22.6895C21.7519 14.9187 20.8704 14.4718 20.3163 13.7154L18.3893 11.0847C18.1373 10.7409 17.7367 10.5378 17.3105 10.5378H10.907C10.4639 10.5378 10.1047 10.1785 10.1047 9.73543Z" fill="white" />
 </svg>

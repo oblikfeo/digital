@@ -24,7 +24,7 @@
     position: absolute;
     top: 50px;
     left: 0px;
-
+    z-index: 1;
 }
 
 .selectOptionsFalse {
@@ -68,4 +68,24 @@
 
 .icon {
     transform: scaleY(-1);
+}
+
+@media (max-width: 1200px) {
+    .select {
+        min-width: 200px;
+    }
+
+    .option1 {
+        min-width: 200px;
+    }
+
+    .option2 {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .select {
+        display: none;
+    }
 }

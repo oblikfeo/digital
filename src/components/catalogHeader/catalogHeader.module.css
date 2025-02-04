@@ -13,7 +13,7 @@
 
 .contacts {
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .link1 {
@@ -39,7 +39,6 @@
 
 .hello {
     margin-top: 20px;
-    height: 176px;
     width: 100%;
     background-color: rgba(245, 245, 245, 1)
 }
@@ -166,6 +165,7 @@
 }
 
 .totalQuantity {
+    display: none;
     position: absolute;
     width: 14px;
     height: 14px;
@@ -173,6 +173,7 @@
     border-radius: 100px;
     color: black;
     bottom: 10px;
+    z-index: 9999;
 }
 
 .lkimg {
@@ -187,9 +188,16 @@
     color: rgba(4, 13, 35, 1);
 }
 
+.catalogButton {
+    display: none;
+    min-height: 50px;
+    min-width: 50px;
+    cursor: pointer;
+}
+
 @media (max-width:1200px) {
     .welcomeContainer {
-        padding: 20px 38px 0 38px;
+        padding: 20px 34px 0 34px;
     }
 
     .font {
@@ -215,5 +223,101 @@
     .totalQuantity {
         top: 18px;
         right: 48px;
+        display: grid;
+    }
+
+    .catalogButton {
+        display: block;
+    }
+}
+
+@media (max-width:700px) {
+    .welcomeContainer {
+        padding: 10px 8px 0 8px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .container {
+        height: 40px;
+    }
+
+    .sideA {
+        height: 40px;
+        width: 75px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .sideB {
+        left: 55px;
+    }
+
+    .text {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        margin: auto 0 auto 75px;
+    }
+
+    .menu {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+        height: 60px;
+        padding: 0 10px;
+        gap: 5px;
+    }
+
+    .hello {
+        margin-top: 10px;
+    }
+
+    .text span {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .input {
+        height: 40px;
+    }
+
+    .font {
+        display: none;
+    }
+
+    .view {
+        display: none;
+    }
+
+    .link2 {
+        display: none;
+    }
+
+    .basketImg {
+        display: block;
+    }
+
+    .basketImg2 {
+        display: block;
+        right: -2px;
+        top: 2px;
+    }
+
+    .lkimg {
+        display: block;
+    }
+
+    .totalQuantity {
+        top: 9px;
+        right: 18px;
+        display: grid;
+    }
+
+    .catalogButton {
+        display: block;
+        min-height: 40px;
+        min-width: 40px;
     }
 }
