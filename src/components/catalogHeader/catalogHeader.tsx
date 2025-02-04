@@ -25,7 +25,7 @@ export default function CatalogHeader({ setView }: Props) {
     const isSmallScreen = useMediaPredicate("(max-width: 700px)")
     const isLargeScreen = useMediaPredicate("(min-width: 700px)")
 
-    let text = "Стандартный текст"
+    let text = ""
 
     if (isSmallScreen) {
         text = "Каталог"
