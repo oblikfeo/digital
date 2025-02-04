@@ -62,7 +62,7 @@
 }
 
 .discription {
-    height: 72px;
+    max-height: 72px;
     width: 100%;
     padding: 0px 10px;
     font-size: 16px;
@@ -146,6 +146,9 @@
 
 .link {
     cursor: pointer;
+    object-fit: contain;
+    max-height: 200px;
+    max-width: 200px;
 }
 
 .counter {

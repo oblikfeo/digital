@@ -11,8 +11,23 @@ import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
+import axios from "axios";
 
 export default function Catalog() {
+
+    const [productsFetch, setProductsFetch] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+
+    useEffect(() => {
+        axios.get(`http://147.45.157.15:8000/api/v1/shop/products?page=${currentPage}`).then((response) => {
+            setProductsFetch(response.data.data)
+            setCurrentPage(response.data.from)
+            setTotalPage(response.data.last_page)
+        }).catch((error) => console.error(error))
+        console.log(currentPage)
+    }, [currentPage])
+
 
     useEffect(() => {
         toaster.create({
@@ -22,6 +37,8 @@ export default function Catalog() {
             duration: 4000,
         })
     }, [])
+
+
 
     // switch кейсы переключения вида каталога
     const [view, setView] = useState('square')
@@ -35,7 +52,7 @@ export default function Catalog() {
 
         case "square":
             viewCatalog = (
-                <SquareCard props={8} />
+                <SquareCard productsFetch={productsFetch} currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} />
             )
             break;
     }

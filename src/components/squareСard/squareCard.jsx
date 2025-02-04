@@ -8,9 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import Link from 'next/link';
 
-export default function SquareCard({ props }) {
-
-    const [currentPage, setCurrentPage] = useState(1)
+export default function SquareCard({ productsFetch, currentPage, totalPage, setCurrentPage }) {
 
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
@@ -22,14 +20,7 @@ export default function SquareCard({ props }) {
         dispatch(removeFromCart(productId));
     };
 
-
-    const itemsPerPage = props;
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = catalogjson.slice(indexOfFirstItem, indexOfLastItem);
-
-    const pageCount = Math.ceil(catalogjson.length / itemsPerPage);
+    const pageCount = totalPage;
 
     const getPagesArray = () => {
         if (pageCount <= 10) {
@@ -78,22 +69,22 @@ export default function SquareCard({ props }) {
     return (
         <>
             <div className={styles.square}>
-                {currentItems.map((item) => (
+                {productsFetch.map((item) => (
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
                             <Link href={`/catalog/${item.id}`}>
-                                <Image className={styles.link} src={img} alt='' width={200} height={200} />
+                                <Image className={styles.link} src={item.images[0] ?? img} alt='' width={200} height={200} />
                             </Link>
                         </div>
                         <div className={styles.price}>
                             <div className={styles.priceArea}>
                                 <div className={styles.mainPrice}>{item.price} ₽</div>
-                                <div className={styles.subPrice}>{item.subPrice} ₽</div>
+                                <div className={styles.subPrice}>нету</div>
                             </div>
-                            <div className={item.quantity > 0 ? styles.have : styles.havent}>{item.quantity === 0 ? 'Нет в наличии' : 'В наличии'}</div>
+                            <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         </div>
                         <div onClick={() => redirect(`catalog/${item.id}`)} src={img} className={styles.discription}>
-                            {item.description}
+                            {item.title}
                         </div>
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?
                             <div key={item.id} className={styles.counter}>
