@@ -73,7 +73,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
                             <Link href={`/catalog/${item.id}`}>
-                                <Image className={styles.link} src={`/storage${item.images[0].replace('http://147.45.157.15/', '')}` ?? img} alt='' width={200} height={200} />
+                                <Image className={styles.link} src={`/storage${item.images[0].replace('http://147.45.157.15:8000/', '')}` ?? img} alt='' width={200} height={200} />
                             </Link>
                         </div>
                         <div className={styles.price}>
