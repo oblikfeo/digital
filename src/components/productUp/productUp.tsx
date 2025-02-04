@@ -6,7 +6,7 @@ import Image from "next/image";
 import Paragraph from "../UI kit/paragraph/paragraph";
 import ProductDown from "../productDown/productDown";
 import { useState } from "react";
-import SquareCard from "../squareСard/squareCard";
+// import SquareCard from "../squareСard/squareCard";
 import { usePathname } from "next/navigation";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
@@ -144,7 +144,7 @@ export default function ProductUp() {
             </div>
             <div className={styles.minicatalog}>
                 <h2 className={styles.h2}>Похожие товары</h2>
-                <SquareCard props={4} />
+                {/* <SquareCard props={4} /> */}
             </div>
             <div className={styles.footer}>
                 <span className={styles.redline}>300 ветмир</span>
