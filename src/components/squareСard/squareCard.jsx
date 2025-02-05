@@ -89,7 +89,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?
                             <div key={item.id} className={styles.counter}>
                                 <div onClick={() => {
-                                    if (item.quantity === 0) {
+                                    if (item.rests === 0) {
                                         toaster.create({
                                             title: "Ошибка",
                                             description: "Товар отсутствует на складе",
@@ -108,10 +108,10 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                 </div>
                                 <div key={item.id} className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
                                 <div onClick={() => {
-                                    if (item.quantity === 0) {
+                                    if (cartItems.find(cartItem => cartItem.id === item.id)?.stack === item.rests) {
                                         toaster.create({
                                             title: "Ошибка",
-                                            description: "Товар отсутствует на складе",
+                                            description: "К сожалению, больше единиц этого товара добавить нельзя",
                                             type: "error",
                                             duration: 3000,
                                         })
@@ -127,7 +127,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                 </div>
                             </div> :
                             <div onClick={() => {
-                                if (item.quantity === 0) {
+                                if (item.rests === 0) {
                                     toaster.create({
                                         title: "Ошибка",
                                         description: "Товар отсутствует на складе",

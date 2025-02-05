@@ -1,17 +1,19 @@
 .flexContainer {
     display: flex;
     width: 100%;
+    min-height: 100%;
     background-color: rgba(245, 245, 245, 1);
+    overflow-x: scroll;
 }
 
 .flex {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 390px;
     background-image: url('../../../img/bcgWelcome.svg');
     background-size: 100%;
     background-repeat: repeat;
-    overflow: hidden;
 }
 
 .square {
