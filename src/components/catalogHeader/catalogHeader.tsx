@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '@/redux/slices/cartSlice';
 import CategoryAdaptive from '../categoryAdaptive/category';
 import { useMediaPredicate } from 'react-media-hook'
+import CategoryMobile from '../categoryMobile/category';
 
 
 interface Props {
@@ -20,7 +21,7 @@ export default function CatalogHeader({ setView }: Props) {
 
     const [borderList, setBorderList] = useState(false)
     const [borderSquare, setBorderSquare] = useState(true)
-    const [catalogButton, setCatalogButton] = useState(true)
+    const [catalogButtonIpad, setCatalogButtonIpad] = useState(true)
 
     const isSmallScreen = useMediaPredicate("(max-width: 700px)")
     const isLargeScreen = useMediaPredicate("(min-width: 700px)")
@@ -88,8 +89,8 @@ export default function CatalogHeader({ setView }: Props) {
                     <CustomSelect />
 
                     <button
-                        onClick={() => { setCatalogButton(!catalogButton) }}>
-                        {catalogButton ? disableCatalog : activeCatalog}
+                        onClick={() => { setCatalogButtonIpad(!catalogButtonIpad) }}>
+                        {catalogButtonIpad ? disableCatalog : activeCatalog}
                     </button>
                     <button
                         className={`${styles.view} ${borderList ? styles.borderTrue : styles.borderFalse}`}
@@ -109,8 +110,11 @@ export default function CatalogHeader({ setView }: Props) {
                     </button>
                 </div>
             </div>
-            {!catalogButton && (
-                <CategoryAdaptive setCatalogButton={setCatalogButton} />
+            {!catalogButtonIpad && (
+                <CategoryAdaptive setCatalogButtonIpad={setCatalogButtonIpad} />
+            )}
+            {!catalogButtonIpad && (
+                <CategoryMobile setCatalogButtonIpad={setCatalogButtonIpad} />
             )}
         </div>
     );

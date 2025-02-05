@@ -21,8 +21,6 @@ export default function CategoryMain({ cata }) {
                 </div>
                 <div className={show ? styles.showTrue : styles.showFalse}>
                     <CategoryMiddle />
-                    <CategoryMiddle />
-                    <CategoryMiddle />
                 </div>
             </div>
         </div>

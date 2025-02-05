@@ -72,7 +72,7 @@ export default function Catalog() {
                     setView={setView}
                 />
                 <div className={view === 'list' ? styles.list : styles.square}>
-                    {isLoading ? <><span>ЗАГРУЖАЮ</span></> : viewCatalog}
+                    {isLoading ? <><span className={styles.load}>загрузка товаров...</span></> : viewCatalog}
                 </div>
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>

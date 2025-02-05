@@ -52,7 +52,7 @@
 }
 
 .hidden {
-    width: 284px;
+    width: 300px;
     height: calc(100% - 24px);
     overflow: hidden;
 }

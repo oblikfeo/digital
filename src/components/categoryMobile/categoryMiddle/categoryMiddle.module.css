@@ -1,0 +1,56 @@
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.flex:hover {
+    box-shadow: inset 1px 1px 5px rgba(50, 50, 50, 0.2);
+    border-radius: 8px;
+    padding-left: 2px;
+}
+
+.middleText {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(4, 13, 35, 1);
+}
+
+.lowText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(4, 13, 35, 1);
+}
+
+.categoryLowTrue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.categoryLowFalse {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.hover {
+    padding: 6px 20px;
+    cursor: pointer;
+}
+
+
+.hover:hover {
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.icon {
+    transform: scaleY(-1);
+}

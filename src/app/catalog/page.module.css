@@ -49,6 +49,11 @@
     padding-left: 10px;
 }
 
+.load {
+    margin-top: 50px;
+    font-size: 40px;
+}
+
 @media (max-width:1200px) {
     .square {
         padding: 0 34px 0 34px;
