@@ -3,7 +3,6 @@
     width: 100%;
     min-height: 100%;
     background-color: rgba(245, 245, 245, 1);
-    overflow-x: scroll;
 }
 
 .flex {
