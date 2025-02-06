@@ -15,14 +15,14 @@ import axios from "axios";
 
 export default function Catalog() {
 
-    const [productsFetch, setProductsFetch] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [totalPage, setTotalPage] = useState(1)
+    const [productsFetch, setProductsFetch] = useState([]) // рендерим этот массив
+    const [currentPage, setCurrentPage] = useState(1) // текущая страница пагинации
+    const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`https://test.devsrv.ru/api/v1/shop/products?page=${currentPage}`).then((response) => {
+        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?page=${currentPage}`).then((response) => {
             setProductsFetch(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))

@@ -9,7 +9,7 @@ export default function CategoryMobile() {
     const [category, setCategory] = useState([])
 
     useEffect(() => {
-        axios.get(`https://test.devsrv.ru/api/v1/shop/categories`).then((response) => {
+        axios.get(`https://zoo.devsrv.ru/api/v1/shop/categories`).then((response) => {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])

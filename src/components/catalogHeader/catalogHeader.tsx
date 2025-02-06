@@ -18,8 +18,8 @@ interface Props {
     setTotalPage: (value: number) => void;
 }
 
-const fetchByText = async (text, setProductsFetch, setTotalPage) => {
-    axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${text}`).then((response) => {
+const fetchByText = async (text, setProductsFetch, setTotalPage, sort) => {
+    axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${text}${`&order=${sort}`}`).then((response) => {
         setProductsFetch(response.data.data)
         setTotalPage(response.data.last_page)
     })
@@ -47,18 +47,20 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
     const [borderSquare, setBorderSquare] = useState(true)
     const [catalogButtonIpad, setCatalogButtonIpad] = useState(true)
     const [inputText, setInputText] = useState('')
+    const [select, setSelect] = useState('По умолчанию')
+    const [sort, setSort] = useState('')
 
     const isSmallScreen = useMediaPredicate("(max-width: 700px)")
     const isLargeScreen = useMediaPredicate("(min-width: 700px)")
 
     const debouncedFetchByText = useCallback(
-        debounce((text) => fetchByText(text, setProductsFetch, setTotalPage), 500),
+        debounce((text, sort) => fetchByText(text, setProductsFetch, setTotalPage, sort), 500),
         []
     );
 
     useEffect(() => {
         if (inputText) {
-            debouncedFetchByText(inputText);
+            debouncedFetchByText(inputText, sort);
         }
     }, [inputText])
 
@@ -122,7 +124,14 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
                         </svg>
                     </div>
 
-                    <CustomSelect />
+                    <CustomSelect
+                        inputText={inputText}
+                        setProductsFetch={setProductsFetch}
+                        setTotalPage={setTotalPage}
+                        select={select}
+                        setSelect={setSelect}
+                        setSort={setSort}
+                    />
 
                     <button
                         onClick={() => { setCatalogButtonIpad(!catalogButtonIpad) }}>
