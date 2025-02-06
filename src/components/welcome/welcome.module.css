@@ -588,3 +588,9 @@
 
 
 }
+
+@media (max-width:375px) {
+    .subText {
+        font-size: 14px;
+    }
+}
