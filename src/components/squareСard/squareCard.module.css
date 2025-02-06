@@ -182,6 +182,10 @@
         padding: 20px 0px;
     }
 
+    .cart:hover {
+        transform: none;
+    }
+
     .cart {
         min-width: 212px;
         height: 339px;
