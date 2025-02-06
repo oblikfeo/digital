@@ -70,6 +70,8 @@ export default function Catalog() {
                 <Paw5 />
                 <CatalogHeader
                     setView={setView}
+                    setProductsFetch={setProductsFetch}
+                    setTotalPage={setTotalPage}
                 />
                 <div className={view === 'list' ? styles.list : styles.square}>
                     {isLoading ? <><span className={styles.load}>загрузка товаров...</span></> : viewCatalog}
