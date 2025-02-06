@@ -283,3 +283,9 @@
         display: none;
     }
 }
+
+@media (max-width:700px) {
+    .cart {
+        min-width: 170px;
+    }
+}
