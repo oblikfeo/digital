@@ -553,9 +553,9 @@
 
 }
 
-@media (max-height:600px) {
+@media (max-height:900px) {
     .contentContainer {
-        min-height: 680px;
+        min-height: 800px;
     }
 
 
