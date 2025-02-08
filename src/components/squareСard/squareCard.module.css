@@ -293,3 +293,21 @@
         min-width: 170px;
     }
 }
+
+@media (max-width:380px) {
+    .cart {
+        min-width: 164px;
+    }
+}
+
+@media (max-width:360px) {
+    .cart {
+        min-width: 154px;
+    }
+}
+
+@media (max-width:340px) {
+    .cart {
+        min-width: 144px;
+    }
+}

@@ -29,6 +29,7 @@
     color: rgba(4, 13, 35, 1);
     cursor: pointer;
     line-height: 20px;
+    overflow: hidden;
 }
 
 .have {
@@ -75,9 +76,11 @@
 .price {
     text-align: end;
     display: flex;
-    flex-direction: column;
-    width: 166px;
+    width: 125px;
     height: 66px;
+    align-items: center;
+    gap: 30px;
+    justify-content: flex-end;
 }
 
 .mainPrice {
@@ -145,12 +148,41 @@
 
 .link {
     cursor: pointer;
+    object-fit: contain;
+    height: 60px;
 }
 
 .skid {
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+@media (max-width:1350px) {
+    .discription {
+        width: 300px;
+    }
+}
+
+@media (max-width:1320px) {
+    .discription {
+        width: 240px;
+    }
+}
+
+@media (max-width:1250px) {
+    .discription {
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .mainPrice {
+        font-size: 16px;
+    }
+
+    .cart {
+        gap: 10px;
+    }
 }
 
 @media (max-width:1200px) {
@@ -179,4 +211,5 @@
     .subPrice {
         font-size: 8px;
     }
+
 }

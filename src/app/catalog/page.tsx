@@ -48,7 +48,7 @@ export default function Catalog() {
     switch (view) {
         case "list":
             viewCatalog = (
-                <ListCard />
+                <ListCard productsFetch={productsFetch} currentPage={currentPage} totalPage={totalPage} setCurrentPage={setCurrentPage} />
             )
             break;
 

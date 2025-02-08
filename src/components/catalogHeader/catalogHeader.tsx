@@ -50,6 +50,21 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
     const [select, setSelect] = useState('По умолчанию')
     const [sort, setSort] = useState('')
 
+    const onResize = () => {
+        if (window.screen.width < 800) {
+            setView('square')
+            setBorderList(false)
+            setBorderSquare(true)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', onResize)
+        return () => {
+            window.removeEventListener('resize', onResize)
+        }
+    }, [])
+
     const isSmallScreen = useMediaPredicate("(max-width: 700px)")
     const isLargeScreen = useMediaPredicate("(min-width: 700px)")
 
