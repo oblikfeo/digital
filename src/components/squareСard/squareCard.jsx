@@ -1,12 +1,12 @@
 import styles from './squareCard.module.css'
 import Image from 'next/image';
-import catalogjson from '../../catalog.json'
 import img from '/img/noImg.svg'
-import { useState } from 'react';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 export default function SquareCard({ productsFetch, currentPage, totalPage, setCurrentPage }) {
 
@@ -72,7 +72,10 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                 {productsFetch?.map((item) => (
                     <div className={styles.cart} key={item.id}>
                         <div className={styles.productImg}>
-                            <Link href={`/catalog/${item.id}`}>
+                            <Link href={{
+                                pathname: `/catalog/${item.slug}`,
+                                query: { id: item.id }, // Передаем id через query параметры
+                            }}>
                                 <Image className={styles.link} src={item.images[0] ?? img} alt='' width={200} height={200} />
                             </Link>
                         </div>

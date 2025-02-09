@@ -1,50 +1,53 @@
 'use client'
 import styles from "./productUp.module.css"
-import catalogjson from "../../catalog.json"
-import img from '/img/product.png'
+import img from '/img/noImg.svg'
 import Image from "next/image";
 import Paragraph from "../UI kit/paragraph/paragraph";
 import ProductDown from "../productDown/productDown";
-import { useState } from "react";
-// import SquareCard from "../squareСard/squareCard";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
-import { toaster } from "@/components/Toaster/toaster"
-
-
-
+import { Toaster, toaster } from "@/components/Toaster/toaster"
+import axios from "axios";
 
 export default function ProductUp() {
 
-    const dispatch = useDispatch();
-
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product));
-    };
-    const handleRemoveFromCart = (productId) => {
-        dispatch(removeFromCart(productId));
-    };
-
     const pathname = usePathname()
+    const slug = pathname.split('/').pop()
+
+    const [fetch, setFetch] = useState()
+
+    useEffect(() => {
+        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
+            setFetch(response.data)
+        }).catch((error) => console.error(error))
+    }, [])
+
+    const dispatch = useDispatch();
+    const handleAddToCart = (product) => dispatch(addToCart(product));
+    const handleRemoveFromCart = (productId) => dispatch(removeFromCart(productId));
+
+
+    console.log(pathname.split('/').pop())
 
     const [open, setOpen] = useState(false)
-    const targetItem = catalogjson.find(item => item.id === Number(pathname?.split('/').pop()));
-    const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === Number(pathname?.split('/')?.pop())));
+    const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
+
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.product}>
                 <div className={styles.content}>
-                    <Image className={styles.shadow} src={img} alt={""}></Image>
+                    <Image className={styles.shadow} src={fetch?.images[0] ?? img} alt={""} width={322} height={322}></Image>
 
                     <div className={styles.card}>
                         <div className={styles.head}>
                             <div className={styles.name}>
-                                <div>{targetItem?.description}</div>
+                                <div>{fetch?.title}</div>
                             </div>
-                            <div className={targetItem.quantity > 0 ? styles.have : styles.havent}>
-                                {targetItem?.quantity === 0 ? 'Нет в наличии' : 'В наличии'}
+                            <div className={fetch?.rests > 0 ? styles.have : styles.havent}>
+                                {fetch?.rests === 0 ? 'Нет в наличии' : 'В наличии'}
                             </div>
 
                         </div>
@@ -52,20 +55,20 @@ export default function ProductUp() {
                         <div className={styles.description}>
 
                             <div className={styles.left}>
-                                <Paragraph text={"Производитель:"} props={targetItem?.manufacturer} />
-                                <Paragraph text={"Страна производитель:"} props={targetItem?.country} />
-                                <Paragraph text={"Категория товара:"} props={targetItem?.category} />
-                                <Paragraph text={"Остаток:"} props={targetItem?.quantity} />
-                                <Paragraph text={"Минимальный объем заказа:"} props={targetItem?.minforbuy} />
+                                <Paragraph text={"Производитель:"} props={fetch?.manufacturer} />
+                                <Paragraph text={"Страна производитель:"} props={fetch?.country} />
+                                <Paragraph text={"Категория товара:"} props={fetch?.categories[0].title} />
+                                <Paragraph text={"Остаток:"} props={fetch?.rests} />
+                                <Paragraph text={"Минимальный объем заказа:"} props={fetch?.minforbuy} />
                             </div>
 
                             <div className={styles.right}>
-                                <Paragraph text={"Цена:"} props={targetItem?.price} />
+                                <Paragraph text={"Цена:"} props={fetch?.price} />
 
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
                                         <div onClick={() => {
-                                            if (targetItem?.quantity === 0) {
+                                            if (fetch?.rests === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
                                                     description: "Товар отсутствует на складе",
@@ -73,7 +76,7 @@ export default function ProductUp() {
                                                     duration: 3000,
                                                 })
                                             } else {
-                                                handleRemoveFromCart(targetItem)
+                                                handleRemoveFromCart(fetch)
                                             }
                                         }} className={styles.button}>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +86,7 @@ export default function ProductUp() {
                                         </div>
                                         <div className={styles.number}>{item?.stack || "0"} шт</div>
                                         <div onClick={() => {
-                                            if (targetItem?.quantity === 0) {
+                                            if (fetch?.rests === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
                                                     description: "Товар отсутствует на складе",
@@ -91,7 +94,7 @@ export default function ProductUp() {
                                                     duration: 3000,
                                                 })
                                             } else {
-                                                handleAddToCart(targetItem)
+                                                handleAddToCart(fetch)
                                             }
                                         }}
                                             className={styles.button}>
@@ -101,10 +104,10 @@ export default function ProductUp() {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className={styles.h4}>= {targetItem?.price * item?.stack || 0} ₽</div>
+                                    <div className={styles.h4}>= {fetch?.price * item?.stack || 0} ₽</div>
                                 </div>
                                 <div onClick={() => {
-                                    if (item?.quantity === 0) {
+                                    if (fetch?.rests === 0) {
                                         toaster.create({
                                             title: "Ошибка",
                                             description: "Товар отсутствует на складе",
@@ -112,7 +115,7 @@ export default function ProductUp() {
                                             duration: 3000,
                                         })
                                     } else {
-                                        handleAddToCart(targetItem)
+                                        handleAddToCart(fetch)
                                     }
                                 }}
                                     className={styles.buyButton}>
@@ -140,7 +143,7 @@ export default function ProductUp() {
 
 
                 </div>
-                {open === true ? <ProductDown targetItem={targetItem} /> : <></>}
+                {open === true ? <ProductDown fetch={fetch} /> : <></>}
             </div>
             <div className={styles.minicatalog}>
                 <h2 className={styles.h2}>Похожие товары</h2>
@@ -150,6 +153,7 @@ export default function ProductUp() {
                 <span className={styles.redline}>300 ветмир</span>
                 <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
             </div>
+            <Toaster />
         </div>
     )
 }

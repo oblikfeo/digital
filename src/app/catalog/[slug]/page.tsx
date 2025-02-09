@@ -2,13 +2,11 @@ import styles from "./page.module.css"
 import Login from "@/components/login/login"
 import ProductHeader from "@/components/productHeader/productHeader"
 import ProductUp from "@/components/productUp/productUp"
-import catalogjson from "../../../catalog.json"
 import Paw1 from "@/components/UI kit/paws1/paws"
 import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
-
 
 export default function Product() {
 
@@ -28,10 +26,3 @@ export default function Product() {
     )
 }
 
-export async function generateStaticParams() {
-    const allIds = catalogjson.map((item) => ({
-        id: String(item.id),
-    }));
-
-    return allIds;
-}

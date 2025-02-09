@@ -30,7 +30,6 @@ export default function Catalog() {
         console.log(currentPage)
     }, [currentPage])
 
-
     useEffect(() => {
         toaster.create({
             title: "Успешная авторизация",
