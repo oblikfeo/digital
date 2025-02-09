@@ -16,7 +16,7 @@ export default function ProductUp() {
     const pathname = usePathname()
     const slug = pathname.split('/').pop()
 
-    const [fetch, setFetch] = useState()
+    const [fetch, setFetch] = useState(null)
 
     useEffect(() => {
         axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
