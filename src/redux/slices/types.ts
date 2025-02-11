@@ -5,7 +5,7 @@ export interface Product {
     subPrice: number;
     optPrice: number;
     purchasingPrice: number;
-    description: string;
+    title: string;
     quantity: number;
     manufacturer: string;
     country: string;
@@ -24,4 +24,5 @@ export interface Product {
     PriceForContrAgent2: number;
     PriceForContrAgent3: number;
     PriceForContrAgent4: number;
+    images: string;
 }

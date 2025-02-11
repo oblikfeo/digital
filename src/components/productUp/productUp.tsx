@@ -86,10 +86,10 @@ export default function ProductUp() {
                                         </div>
                                         <div className={styles.number}>{item?.stack || "0"} шт</div>
                                         <div onClick={() => {
-                                            if (fetch?.rests === 0) {
+                                            if (item?.stack === fetch?.rests || fetch?.rests === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
-                                                    description: "Товар отсутствует на складе",
+                                                    description: "Добавлено максимальное количество",
                                                     type: "error",
                                                     duration: 3000,
                                                 })

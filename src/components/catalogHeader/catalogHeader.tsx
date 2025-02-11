@@ -43,8 +43,8 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
 
     const totalQuantity = useSelector(selectTotalQuantity)
 
-    const [borderList, setBorderList] = useState(false)
-    const [borderSquare, setBorderSquare] = useState(true)
+    const [borderList, setBorderList] = useState(true)
+    const [borderSquare, setBorderSquare] = useState(false)
     const [catalogButtonIpad, setCatalogButtonIpad] = useState(true)
     const [inputText, setInputText] = useState('')
     const [select, setSelect] = useState('По умолчанию')

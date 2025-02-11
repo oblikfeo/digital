@@ -3,7 +3,7 @@ import { Product } from './types';
 import { RootState } from '../store';
 
 interface CartItem extends Product {
-    stack: number;
+    stack: number,
 }
 
 export type AppState = {

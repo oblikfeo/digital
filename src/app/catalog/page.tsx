@@ -42,7 +42,7 @@ export default function Catalog() {
 
 
     // switch кейсы переключения вида каталога
-    const [view, setView] = useState('square')
+    const [view, setView] = useState('list')
     let viewCatalog;
     switch (view) {
         case "list":

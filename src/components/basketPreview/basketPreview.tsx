@@ -1,13 +1,14 @@
 'use client'
 import styles from "./basketPreview.module.css"
 import Image from 'next/image';
-import img from '/img/product.png'
+import img from '/img/haventlogo.png'
 import basketImg from '../../../img/basketImg.png'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCartItems, selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity, clearCart } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange }) {
 
@@ -16,6 +17,23 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
 
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        const requests = cartItems.map((item) =>
+            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${item.id}`)
+        );
+        Promise.all(requests)
+            .then((responses) => {
+                const fetchedProducts = responses.map((response) => response.data.data[0]);
+                setProduct(fetchedProducts);
+            })
+            .catch((error) => {
+                console.error('Ошибка при получении данных:', error);
+            });
+    }, []);
+
+    console.log(product)
 
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
@@ -37,9 +55,9 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                 {cartItems.map((item) => (
                     <div className={styles.card} key={item.id}>
                         <div className={styles.leftCard}>
-                            <Image src={img} alt="" width={80} height={80} />
+                            <Image className={styles.cardImg} src={item.images[0] || img} alt="" width={80} height={80} />
                             <div className={styles.description}>
-                                {item.description}
+                                {item.title}
                             </div>
                         </div>
                         <div className={styles.counter}>
@@ -65,7 +83,7 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                             <div className={styles.price}>
                                 <div className={styles.mainPrice}>{item.price * cartItems.find(cartItem => cartItem.id === item.id)?.stack} ₽</div>
                                 <div className={styles.allPrice}>{item.price} ₽ x 1</div>
-                                <div className={styles.subPrice}>{item.subPrice * cartItems.find(cartItem => cartItem.id === item.id)?.stack} ₽</div>
+                                <div className={styles.subPrice}>нету ₽</div>
                             </div>
                             <div onClick={() => handleRemoveFromCart(item)} className={styles.buy}>
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
