@@ -64,19 +64,13 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                             <div
                                 onClick={() => handleRemoveFromCart(item)}
                                 className={styles.button}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <rect x="5" y="9" width="10" height="2" fill="#264794" />
-                                </svg>
+                                {minus}
                             </div>
                             <div className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
                             <div
                                 onClick={() => handleAddToCart(item)}
                                 className={styles.button}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
-                                </svg>
+                                {plus}
                             </div>
                         </div>
                         <div className={styles.flex}>
@@ -133,3 +127,13 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
 
     )
 }
+
+const minus = <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="20" height="20" fill="#ECF5FF" />
+    <rect x="5" y="9" width="10" height="2" fill="#264794" />
+</svg>
+
+const plus = <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="20" height="20" fill="#ECF5FF" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
+</svg>
