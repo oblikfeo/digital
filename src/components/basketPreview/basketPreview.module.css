@@ -200,3 +200,15 @@
         padding: 0px 5px 40px 5px;
     }
 }
+
+@media (max-width: 1000px) {
+    .open {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+
+    .wrapper {
+        margin-bottom: 45px;
+    }
+}

@@ -136,3 +136,10 @@
 .position {
     position: relative;
 }
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 395px;
+        margin-bottom: 0;
+    }
+}
