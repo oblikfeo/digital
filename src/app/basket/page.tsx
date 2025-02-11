@@ -1,7 +1,7 @@
 'use client'
 import styles from "./page.module.css"
 import BasketHeader from "@/components/basketHeader/basketHeader"
-import Login from "@/components/login/login"
+// import Login from "@/components/login/login"
 import BasketPreview from "@/components/basketPreview/basketPreview"
 import { useState } from "react";
 import girl from '../../../img/image.png'
@@ -21,7 +21,6 @@ export default function Basket() {
 
     return (
         <div className={styles.flexContainer}>
-            <Login />
             <div className={styles.wrapper}>
                 <Paw1 />
                 <Paw2 />
