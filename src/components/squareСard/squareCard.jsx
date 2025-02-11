@@ -5,8 +5,6 @@ import { Toaster, toaster } from "@/components/Toaster/toaster"
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { HiOutlineTemplate } from 'react-icons/hi';
 
 export default function SquareCard({ productsFetch, currentPage, totalPage, setCurrentPage }) {
 
@@ -86,8 +84,13 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                             </div>
                             <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         </div>
-                        <div onClick={() => redirect(`catalog/${item.id}`)} className={styles.discription}>
-                            {item.title}
+                        <div className={styles.discription}>
+                            <Link href={{
+                                pathname: `/catalog/${item.slug}`,
+                                query: { id: item.id }, // Передаем id через query параметры
+                            }}>
+                                {item.title}
+                            </Link>
                         </div>
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?
                             <div key={item.id} className={styles.counter}>

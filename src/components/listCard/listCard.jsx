@@ -1,12 +1,10 @@
 import styles from './listCard.module.css'
 import Image from 'next/image';
-import catalogjson from '../../catalog.json'
 import img from '/img/noImg.svg'
-import { useState } from 'react';
 import { toaster } from "@/components/Toaster/toaster"
-import { redirect } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
+import Link from 'next/link';
 
 export default function ListCard({ setCurrentPage, totalPage, currentPage, productsFetch }) {
 
@@ -75,9 +73,19 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                     <div className={styles.cart} key={item.id}>
                         {item.id == 3 ? skid : ""}
                         {item.id == 1 ? skid : ""}
-                        <Image props={item.id} className={styles.link} onClick={() => redirect(`catalog/${item.id}`)} src={item.images[0] ?? img} alt='' width={60} height={60} />
-                        <div props={item.id} onClick={() => redirect(`catalog/${item.id}`)} className={styles.discription}>
-                            {item.title}
+                        <Link href={{
+                            pathname: `/catalog/${item.slug}`,
+                            query: { id: item.id }, // Передаем id через query параметры
+                        }}>
+                            <Image props={item.id} className={styles.link} src={item.images[0] ?? img} alt='' width={60} height={60} />
+                        </Link>
+                        <div props={item.id} className={styles.discription}>
+                            <Link href={{
+                                pathname: `/catalog/${item.slug}`,
+                                query: { id: item.id }, // Передаем id через query параметры
+                            }}>
+                                {item.title}
+                            </Link>
                         </div>
                         <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
                         <div key={item.id} className={styles.counter}>

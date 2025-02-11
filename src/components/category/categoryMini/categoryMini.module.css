@@ -1,0 +1,19 @@
+.hover span {
+    padding: 6px 20px;
+    cursor: pointer;
+}
+
+
+.hover:hover span {
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 100px;
+    color: white;
+}
+
+.active span {
+    padding: 6px 20px;
+    cursor: pointer;
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 100px;
+    color: white;
+}

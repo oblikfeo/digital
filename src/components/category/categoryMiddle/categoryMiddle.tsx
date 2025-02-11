@@ -2,24 +2,28 @@ import styles from "./categoryMiddle.module.css"
 import Image from "next/image"
 import icon from "../../../../img/expandmore2.svg"
 import { useState } from "react"
+import CategoryMini from "../categoryMini/categoryMini"
 
-export default function CategoryMiddle() {
+export default function CategoryMiddle({ name, child, setName }) {
 
     const [open, setOpen] = useState(true)
+
     const click = () => {
         setOpen(!open);
     }
 
-
     return (
         <>
             <div onClick={click} className={styles.flex}>
-                <span className={styles.middleText}>Кошки</span>
+                <span className={styles.middleText}>{name}</span>
                 <Image className={open ? styles.icon : styles.none} src={icon} alt="" />
             </div>
             <div className={open ? styles.categoryLowFalse : styles.categoryLowTrue}>
-                <div className={styles.lowText}><span className={styles.hover}>Кошачья еда</span></div>
-                <div className={styles.lowText}><span className={styles.hover}>Кошачьи игрушки</span></div>
+                <div className={styles.lowText}>
+                    {child.map((item) => (
+                        <CategoryMini key={item.id} item={item} setName={setName} />
+                    ))}
+                </div>
             </div>
         </>
     )

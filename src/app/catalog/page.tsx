@@ -60,7 +60,7 @@ export default function Catalog() {
 
     return (
         <div className={styles.flexContainer}>
-            <Login />
+            <Login setProductsFetch={setProductsFetch} />
             <div className={styles.flex}>
                 <Paw1 />
                 <Paw2 />
