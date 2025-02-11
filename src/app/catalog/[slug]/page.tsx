@@ -8,11 +8,11 @@ import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
 
-export default function Product() {
+export default function Product({ setProductsFetch }) {
 
     return (
         <div className={styles.flexContainer}>
-            <Login />
+            <Login setProductsFetch={setProductsFetch} />
             <div className={styles.wrapper}>
                 <Paw1 />
                 <Paw2 />
