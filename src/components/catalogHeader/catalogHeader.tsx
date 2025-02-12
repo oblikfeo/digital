@@ -67,22 +67,7 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
 
     useEffect(() => {
         if (searchParams.get("productSearch")) {
-            console.log(searchParams.get("productSearch"))
-            toaster.create({
-                title: "Поиск...",
-                type: "success",
-                duration: 2000,
-            })
-            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${searchParams.get("productSearch")}`).then((response) => {
-                setProductsFetch(response.data.data)
-                setTotalPage(response.data.last_page)
-                setInputText(searchParams.get("productSearch"))
-            }).catch((error) => console.error(error))
-                .finally(() => toaster.create({
-                    title: "Каталог обновлен",
-                    type: "success",
-                    duration: 3000,
-                }))
+            setInputText(searchParams.get("productSearch"))
         }
     }, [searchParams])
 
