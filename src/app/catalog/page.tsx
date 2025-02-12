@@ -12,6 +12,7 @@ import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
 import axios from "axios";
+import { Suspense } from 'react';
 
 export default function Catalog() {
 
@@ -66,11 +67,14 @@ export default function Catalog() {
                 <Paw3 />
                 <Paw4 />
                 <Paw5 />
-                <CatalogHeader
-                    setView={setView}
-                    setProductsFetch={setProductsFetch}
-                    setTotalPage={setTotalPage}
-                />
+                <Suspense fallback={<></>}>
+                    <CatalogHeader
+                        setView={setView}
+                        setProductsFetch={setProductsFetch}
+                        setTotalPage={setTotalPage}
+                    />
+                </Suspense>
+
                 <div className={view === 'list' ? styles.list : styles.square}>
                     {isLoading ? <><span className={styles.load}>загрузка товаров...</span></> : viewCatalog}
                 </div>
