@@ -70,6 +70,14 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
     }
 
     useEffect(() => {
+        if (window.screen.width < 700) {
+            setView('square')
+            setBorderList(false)
+            setBorderSquare(true)
+        }
+    }, [])
+
+    useEffect(() => {
         window.addEventListener('resize', onResize)
         return () => {
             window.removeEventListener('resize', onResize)
