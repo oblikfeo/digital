@@ -27,7 +27,6 @@ export default function Catalog() {
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
             .finally(() => setIsLoading(false))
-        console.log(currentPage)
     }, [currentPage])
 
     useEffect(() => {

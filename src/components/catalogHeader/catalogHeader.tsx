@@ -11,6 +11,7 @@ import { useMediaPredicate } from 'react-media-hook'
 import CategoryMobile from '../categoryMobile/category';
 import axios from 'axios';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { useSearchParams } from 'next/navigation';
 
 
 interface Props {
@@ -52,6 +53,8 @@ function debounce(func, wait) {
 
 export default function CatalogHeader({ setView, setProductsFetch, setTotalPage }: Props) {
 
+    const searchParams = useSearchParams()
+
     const totalQuantity = useSelector(selectTotalQuantity)
 
     const [borderList, setBorderList] = useState(true)
@@ -60,6 +63,27 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
     const [inputText, setInputText] = useState('')
     const [select, setSelect] = useState('По умолчанию')
     const [sort, setSort] = useState('')
+
+    useEffect(() => {
+        if (searchParams.get("productSearch")) {
+            console.log(searchParams.get("productSearch"))
+            toaster.create({
+                title: "Поиск...",
+                type: "success",
+                duration: 2000,
+            })
+            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${searchParams.get("productSearch")}`).then((response) => {
+                setProductsFetch(response.data.data)
+                setTotalPage(response.data.last_page)
+                setInputText(searchParams.get("productSearch"))
+            }).catch((error) => console.error(error))
+                .finally(() => toaster.create({
+                    title: "Каталог обновлен",
+                    type: "success",
+                    duration: 3000,
+                }))
+        }
+    }, [searchParams])
 
     const onResize = () => {
         if (window.screen.width < 800) {

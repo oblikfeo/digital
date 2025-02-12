@@ -1,13 +1,17 @@
+'use client'
 import styles from './productHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ProductHeader() {
 
+    const [productSearch, setProductSearch] = useState("")
+
     return (
         <div className={styles.welcomeContainer}>
-            <Link href="/catalog">
+            <Link href="/catalog" >
                 <Image className={styles.logo} src={logo} alt='' />
             </Link>
             <div className={styles.header}>
@@ -44,10 +48,19 @@ export default function ProductHeader() {
                 </div>
                 <div className={styles.menu}>
                     <div className={styles.search}>
-                        <input className={styles.input} type="text" placeholder='Поиск' />
-                        <svg className={styles.searchImg} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M2.00059 8.99975C2.00059 5.13465 5.13467 2.00057 8.99977 2.00057C12.8658 2.00057 15.9999 5.13465 15.9999 8.99975C15.9999 10.8831 15.2555 12.5932 14.0462 13.8512C14.0106 13.8784 13.9759 13.9084 13.9431 13.9412C13.9103 13.974 13.8803 14.0087 13.8531 14.0443C12.595 15.2556 10.8841 15.9999 8.9997 15.9999C5.1346 15.9999 2.00059 12.8658 2.00059 8.99975ZM14.619 16.0308C13.0787 17.2627 11.1259 17.9995 8.99977 17.9995C4.02926 17.9995 0 13.9703 0 8.99977C0 4.02926 4.02926 0 8.99977 0C13.9703 0 17.9995 4.02926 17.9995 8.99977C17.9995 11.1241 17.2636 13.0768 16.0327 14.6161L19.7075 18.2909C20.0975 18.6818 20.0975 19.3146 19.7075 19.7055C19.3166 20.0955 18.6838 20.0955 18.2929 19.7055L14.619 16.0308Z" fill="#C51A1A" />
-                        </svg>
+                        <input
+                            onChange={(e) => setProductSearch(e.target.value)}
+                            className={styles.input}
+                            type="text"
+                            placeholder='Поиск'
+                            value={productSearch}
+                        />
+                        <Link href={{
+                            pathname: `/catalog`,
+                            query: { productSearch: productSearch }, // Передаем id через query параметры
+                        }}>
+                            {searchIcon}
+                        </Link>
                     </div>
 
 
@@ -56,3 +69,7 @@ export default function ProductHeader() {
         </div>
     );
 }
+
+const searchIcon = <svg className={styles.searchImg} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fillRule="evenodd" clipRule="evenodd" d="M2.00059 8.99975C2.00059 5.13465 5.13467 2.00057 8.99977 2.00057C12.8658 2.00057 15.9999 5.13465 15.9999 8.99975C15.9999 10.8831 15.2555 12.5932 14.0462 13.8512C14.0106 13.8784 13.9759 13.9084 13.9431 13.9412C13.9103 13.974 13.8803 14.0087 13.8531 14.0443C12.595 15.2556 10.8841 15.9999 8.9997 15.9999C5.1346 15.9999 2.00059 12.8658 2.00059 8.99975ZM14.619 16.0308C13.0787 17.2627 11.1259 17.9995 8.99977 17.9995C4.02926 17.9995 0 13.9703 0 8.99977C0 4.02926 4.02926 0 8.99977 0C13.9703 0 17.9995 4.02926 17.9995 8.99977C17.9995 11.1241 17.2636 13.0768 16.0327 14.6161L19.7075 18.2909C20.0975 18.6818 20.0975 19.3146 19.7075 19.7055C19.3166 20.0955 18.6838 20.0955 18.2929 19.7055L14.619 16.0308Z" fill="#C51A1A" />
+</svg>

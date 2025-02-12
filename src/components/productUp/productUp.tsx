@@ -28,9 +28,6 @@ export default function ProductUp() {
     const handleAddToCart = (product) => dispatch(addToCart(product));
     const handleRemoveFromCart = (productId) => dispatch(removeFromCart(productId));
 
-
-    console.log(pathname.split('/').pop())
-
     const [open, setOpen] = useState(false)
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
