@@ -35,6 +35,7 @@
 .logo {
     position: absolute;
     z-index: 3;
+    cursor: pointer;
 }
 
 .hello {

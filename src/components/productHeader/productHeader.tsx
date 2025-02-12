@@ -7,7 +7,9 @@ export default function ProductHeader() {
 
     return (
         <div className={styles.welcomeContainer}>
-            <Image className={styles.logo} src={logo} alt='' />
+            <Link href="/catalog">
+                <Image className={styles.logo} src={logo} alt='' />
+            </Link>
             <div className={styles.header}>
                 <div className={styles.contacts}>
                     <a className={styles.link} href="tel:+79994569584">

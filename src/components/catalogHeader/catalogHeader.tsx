@@ -10,6 +10,7 @@ import CategoryAdaptive from '../categoryAdaptive/category';
 import { useMediaPredicate } from 'react-media-hook'
 import CategoryMobile from '../categoryMobile/category';
 import axios from 'axios';
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 
 interface Props {
@@ -19,10 +20,20 @@ interface Props {
 }
 
 const fetchByText = async (text, setProductsFetch, setTotalPage, sort) => {
+    toaster.create({
+        title: "Поиск...",
+        type: "success",
+        duration: 2000,
+    })
     axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${text}${`&order=${sort}`}`).then((response) => {
         setProductsFetch(response.data.data)
         setTotalPage(response.data.last_page)
-    })
+    }).catch((error) => console.error(error))
+        .finally(() => toaster.create({
+            title: "Каталог обновлен",
+            type: "success",
+            duration: 3000,
+        }))
 }
 
 function debounce(func, wait) {
@@ -103,7 +114,9 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
 
     return (
         <div className={styles.welcomeContainer}>
-            <Image className={styles.logo} src={logo} alt='' />
+            <Link href="/catalog">
+                <Image className={styles.logo} src={logo} alt='' />
+            </Link>
             <div className={styles.header}>
                 <div className={styles.contacts}>
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
@@ -176,6 +189,7 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
             {!catalogButtonIpad && (
                 <CategoryMobile setCatalogButtonIpad={setCatalogButtonIpad} />
             )}
+            <Toaster />
         </div>
     );
 }
