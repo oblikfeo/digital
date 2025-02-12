@@ -1,3 +1,4 @@
+'use client'
 import styles from './catalogHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
