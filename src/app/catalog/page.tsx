@@ -5,7 +5,7 @@ import CatalogHeader from "@/components/catalogHeader/catalogHeader";
 import { useEffect, useState } from "react";
 import ListCard from '../../components/listCard/listCard'
 import SquareCard from '../../components/squareСard/squareCard'
-import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { Toaster } from "@/components/Toaster/toaster"
 import Paw1 from "@/components/UI kit/paws1/paws"
 import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
