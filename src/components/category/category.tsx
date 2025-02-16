@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import styles from "./category.module.css"
 import axios from "axios"
 import CategoryMiddle from "./categoryMiddle/categoryMiddle"
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 export default function Category({ setProductsFetch }) {
 
     const [category, setCategory] = useState([])
-    const [name, setName] = useState("")
+    const [name, setName] = useState()
     const [render, setRender] = useState(false)
 
     useEffect(() => {
@@ -14,6 +15,19 @@ export default function Category({ setProductsFetch }) {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])
+
+    useEffect(() => {
+        if (typeof name === 'string') {
+            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}`).then((response) => {
+                setProductsFetch(response.data.data)
+            }).catch((error) => console.error(error))
+                .finally(() => toaster.create({
+                    title: "Каталог обновлен",
+                    type: "success",
+                    duration: 3000,
+                }))
+        }
+    }, [name])
 
     return (
         <div className={styles.wrapper}>
@@ -40,12 +54,8 @@ export default function Category({ setProductsFetch }) {
                     </div>
 
                 </div>
-                <button onClick={() => {
-                    axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}`).then((response) => {
-                        setProductsFetch(response.data.data)
-                    }).catch((error) => console.error(error))
-                }} className={styles.confirmBut}>Применить</button>
             </div>
+            <Toaster />
         </div>
     )
 }

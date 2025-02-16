@@ -1,52 +1,11 @@
-.icon {
-    transform: scaleY(-1);
-}
-
-.categoryMain {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.MainText {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 25px;
-    color: rgba(38, 71, 148, 1);
-}
-
-.categoryMiddle {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.flex {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.hover span {
+    padding: 6px 20px;
     cursor: pointer;
 }
 
-.flex:hover {
-    box-shadow: inset 1px 1px 5px rgba(50, 50, 50, 0.2);
-    border-radius: 8px;
-    padding-left: 1px;
-}
 
-.showTrue {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.showFalse {
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
+.hover:active span {
+    background-color: rgba(197, 26, 26, 1);
+    border-radius: 100px;
+    color: white;
 }

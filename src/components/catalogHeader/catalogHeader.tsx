@@ -202,10 +202,10 @@ export default function CatalogHeader({ setView, setProductsFetch, setTotalPage 
                 </div>
             </div>
             {!catalogButtonIpad && (
-                <CategoryAdaptive setCatalogButtonIpad={setCatalogButtonIpad} />
+                <CategoryAdaptive setProductsFetch={setProductsFetch} setCatalogButtonIpad={setCatalogButtonIpad} />
             )}
             {!catalogButtonIpad && (
-                <CategoryMobile setCatalogButtonIpad={setCatalogButtonIpad} />
+                <CategoryMobile setProductsFetch={setProductsFetch} setCatalogButtonIpad={setCatalogButtonIpad} />
             )}
             <Toaster />
         </div>
