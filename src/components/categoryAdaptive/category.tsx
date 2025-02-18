@@ -2,12 +2,11 @@ import { useEffect, useState } from "react"
 import styles from "./category.module.css"
 import axios from "axios"
 import CategoryMiddle from "./categoryMiddle/categoryMiddle"
-import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { Toaster } from "@/components/Toaster/toaster"
 
-export default function CategoryAdaptive({ setCatalogButtonIpad, setProductsFetch }) {
+export default function CategoryAdaptive({ setCatalogButtonIpad, setSlug, setSortBy }) {
 
     const [category, setCategory] = useState([])
-    const [name, setName] = useState()
     const [render, setRender] = useState(false)
 
     useEffect(() => {
@@ -16,29 +15,14 @@ export default function CategoryAdaptive({ setCatalogButtonIpad, setProductsFetc
         }).catch((error) => console.error(error))
     }, [])
 
-    useEffect(() => {
-        if (typeof name === 'string') {
-            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}`).then((response) => {
-                setProductsFetch(response.data.data)
-            }).catch((error) => console.error(error))
-                .finally(() => toaster.create({
-                    title: "Каталог обновлен",
-                    type: "success",
-                    duration: 3000,
-                }))
-        }
-    }, [name])
-
-
     return (
         <div className={styles.wrapper}>
 
             <div className={styles.head}>
                 <span onClick={() => {
                     setRender(!render)
-                    axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?page=1`).then((response) => {
-                        setProductsFetch(response.data.data)
-                    }).catch((error) => console.error(error))
+                    setSlug()
+                    setSortBy()
                 }} className={styles.reset}>Сбросить</span>
                 <span onClick={() => setCatalogButtonIpad(true)}>{svg}</span>
             </div>
@@ -48,10 +32,10 @@ export default function CategoryAdaptive({ setCatalogButtonIpad, setProductsFetc
                 <div className={styles.hidden}>
                     <div className={styles.overflow}>
                         {!close && category.map((item) => (
-                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setName={setName} />
+                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setSlug={setSlug} />
                         ))}
                         {close && category.map((item) => (
-                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setName={setName} />
+                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setSlug={setSlug} />
                         ))}
                     </div>
                 </div>

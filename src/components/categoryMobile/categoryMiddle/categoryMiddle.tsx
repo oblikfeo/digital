@@ -4,7 +4,7 @@ import icon from "../../../../img/expandmore2.svg"
 import { useState } from "react"
 import CategoryMiniMobile from "../categoryMain/categoryMain"
 
-export default function CategoryMiddle({ name, child, setName }) {
+export default function CategoryMiddle({ name, child, setSlug }) {
 
     const [open, setOpen] = useState(true)
     const click = () => {
@@ -21,7 +21,7 @@ export default function CategoryMiddle({ name, child, setName }) {
             <div className={open ? styles.categoryLowFalse : styles.categoryLowTrue}>
                 <div className={styles.lowText}>
                     {child.map((item) => (
-                        <CategoryMiniMobile key={item.id} item={item} setName={setName} />
+                        <CategoryMiniMobile key={item.id} item={item} setSlug={setSlug} />
                     ))}
                 </div>
             </div>

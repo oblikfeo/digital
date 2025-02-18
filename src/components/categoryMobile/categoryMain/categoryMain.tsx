@@ -1,9 +1,9 @@
 import styles from "./categoryMain.module.css"
 
-export default function CategoryMiniMobile({ item, setName }) {
+export default function CategoryMiniMobile({ item, setSlug }) {
 
     const shows = () => {
-        setName(item.slug)
+        setSlug(item.slug)
     }
 
     return (

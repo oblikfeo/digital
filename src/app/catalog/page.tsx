@@ -5,7 +5,7 @@ import CatalogHeader from "@/components/catalogHeader/catalogHeader";
 import { useEffect, useState } from "react";
 import ListCard from '../../components/listCard/listCard'
 import SquareCard from '../../components/squareСard/squareCard'
-import { Toaster } from "@/components/Toaster/toaster"
+import { toaster, Toaster } from "@/components/Toaster/toaster"
 import Paw1 from "@/components/UI kit/paws1/paws"
 import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
@@ -21,14 +21,48 @@ export default function Catalog() {
     const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
     const [isLoading, setIsLoading] = useState(false)
 
+    const [find, setFind] = useState<string>()
+    const [sortBy, setSortBy] = useState<string>()
+    const [slug, setSlug] = useState<string>()
+
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?page=${currentPage}`).then((response) => {
+        toaster.create({
+            title: "Поиск...",
+            type: "success",
+            duration: 2000,
+        })
+        axios.get(getQueries(currentPage, find, sortBy, slug)).then((response) => {
             setProductsFetch(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
-            .finally(() => setIsLoading(false))
-    }, [currentPage])
+            .finally(() => {
+                setIsLoading(false)
+                toaster.create({
+                    title: "Каталог обновлен",
+                    type: "success",
+                    duration: 3000,
+                })
+            })
+    }, [currentPage, find, sortBy, slug])
+
+    const getQueries = (currentPage: number, find?: string, sortBy?: string, slug?: string) => {
+        let baseUrl = `https://zoo.devsrv.ru/api/v1/shop/products?`
+        if (currentPage) {
+            baseUrl += `page=${currentPage}`
+        }
+        if (find) {
+            baseUrl += `&query=${find}`
+        }
+        if (sortBy) {
+            baseUrl += `&order=${sortBy}`
+        }
+        if (slug) {
+            baseUrl += `&slugs[]=${slug}`
+        }
+        return baseUrl
+    }
+
 
     // useEffect(() => {
     //     toaster.create({
@@ -60,7 +94,9 @@ export default function Catalog() {
 
     return (
         <div className={styles.flexContainer}>
-            <Login setProductsFetch={setProductsFetch} />
+            <Login
+                setSlug={setSlug}
+            />
             <div className={styles.flex}>
                 <Paw1 />
                 <Paw2 />
@@ -70,13 +106,24 @@ export default function Catalog() {
                 <Suspense fallback={<></>}>
                     <CatalogHeader
                         setView={setView}
+                        setSortBy={setSortBy}
+                        setFind={setFind}
                         setProductsFetch={setProductsFetch}
-                        setTotalPage={setTotalPage}
+                        setSlug={setSlug}
                     />
                 </Suspense>
 
                 <div className={view === 'list' ? styles.list : styles.square}>
-                    {isLoading ? <><span className={styles.load}>загрузка товаров...</span></> : viewCatalog}
+                    {isLoading ? (
+                        <span className={styles.load}>загрузка товаров...</span>
+                    ) : productsFetch.length === 0 && find ? (
+                        <div className={styles.noFind}>
+                            <h1>Ошибка</h1>
+                            <h2>Такой запрос не найден.</h2>
+                        </div>
+                    ) : (
+                        viewCatalog
+                    )}
                 </div>
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>

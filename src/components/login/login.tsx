@@ -7,7 +7,7 @@ import Category from "../category/category";
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '../../redux/slices/cartSlice';
 
-export default function Login({ setProductsFetch }) {
+export default function Login({ setSlug }) {
 
     const totalQuantity = useSelector(selectTotalQuantity)
 
@@ -42,7 +42,7 @@ export default function Login({ setProductsFetch }) {
 
                 <Image className={styles.logo} src={logo} alt="" />
             </div>
-            <Category setProductsFetch={setProductsFetch} />
+            <Category setSlug={setSlug} />
         </div>
     );
 }

@@ -1,9 +1,9 @@
 import styles from "./categoryMini.module.css"
 
-export default function CategoryMini({ item, setName }) {
+export default function CategoryMini({ item, setSlug }) {
 
     const click = () => {
-        setName(item.slug)
+        setSlug(item.slug)
     }
 
     return (

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './customSelect.module.css'
-import axios from 'axios'
 
-export default function CustomSelect({ inputText, setProductsFetch, setTotalPage, select, setSelect, setSort }) {
+export default function CustomSelect({ select, setSelect, setSortBy }) {
 
     const [active, setActive] = useState(false)
     const selectorRef = useRef(null)
@@ -13,12 +12,6 @@ export default function CustomSelect({ inputText, setProductsFetch, setTotalPage
         }
     };
 
-    const fetch = async (pick) => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${inputText}&order=${pick}`).then((response) => {
-            setProductsFetch(response.data.data)
-            setTotalPage(response.data.last_page)
-        }).catch((error) => console.error(error))
-    }
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
@@ -46,8 +39,7 @@ export default function CustomSelect({ inputText, setProductsFetch, setTotalPage
                 <span className={styles.option1}>
                     <div onClick={() => {
                         setSelect('По цене')
-                        fetch('price')
-                        setSort('price')
+                        setSortBy('price')
                     }} className={styles.border}>
                         <span className={styles.hover}>По цене</span>
                     </div>
@@ -55,8 +47,7 @@ export default function CustomSelect({ inputText, setProductsFetch, setTotalPage
                 <span className={styles.option2}>
                     <div onClick={() => {
                         setSelect('По алфавиту')
-                        fetch('title')
-                        setSort('title')
+                        setSortBy('title')
                     }} className={styles.border}>
                         <span className={styles.hover}>По алфавиту</span>
                     </div>

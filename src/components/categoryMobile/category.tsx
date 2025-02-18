@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react"
 import styles from "./category.module.css"
 import axios from "axios"
-import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { Toaster } from "@/components/Toaster/toaster"
 import CategoryMiddle from "./categoryMiddle/categoryMiddle"
 
-export default function CategoryMobile({ setCatalogButtonIpad, setProductsFetch }) {
+export default function CategoryMobile({ setCatalogButtonIpad, setSlug, setSortBy }) {
 
     const [close, setClose] = useState(false)
     const [category, setCategory] = useState([])
     const [sortPrice, setSortPrice] = useState(false)
     const [sortName, setSortName] = useState(false)
-    const [name, setName] = useState()
 
     useEffect(() => {
         axios.get(`https://zoo.devsrv.ru/api/v1/shop/categories`).then((response) => {
@@ -18,24 +17,15 @@ export default function CategoryMobile({ setCatalogButtonIpad, setProductsFetch 
         }).catch((error) => console.error(error))
     }, [])
 
-    useEffect(() => {
-        if (typeof name === 'string') {
-            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}`).then((response) => {
-                setProductsFetch(response.data.data)
-            }).catch((error) => console.error(error))
-                .finally(() => toaster.create({
-                    title: "Каталог обновлен",
-                    type: "success",
-                    duration: 3000,
-                }))
-        }
-    }, [name])
-
     return (
         <div className={styles.wrapper}>
 
             <div className={styles.head}>
-                <span onClick={() => setClose(!close)} className={styles.reset}>Сбросить</span>
+                <span onClick={() => {
+                    setSlug()
+                    setSortBy()
+                    setClose(!close)
+                }} className={styles.reset}>Сбросить</span>
                 <span onClick={() => {
                     setCatalogButtonIpad(true)
                     setSortName(false)
@@ -48,10 +38,10 @@ export default function CategoryMobile({ setCatalogButtonIpad, setProductsFetch 
                 <div className={styles.hidden}>
                     <div className={styles.overflow}>
                         {!close && category.map((item) => (
-                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setName={setName} />
+                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setSlug={setSlug} />
                         ))}
                         {close && category.map((item) => (
-                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setName={setName} />
+                            <CategoryMiddle key={item.id} name={item.title} child={item.child} setSlug={setSlug} />
                         ))}
                     </div>
 
@@ -61,48 +51,11 @@ export default function CategoryMobile({ setCatalogButtonIpad, setProductsFetch 
                     <div onClick={() => {
                         setSortPrice(!sortPrice)
                         setSortName(false)
-                        if (typeof name === 'string') {
-                            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}${`&order=${'price'}`}`).then((response) => {
-                                setProductsFetch(response.data.data)
-                            }).catch((error) => console.error(error))
-                                .finally(() => toaster.create({
-                                    title: "Каталог обновлен",
-                                    type: "success",
-                                    duration: 3000,
-                                }))
-                        } else {
-                            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?${`&order=${'price'}`}`).then((response) => {
-                                setProductsFetch(response.data.data)
-                            }).catch((error) => console.error(error))
-                                .finally(() => toaster.create({
-                                    title: "Каталог обновлен",
-                                    type: "success",
-                                    duration: 3000,
-                                }))
-                        }
+                        setSortBy('price')
                     }} className={styles.sort}>{!sortPrice ? radioOff : radioOn} По цене</div>
                     <div onClick={() => {
                         setSortName(!sortName)
-                        setSortPrice(false)
-                        if (typeof name === 'string') {
-                            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?slugs[]=${name}${`&order=${'title'}`}`).then((response) => {
-                                setProductsFetch(response.data.data)
-                            }).catch((error) => console.error(error))
-                                .finally(() => toaster.create({
-                                    title: "Каталог обновлен",
-                                    type: "success",
-                                    duration: 3000,
-                                }))
-                        } else {
-                            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?${`&order=${'price'}`}`).then((response) => {
-                                setProductsFetch(response.data.data)
-                            }).catch((error) => console.error(error))
-                                .finally(() => toaster.create({
-                                    title: "Каталог обновлен",
-                                    type: "success",
-                                    duration: 3000,
-                                }))
-                        }
+                        setSortBy('title')
                     }} className={styles.sort}>{!sortName ? radioOff : radioOn} По алфавиту</div>
                 </div>
             </div>
