@@ -21,7 +21,7 @@ export default function Basket() {
 
     return (
         <div className={styles.flexContainer}>
-            <Login setProductsFetch={undefined} />
+            <Login setSlug={undefined} />
             <div className={styles.wrapper}>
                 <Paw1 />
                 <Paw2 />
