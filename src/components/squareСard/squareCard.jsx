@@ -1,6 +1,6 @@
 import styles from './squareCard.module.css'
 import Image from 'next/image';
-import img from '/img/noImg.svg'
+import img from '/img/newHaventLogo.svg'
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';

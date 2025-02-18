@@ -1,6 +1,6 @@
 'use client'
 import styles from "./productUp.module.css"
-import img from '/img/noImg.svg'
+import img from '/img/newHaventLogo.svg'
 import Image from "next/image";
 import Paragraph from "../UI kit/paragraph/paragraph";
 import ProductDown from "../productDown/productDown";
@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import axios from "axios";
+import SquareCard from "../squareСard/squareCard";
 
 export default function ProductUp() {
 
@@ -17,12 +18,23 @@ export default function ProductUp() {
     const slug = pathname.split('/').pop()
 
     const [fetch, setFetch] = useState(null)
+    const [similar, setSimilar] = useState([])
+    const [currentPage, setCurrentPage] = useState(1) // текущая страница пагинации
+    const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
 
     useEffect(() => {
         axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
             setFetch(response.data)
         }).catch((error) => console.error(error))
     }, [])
+
+    useEffect(() => {
+        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?&query=${slug}}`).then((response) => {
+            setSimilar(response.data.data)
+            setTotalPage(response.data.last_page)
+        }).catch((error) => console.error(error))
+    }, [])
+
 
     const dispatch = useDispatch();
     const handleAddToCart = (product) => dispatch(addToCart(product));
@@ -144,7 +156,12 @@ export default function ProductUp() {
             </div>
             <div className={styles.minicatalog}>
                 <h2 className={styles.h2}>Похожие товары</h2>
-                {/* <SquareCard props={4} /> */}
+                <SquareCard
+                    totalPage={totalPage}
+                    productsFetch={similar}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
             <div className={styles.footer}>
                 <span className={styles.redline}>300 ветмир</span>
