@@ -61,7 +61,7 @@ export default function Paw5() {
     const steps = Array.from({ length: 10 }, (_, i) => -(i * 15)); // Меньшие шаги анимации
 
     return (
-        <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', top: '0', pointerEvents: 'none', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', top: '0', pointerEvents: 'none' }}>
             <StepAnimation steps={steps} />
         </div>
     );
