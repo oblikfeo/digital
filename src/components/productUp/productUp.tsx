@@ -67,7 +67,7 @@ export default function ProductUp() {
                                 <Paragraph text={"Производитель:"} props={fetch?.manufacturer} />
                                 <Paragraph text={"Страна производитель:"} props={fetch?.country} />
                                 <Paragraph text={"Категория товара:"} props={fetch?.categories[0].title} />
-                                <Paragraph text={"Остаток:"} props={fetch?.rests} />
+                                <Paragraph text={"Остаток:"} props={fetch?.rests ? fetch?.rests : "Нет в наличии"} />
                                 <Paragraph text={"Минимальный объем заказа:"} props={fetch?.minforbuy} />
                             </div>
 

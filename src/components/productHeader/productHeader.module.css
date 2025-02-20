@@ -126,6 +126,7 @@
 .searchImg {
     position: absolute;
     right: 22px;
+    top: 15px;
 }
 
 
@@ -151,4 +152,48 @@
 .flex {
     display: flex;
     margin-left: 10px;
+}
+
+@media (max-width: 1500px) {
+    .welcomeContainer {
+        padding: 20px 40px 0 40px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .welcomeContainer {
+        padding: 20px 30px 0 30px;
+    }
+
+    .text span {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .text span {
+        font-size: 24px;
+    }
+
+    .text {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) {
+    .text span {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 900px) {
+    .text span {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 900px) {
+    .text span {
+        font-size: 21px;
+    }
 }

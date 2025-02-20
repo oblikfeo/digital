@@ -9,7 +9,9 @@ export default function Paragraph({ text, props }) {
             <div className={styles.border}>
                 <div className={styles.borderItem}></div>
             </div>
-            <h3>{props}</h3>
+            <div className={styles.hidden}>
+                <h3 className={styles.hidden}>{props ? props : "ожидаемый текст ожидаемый текст ожидаемый текст ожидаемый текст"}</h3>
+            </div>
         </div>
     )
 }

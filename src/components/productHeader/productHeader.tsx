@@ -3,11 +3,24 @@ import styles from './productHeader.module.css'
 import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname } from "next/navigation";
+import axios from 'axios';
 
 export default function ProductHeader() {
 
     const [productSearch, setProductSearch] = useState("")
+
+    const pathname = usePathname()
+    const slug = pathname.split('/').pop()
+
+    const [fetch, setFetch] = useState(null)
+
+    useEffect(() => {
+        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
+            setFetch(response.data.title)
+        }).catch((error) => console.error(error))
+    }, [])
 
     return (
         <div className={styles.welcomeContainer}>
@@ -43,7 +56,7 @@ export default function ProductHeader() {
                                 <h2>Вернуться в каталог</h2>
                             </Link>
                         </div>
-                        <span>Ветспокоин</span>
+                        <span>{fetch}</span>
                     </div>
                 </div>
                 <div className={styles.menu}>

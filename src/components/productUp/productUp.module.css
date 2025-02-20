@@ -6,7 +6,6 @@
 }
 
 .product {
-    min-width: 1010px;
     padding: 40px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 1)
@@ -213,4 +212,92 @@
 
 .minicatalog {
     margin-top: 80px;
+}
+
+@media (max-width: 1700px) {
+    .description {
+        flex-direction: column;
+    }
+
+    .right {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 1500px) {
+    .product {
+        padding: 20px;
+    }
+
+    .wrapper {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .product {
+        padding: 20px;
+    }
+
+    .wrapper {
+        padding: 0 30px;
+    }
+
+    .shadow {
+        width: 230px;
+        height: 230px;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .description {
+        flex-direction: row;
+    }
+
+}
+
+@media (max-width: 1100px) {
+
+    .shadow {
+        width: 200px;
+        height: 200px;
+    }
+
+    .head {
+        height: 60px;
+    }
+}
+
+@media (max-width: 1050px) {
+
+    .shadow {
+        width: 150px;
+        height: 150px;
+    }
+
+    .content {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .content {
+        gap: 15px;
+    }
+
+    .description {
+        gap: 15px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .shadow {
+        width: 120px;
+        height: 120px;
+    }
+
 }
