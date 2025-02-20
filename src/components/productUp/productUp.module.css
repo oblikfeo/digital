@@ -301,3 +301,61 @@
     }
 
 }
+
+@media (max-width: 700px) {
+
+    .wrapper {
+        padding: 0 8px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .shadow {
+        width: auto;
+        height: 354px;
+        object-fit: contain;
+    }
+
+    .name {
+        font-size: 18px;
+    }
+
+    .right {
+        margin: 0;
+        width: 100%;
+    }
+
+    .calc {
+        width: 225px;
+        margin-left: auto;
+    }
+
+    .description {
+        gap: 0;
+    }
+
+    .flex {
+        margin-top: 20px;
+    }
+
+    .minicatalog {
+        margin-top: 20px;
+    }
+
+
+}
+
+@media (max-width: 450px) {
+    .name {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .name {
+        font-size: 14px;
+    }
+}

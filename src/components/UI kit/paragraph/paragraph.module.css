@@ -62,3 +62,27 @@
         font-size: 14px;
     }
 }
+
+@media (max-width: 500px) {
+    .paragraph h3 {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 450px) {
+    .paragraph h3 {
+        max-width: 150px;
+    }
+
+}
+
+@media (max-width: 380px) {
+    .paragraph h3 {
+        font-size: 12px;
+        max-width: 100px;
+    }
+
+    .paragraph h2 {
+        font-size: 12px;
+    }
+}

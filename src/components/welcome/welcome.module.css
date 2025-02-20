@@ -157,7 +157,7 @@
     height: calc(100% - 23px);
     width: auto;
     position: absolute;
-    bottom: 20px;
+    bottom: 23px;
     right: 0;
     border-bottom-right-radius: 20px;
     z-index: 2;
@@ -176,7 +176,7 @@
 
 .footer {
     font-size: 14px;
-
+    display: flex;
 }
 
 .redline {
@@ -316,6 +316,8 @@
 @media (max-width:1440px) {
     .girl {
         right: 0;
+        bottom: 20px;
+        height: 100%;
     }
 
     .toggle {
