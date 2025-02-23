@@ -212,3 +212,65 @@
         margin-bottom: 45px;
     }
 }
+
+@media (max-width: 700px) {
+    .wrapper {
+        margin-top: 20px;
+    }
+
+    .cardImg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .description {
+        width: 100%;
+    }
+
+    .counter {
+        margin-top: 10px;
+        width: 189px;
+        padding: 19px 10px;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 143px;
+        position: relative;
+    }
+
+    .flex {
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+    }
+
+    .mainPrice {
+        font-size: 14px;
+    }
+
+    .allPrice {
+        font-size: 12px;
+    }
+
+    .subPrice {
+        font-size: 8px;
+    }
+
+    .price {
+        height: auto;
+    }
+}
+
+@media (max-width: 380px) {
+    .counter {
+        margin-top: 10px;
+        width: 150px;
+        padding: 19px 10px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+}

@@ -16,7 +16,15 @@
     gap: 30px;
 }
 
-.link {
+.link1 {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.link2 {
     display: flex;
     gap: 10px;
     text-align: center;
@@ -166,4 +174,75 @@
 .font {
     font-weight: 600;
     color: rgba(4, 13, 35, 1);
+}
+
+.basketImg2 {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+
+.basketImg {
+    display: none;
+}
+
+.totalQuantity {
+    display: none;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 100px;
+    color: black;
+    bottom: 10px;
+    z-index: 9999;
+}
+
+.lkimg {
+    display: none;
+}
+
+.totalQuantity span {
+    position: absolute;
+    left: 4px;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
+}
+
+@media (max-width:1200px) {
+    .welcomeContainer {
+        padding: 20px 34px 0 34px;
+    }
+
+    .font {
+        display: none;
+    }
+
+    .link2 {
+        display: none;
+    }
+
+    .basketImg {
+        display: block;
+    }
+
+    .basketImg2 {
+        display: block;
+    }
+
+    .lkimg {
+        display: block;
+    }
+
+    .totalQuantity {
+        top: 18px;
+        right: 48px;
+        display: grid;
+    }
+
+    .catalogButton {
+        display: block;
+    }
 }

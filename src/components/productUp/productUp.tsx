@@ -116,7 +116,7 @@ export default function ProductUp() {
                                     <div className={styles.h4}>= {fetch?.price * item?.stack || 0} ₽</div>
                                 </div>
                                 <div onClick={() => {
-                                    if (fetch?.rests === 0) {
+                                    if (item?.stack === fetch?.rests || fetch?.rests === 0) {
                                         toaster.create({
                                             title: "Ошибка",
                                             description: "Товар отсутствует на складе",

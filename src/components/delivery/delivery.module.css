@@ -143,3 +143,27 @@
         margin-bottom: 0;
     }
 }
+
+
+@media (max-width: 700px) {
+    .wrapper {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .pick {
+        width: 100%;
+        text-align: center;
+        padding: 11px 0;
+    }
+
+    .ways {
+        width: 100%;
+        text-align: center;
+        padding: 11px 0;
+    }
+
+    .input {
+        width: 100%;
+    }
+}

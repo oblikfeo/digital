@@ -68,7 +68,18 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                             </div>
                             <div className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
                             <div
-                                onClick={() => handleAddToCart(item)}
+                                onClick={() => {
+                                    if (item?.stack === product?.find(elem => item?.id === elem.id).rests) {
+                                        toaster.create({
+                                            title: "Ошибка",
+                                            description: "Добавлено максимальное количество",
+                                            type: "error",
+                                            duration: 3000,
+                                        })
+                                    } else {
+                                        handleAddToCart(item)
+                                    }
+                                }}
                                 className={styles.button}>
                                 {plus}
                             </div>

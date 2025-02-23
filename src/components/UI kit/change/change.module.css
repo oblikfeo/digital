@@ -95,3 +95,77 @@
 .left input:focus-visible {
     outline: none;
 }
+
+@media (max-width: 1450px) {
+    .right input {
+        width: 400px;
+    }
+
+    .left input {
+        width: 400px;
+    }
+
+    .delete {
+        width: 195px;
+    }
+
+    .save {
+        width: 195px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .right input {
+        width: 380px;
+    }
+
+    .left input {
+        width: 380px;
+    }
+
+    .delete {
+        width: 175px;
+    }
+
+    .save {
+        width: 175px;
+    }
+}
+
+@media (max-width: 1350px) {
+    .right input {
+        width: 350px;
+    }
+
+    .left input {
+        width: 350px;
+    }
+
+    .delete {
+        width: 170px;
+    }
+
+    .save {
+        width: 170px;
+    }
+
+}
+
+@media (max-width: 1300px) {
+    .right input {
+        width: 320px;
+    }
+
+    .left input {
+        width: 320px;
+    }
+
+    .delete {
+        width: 140px;
+    }
+
+    .save {
+        width: 170px;
+    }
+
+}

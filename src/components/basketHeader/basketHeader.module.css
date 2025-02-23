@@ -15,7 +15,15 @@
     gap: 30px;
 }
 
-.link {
+.link1 {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.link2 {
     display: flex;
     gap: 10px;
     text-align: center;
@@ -102,4 +110,182 @@
 .font {
     font-weight: 600;
     color: rgba(4, 13, 35, 1);
+}
+
+.basketImg2 {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+
+.basketImg {
+    display: none;
+}
+
+.totalQuantity {
+    display: none;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 100px;
+    color: black;
+    bottom: 10px;
+    z-index: 9999;
+}
+
+.lkimg {
+    display: none;
+}
+
+.totalQuantity span {
+    position: absolute;
+    left: 4px;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(4, 13, 35, 1);
+}
+
+@media (max-width:1200px) {
+    .welcomeContainer {
+        padding: 20px 34px 0 34px;
+    }
+
+    .font {
+        display: none;
+    }
+
+    .link2 {
+        display: none;
+    }
+
+    .basketImg {
+        display: block;
+    }
+
+    .basketImg2 {
+        display: block;
+    }
+
+    .lkimg {
+        display: block;
+    }
+
+    .totalQuantity {
+        top: 18px;
+        right: 48px;
+        display: grid;
+    }
+
+    .catalogButton {
+        display: block;
+    }
+}
+
+@media (max-width:700px) {
+
+    .welcomeContainer {
+        padding: 10px 8px 0 8px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .container {
+        height: 40px;
+    }
+
+    .sideA {
+        height: 40px;
+        width: 75px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .sideB {
+        left: 55px;
+    }
+
+    .text {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        margin: auto 0 auto 75px;
+    }
+
+    .menu {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+        height: 40px;
+        padding: 0 10px;
+        gap: 5px;
+    }
+
+    .hello {
+        margin-top: 10px;
+    }
+
+    .text span {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .input {
+        height: 40px;
+    }
+
+    .font {
+        display: none;
+    }
+
+    .view {
+        display: none;
+    }
+
+    .link2 {
+        display: none;
+    }
+
+    .basketImg {
+        display: block;
+    }
+
+    .basketImg2 {
+        display: block;
+        right: -2px;
+        top: 2px;
+        position: absolute;
+    }
+
+    .lkimg {
+        display: block;
+    }
+
+    .totalQuantity {
+        top: 9px;
+        right: 18px;
+        display: grid;
+    }
+
+    .catalogButton {
+        display: block;
+        min-height: 40px;
+        min-width: 40px;
+    }
+}
+
+@media (max-width: 380px) {
+    .text span {
+        font-size: 22px;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 350px) {
+    .text span {
+        font-size: 20px;
+        font-weight: 600;
+    }
 }
