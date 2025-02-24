@@ -2,7 +2,7 @@
 import { useState } from "react"
 import styles from "./delivery.module.css"
 
-export default function Delivery({ setModalChange }) {
+export default function Delivery({ setModalChange, name, phone }) {
 
     const [pick, setPick] = useState(true)
     const [where, setWhere] = useState(true)
@@ -54,8 +54,8 @@ export default function Delivery({ setModalChange }) {
             <div className={styles.who}>
                 <h1>Получатель</h1>
                 <div>
-                    <div className={styles.name}>Иванов Иван Иванович</div>
-                    <div className={styles.number}>+7 (913) 999 - 88 - 88</div>
+                    <div className={styles.name}>{name}</div>
+                    <div className={styles.number}>{phone}</div>
                 </div>
                 <div onClick={() => setModalChange(true)} className={styles.change}>Изменить</div>
             </div>

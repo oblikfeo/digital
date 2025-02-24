@@ -10,7 +10,7 @@ import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange }) {
+export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange, name, phone }) {
 
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
@@ -131,7 +131,7 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                 </div>}
                 <Image className={styles.img} src={basketImg} alt="" />
             </div>
-            {open ? <Delivery setModalChange={setModalChange} /> : <></>}
+            {open ? <Delivery setModalChange={setModalChange} name={name} phone={phone} /> : <></>}
             <Toaster />
         </div>
 

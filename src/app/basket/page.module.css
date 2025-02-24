@@ -209,3 +209,21 @@
         bottom: 151px;
     }
 }
+
+@media (max-width: 400px) {
+    .modalChange {
+        width: 330px;
+    }
+}
+
+@media (max-width: 380px) {
+    .modalChange {
+        width: 310px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modalChange {
+        width: 290px;
+    }
+}
