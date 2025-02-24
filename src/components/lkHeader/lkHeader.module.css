@@ -153,12 +153,14 @@
     display: flex;
     margin-top: 10px;
     margin-left: 15px;
+    padding-right: 12px;
 }
 
 .chapter {
     padding: 10px 20px;
     border-bottom: 1px solid white;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .allChapter {
@@ -169,6 +171,7 @@
     border-bottom: 2px solid rgba(197, 26, 26, 1);
     padding: 10px 20px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .font {
@@ -211,6 +214,10 @@
     color: rgba(4, 13, 35, 1);
 }
 
+.exit {
+    display: none;
+}
+
 @media (max-width:1200px) {
     .welcomeContainer {
         padding: 20px 34px 0 34px;
@@ -245,4 +252,157 @@
     .catalogButton {
         display: block;
     }
+
+    .exit {
+        display: block;
+        margin-left: auto;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width:750px) {
+    .welcomeContainer {
+        padding: 10px 8px 0 8px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .container {
+        height: 40px;
+    }
+
+    .sideA {
+        height: 40px;
+        width: 75px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .sideB {
+        left: 55px;
+    }
+
+    .text {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        margin: auto 0 auto 75px;
+    }
+
+    .menu {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+        height: 90px;
+        padding: 0 10px;
+        gap: 5px;
+        padding-top: 30px;
+    }
+
+    .hello {
+        margin-top: 10px;
+    }
+
+    .text span {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .input {
+        height: 40px;
+    }
+
+    .view {
+        display: none;
+    }
+
+    .catalogButton {
+        display: block;
+        min-height: 40px;
+        min-width: 40px;
+    }
+
+    .text h2 {
+        font-size: 14px;
+    }
+
+    .flex {
+        padding-top: 20px;
+        margin-left: 5px;
+        pointer-events: none;
+    }
+
+    .searchImg {
+        top: 10px;
+    }
+
+    .basketImg2 {
+        right: -1px;
+        top: 2px;
+    }
+
+    .totalQuantity {
+        top: 8px;
+        right: 20px;
+    }
+
+    .hello {
+        height: 120px;
+    }
+}
+
+@media (max-width:450px) {
+    .chapter {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .red {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width:400px) {
+    .chapter {
+        font-size: 13px;
+        padding: 10px 5px;
+    }
+
+    .red {
+        font-size: 13px;
+        padding: 10px 5px;
+    }
+
+    .back {
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .text span {
+        font-size: 20px;
+    }
+}
+
+@media (max-width:350px) {
+    .chapter {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+
+    .red {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+
+    .back {
+        font-size: 12px;
+    }
+
+    .text span {
+        font-size: 18px;
+    }
+
 }

@@ -169,3 +169,50 @@
     }
 
 }
+
+@media (max-width: 750px) {
+    .wrapper {
+        height: auto;
+        min-height: 376px;
+        flex-direction: column;
+    }
+
+    .right input {
+        width: 100%;
+    }
+
+    .left input {
+        width: 100%;
+    }
+
+    .delete {
+        width: 100%;
+    }
+
+    .save {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .left h1 {
+        font-size: 22px;
+        gap: 10px;
+    }
+
+    .right h1 {
+        font-size: 22px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .left h1 {
+        font-size: 18px;
+    }
+
+    .right h1 {
+        font-size: 18px;
+    }
+}

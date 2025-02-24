@@ -563,7 +563,7 @@
 
 }
 
-@media (max-width:450px) {
+@media (max-width:800px) {
     .sideA {
         width: 70px;
         height: 40px;
