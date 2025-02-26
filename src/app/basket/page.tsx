@@ -3,7 +3,7 @@ import styles from "./page.module.css"
 import BasketHeader from "@/components/basketHeader/basketHeader"
 import Login from "@/components/login/login"
 import BasketPreview from "@/components/basketPreview/basketPreview"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import girl from '../../../img/image.png'
 import Image from "next/image"
 import { redirect } from "next/navigation"
@@ -12,6 +12,9 @@ import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
+import { useDispatch } from "react-redux"
+import { setUserData } from "@/redux/slices/userSlice"
+import { axiosInstance } from "@/api/__API__"
 
 export default function Basket() {
 
@@ -21,6 +24,18 @@ export default function Basket() {
 
     const [name, setName] = useState("Иванов Иван Иванович")
     const [phone, setPhone] = useState("+7 (913) 999 - 88 - 88")
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        axiosInstance.get('/api/v1/user').then((response) => {
+            dispatch(setUserData(response.data))
+        }).catch((error) => {
+            if (error.code === '401') {
+                redirect('/')
+            }
+        })
+    }, [])
 
     return (
         <div className={styles.flexContainer}>
