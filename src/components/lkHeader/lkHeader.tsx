@@ -52,9 +52,7 @@ export default function LkHeader({ title, chapter, setChapter }) {
                             </div>
                         </Link>
                         <div onClick={() => {
-                            if (typeof window !== 'undefined') {
-                                localStorage.removeItem("USER_TOKEN")
-                            }
+                            localStorage.removeItem("USER_TOKEN")
                             dispatch(clearData())
                             dispatch(clearCart())
                         }
