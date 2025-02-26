@@ -18,8 +18,10 @@ const authUser = async (name: string, pass: string, dispatch: Dispatch<UnknownAc
   try {
     const response = await axios.post<IUser>('https://zoo.devsrv.ru/api/v1/user/login', { email: name, password: pass })
     data = response?.data
-    localStorage.setItem('USER_TOKEN', response?.data?.token)
     dispatch(setUserData(response?.data))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('USER_TOKEN', response?.data?.token)
+    }
   } catch {
     toaster.create({
       title: "Ошибка авторизации",
