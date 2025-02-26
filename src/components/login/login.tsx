@@ -6,15 +6,17 @@ import Link from "next/link";
 import Category from "../category/category";
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '../../redux/slices/cartSlice';
+import { getUserData } from "@/redux/slices/userSlice";
 
 export default function Login({ setSlug }) {
 
     const totalQuantity = useSelector(selectTotalQuantity)
+    const userName = useSelector(getUserData)
 
     return (
         <div className={styles.sticky}>
             <div className={styles.authorization}>
-                <h1 className={styles.h1}>Рады видеть вас <span>Admin</span></h1>
+                <h1 className={styles.h1}>Рады видеть вас <span>{userName?.name}</span></h1>
 
                 <div className={styles.panel}>
                     <div className={styles.panelMenu}>

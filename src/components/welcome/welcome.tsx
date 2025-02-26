@@ -30,13 +30,13 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>
-                    <a className={styles.link} href="tel:+79994569584">
+                    <a className={styles.link} href="tel:+79048299202">
                         {tel}
-                        <span className={styles.font}>+7 (000) 000 - 00 - 00</span>
+                        <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
-                    <a className={styles.link} href="mailto:kgc.kurochka@gmail.com">
+                    <a className={styles.link} href="mailto:info@ozvm.ru">
                         {mail}
-                        <span className={styles.font}>Email</span>
+                        <span className={styles.font}>info@ozvm.ru</span>
                     </a>
                 </div>
             </div>

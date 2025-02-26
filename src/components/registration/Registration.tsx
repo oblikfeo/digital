@@ -3,12 +3,8 @@ import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import mark from "../../../img/mark.png"
 import { useState } from 'react';
-import emailjs from 'emailjs-com';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
-
-const SERVICE_ID = 'service_dq5xm29';
-const TEMPLATE_ID = 'template_jsmtg25';
-const USER_ID = 'v-7auv5vOY-kY5tiN'; // это почему то public key
+import { axiosInstance } from '@/api/__API__';
 
 interface Props {
     setCurrentComponent: (value: string) => void;
@@ -20,34 +16,21 @@ export default function Registration({ setCurrentComponent }: Props) {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const templateParams = {
-            name,
-            phone,
-            email
-        };
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID)
-            .then(response => {
-                console.log('SUCCESS!', response.status, response.text);
-                setName('')
-                setPhone('')
-                setEmail('')
-                toaster.create({
-                    title: "Письмо успешно отправлено",
-                    description: "Контактная информация отправлена успешно",
-                    type: "success",
-                    duration: 10000,
-                })
-            }, error => {
-                console.log('FAILED...', error);
-                toaster.create({
-                    title: "Что то пошло не так",
-                    description: "Попробуйте позже",
-                    type: "error",
-                    duration: 3000,
-                })
-            });
+    const handleSubmit = async () => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone, password: 'user', password_confirmation: 'user' })
+        } catch {
+            setName('')
+            setPhone('')
+            setEmail('')
+            toaster.create({
+                title: "такой Email уже зарегистрирован",
+                description: "Пройдите процедуру восстановления пароля",
+                type: "error",
+                duration: 5000,
+            })
+        }
     };
 
     return (

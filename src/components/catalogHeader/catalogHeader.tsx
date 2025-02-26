@@ -123,9 +123,9 @@ export default function CatalogHeader({ setView, setSortBy, setFind, setSlug }: 
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
-                    <a className={styles.link1} href="tel:+79994569584">
+                    <a className={styles.link1} href="tel:+79048299202">
                         {tel}
-                        <span className={styles.font}>+7 (000) 000 - 00 - 00</span>
+                        <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
                     <Link href="/lk">
                         {lkImg}
@@ -133,9 +133,9 @@ export default function CatalogHeader({ setView, setSortBy, setFind, setSlug }: 
                     <Link href="/basket">
                         {basketImg}{totalQuantity === 0 ? "" : basketImg2}
                     </Link>
-                    <a className={styles.link2} href="mailto:kgc.kurochka@gmail.com">
+                    <a className={styles.link2} href="mailto:info@ozvm.ru">
                         {mail}
-                        <span className={styles.font}>Email</span>
+                        <span className={styles.font}>info@ozvm.ru</span>
                     </a>
                 </div>
             </div>

@@ -9,8 +9,8 @@ import { usePathname } from "next/navigation";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
-import axios from "axios";
 import SquareCard from "../squareСard/squareCard";
+import { axiosInstance } from "@/api/__API__";
 
 export default function ProductUp() {
 
@@ -23,13 +23,13 @@ export default function ProductUp() {
     const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
 
     useEffect(() => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products/${slug}`).then((response) => {
             setFetch(response.data)
         }).catch((error) => console.error(error))
     }, [])
 
     useEffect(() => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?&query=${slug}}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products?&query=${slug}}`).then((response) => {
             setSimilar(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))

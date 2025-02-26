@@ -11,8 +11,11 @@ import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
-import axios from "axios";
 import { Suspense } from 'react';
+import { axiosInstance } from "../../api/__API__";
+import { useDispatch } from "react-redux";
+import { setUserData } from "@/redux/slices/userSlice";
+import { redirect } from "next/navigation";
 
 export default function Catalog() {
 
@@ -25,6 +28,18 @@ export default function Catalog() {
     const [sortBy, setSortBy] = useState<string>()
     const [slug, setSlug] = useState<string>()
 
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        axiosInstance.get('/api/v1/user').then((response) => {
+            dispatch(setUserData(response.data))
+        }).catch((error) => {
+            if (error.code === '401') {
+                redirect('/')
+            }
+        })
+    }, [])
+
     useEffect(() => {
         setIsLoading(true)
         toaster.create({
@@ -32,7 +47,7 @@ export default function Catalog() {
             type: "success",
             duration: 2000,
         })
-        axios.get(getQueries(currentPage, find, sortBy, slug)).then((response) => {
+        axiosInstance.get(getQueries(currentPage, find, sortBy, slug)).then((response) => {
             setProductsFetch(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))

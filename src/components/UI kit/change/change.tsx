@@ -1,26 +1,73 @@
+import { axiosInstance } from "@/api/__API__"
 import styles from "./change.module.css"
+import { useState } from "react"
+import { useSelector } from "react-redux";
+import { getUserData } from "@/redux/slices/userSlice";
+import { toaster, Toaster } from "@/components/Toaster/toaster"
 
 export default function Change() {
+
+    const userStore = useSelector(getUserData)
+
+    const [email, setEmail] = useState<string>(userStore?.email)
+    const [address, setAddress] = useState<string>(userStore?.address);
+    const [name, setName] = useState<string>(userStore?.name);
+    const [phone, setPhone] = useState<string>(userStore?.phone);
+
+    const [currentPassword, setCurrentPassword] = useState<string>()
+    const [password, setPassword] = useState<string>()
+    const [repeatPassword, setRepeatPassword] = useState<string>()
+
+
+
+    const handleSubmit = async () => {
+        try {
+            await axiosInstance.post('/api/v1/user/edit', {
+                email: email,
+                address: address,
+                name: name,
+                phone: phone,
+                password_old: currentPassword,
+                password_confirmation: password,
+                password: repeatPassword
+            });
+            toaster.create({
+                title: "Данные успешно изменены",
+                description: "Обновите страницу",
+                type: "success",
+                duration: 4000,
+            });
+        } catch (error) {
+            console.log(error.response.data.message)
+            toaster.create({
+                title: "Ошибка при смене данных",
+                description: `${error.response.data.message}`,
+                type: "error",
+                duration: 5000,
+            })
+        }
+    };
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
                 <h1>Изменение личных данных</h1>
-                <div className={styles.position}><input type="text" placeholder="Иванов Иван Иванович" /><div>{img}</div></div>
-                <div className={styles.position}><input type="text" placeholder="г. Омск, Ул. Комарова, 21" />{img}</div>
-                <div className={styles.position}><input type="text" placeholder="+7 (123) 456 - 78 - 90" />{img}</div>
-                <div className={styles.position}><input type="text" placeholder="Email@gmail.com" />{img}</div>
+                <div className={styles.position}><input type="text" placeholder="Введите имя" value={name ?? undefined} onChange={(e) => setName(e.target.value)} /><div>{img}</div></div>
+                <div className={styles.position}><input type="text" placeholder="Введите адрес" value={address ?? undefined} onChange={(e) => setAddress(e.target.value)} />{img}</div>
+                <div className={styles.position}><input type="text" placeholder="Введите номер телефона" value={phone ?? undefined} onChange={(e) => setPhone(e.target.value)} />{img}</div>
+                <div className={styles.position}><input type="text" placeholder="Введите Email" value={email ?? undefined} onChange={(e) => setEmail(e.target.value)} />{img}</div>
             </div>
             <div className={styles.right}>
                 <h1>Изменение пароля</h1>
-                <div className={styles.position}><input type="password" placeholder="Текущий пароль" /></div>
-                <div className={styles.position}><input type="password" placeholder="Новый пароль" /></div>
-                <div className={styles.position}><input type="password" placeholder="Повторить пароль" /></div>
+                <div className={styles.position}><input type="password" placeholder="Текущий пароль" onChange={(e) => setCurrentPassword(e.target.value)} /></div>
+                <div className={styles.position}><input type="password" placeholder="Новый пароль" onChange={(e) => setPassword(e.target.value)} /></div>
+                <div className={styles.position}><input type="password" placeholder="Повторить пароль" onChange={(e) => setRepeatPassword(e.target.value)} /></div>
                 <div className={styles.buttons}>
-                    <button className={styles.save}>Сохранить изменения</button>
+                    <button className={styles.save} onClick={handleSubmit}>Сохранить изменения</button>
                     <button className={styles.delete}>Отмена</button>
                 </div>
             </div>
+            <Toaster />
         </div>
     )
 }

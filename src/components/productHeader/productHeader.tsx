@@ -5,9 +5,9 @@ import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from "next/navigation";
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '@/redux/slices/cartSlice';
+import { axiosInstance } from '@/api/__API__';
 
 export default function ProductHeader() {
 
@@ -21,7 +21,7 @@ export default function ProductHeader() {
     const [fetch, setFetch] = useState(null)
 
     useEffect(() => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/products/${slug}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products/${slug}`).then((response) => {
             setFetch(response.data.title)
         }).catch((error) => console.error(error))
     }, [])
@@ -36,9 +36,9 @@ export default function ProductHeader() {
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
-                    <a className={styles.link1} href="tel:+79994569584">
+                    <a className={styles.link1} href="tel:+79048299202">
                         {tel}
-                        <span className={styles.font}>+7 (000) 000 - 00 - 00</span>
+                        <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
                     <Link href="/lk">
                         {lkImg}
@@ -46,9 +46,9 @@ export default function ProductHeader() {
                     <Link href="/basket">
                         {basketImg}{totalQuantity === 0 ? "" : basketImg2}
                     </Link>
-                    <a className={styles.link2} href="mailto:kgc.kurochka@gmail.com">
+                    <a className={styles.link2} href="mailto:info@ozvm.ru">
                         {mail}
-                        <span className={styles.font}>Email</span>
+                        <span className={styles.font}>info@ozvm.ru</span>
                     </a>
                 </div>
             </div>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import styles from "./category.module.css"
-import axios from "axios"
 import { Toaster } from "@/components/Toaster/toaster"
 import CategoryMiddle from "./categoryMiddle/categoryMiddle"
+import { axiosInstance } from "@/api/__API__"
 
 export default function CategoryMobile({ setCatalogButtonIpad, setSlug, setSortBy }) {
 
@@ -12,7 +12,7 @@ export default function CategoryMobile({ setCatalogButtonIpad, setSlug, setSortB
     const [sortName, setSortName] = useState(false)
 
     useEffect(() => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/categories`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/categories`).then((response) => {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])

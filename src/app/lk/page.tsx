@@ -4,18 +4,34 @@ import styles from "./page.module.css"
 import Login from "@/components/login/login"
 import LkAbout from "@/components/lkAbout/lkAbout"
 import Change from "@/components/UI kit/change/change"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import NowOrder from "@/components/nowOrder/nowOrder"
 import Paw1 from "@/components/UI kit/paws1/paws"
 import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
+import { useDispatch } from "react-redux"
+import { setUserData } from "@/redux/slices/userSlice"
+import { axiosInstance } from "../../api/__API__"
+import { redirect } from "next/navigation"
 
 export default function Lk() {
 
     const [open, setOpen] = useState(false)
     const [chapter, setChapter] = useState("about")
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        axiosInstance.get('/api/v1/user').then((response) => {
+            dispatch(setUserData(response.data))
+        }).catch((error) => {
+            if (error.code === '401') {
+                redirect('/')
+            }
+        })
+    }, [])
 
     return (
         <div className={styles.flexContainer}>

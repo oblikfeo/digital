@@ -8,7 +8,7 @@ import { selectCartItems, selectTotalAmount, removeFromCart, addToCart, selectTo
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "@/api/__API__";
 
 export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange, name, phone }) {
 
@@ -21,7 +21,7 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
 
     useEffect(() => {
         const requests = cartItems.map((item) =>
-            axios.get(`https://zoo.devsrv.ru/api/v1/shop/products?query=${item.id}`)
+            axiosInstance.get(`/api/v1/shop/products?query=${item.id}`)
         );
         Promise.all(requests)
             .then((responses) => {

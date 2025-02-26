@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux"
 import styles from "./lkAbout.module.css"
+import { getUserData } from "@/redux/slices/userSlice"
 
 export default function LkAbout({ setOpen, open }) {
+
+    const userStore = useSelector(getUserData)
 
     return (
         <div className={styles.wrapper}>
@@ -12,10 +16,10 @@ export default function LkAbout({ setOpen, open }) {
                     <span>Email:</span>
                 </div>
                 <div className={styles.right}>
-                    <span>Иванов Иван Иванович</span>
-                    <span>г. Омск, Ул. Комарова, 21</span>
-                    <span>+7 (123) 456 - 78 - 90</span>
-                    <span>Email@gmail.com</span>
+                    <span>{userStore?.name ? userStore?.name : "отсутствует"}</span>
+                    <span>{userStore?.address ? userStore?.address : "отсутствует"}</span>
+                    <span>{userStore?.phone ? userStore?.phone : "отсутствует"}</span>
+                    <span>{userStore?.email ? userStore?.email : "отсутствует"}</span>
                 </div>
             </div>
             <div onClick={() => setOpen(!open)} className={styles.change}>

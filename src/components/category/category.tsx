@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import styles from "./category.module.css"
-import axios from "axios"
 import CategoryMiddle from "./categoryMiddle/categoryMiddle"
+import { axiosInstance } from "@/api/__API__"
 
 export default function Category({ setSlug }) {
 
@@ -9,7 +9,7 @@ export default function Category({ setSlug }) {
     const [render, setRender] = useState(false)
 
     useEffect(() => {
-        axios.get(`https://zoo.devsrv.ru/api/v1/shop/categories`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/categories`).then((response) => {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])

@@ -6,6 +6,7 @@
     height: 100vh;
     padding: 0;
     padding-left: 40px;
+    top: 40px;
     z-index: 9999;
 }
 
