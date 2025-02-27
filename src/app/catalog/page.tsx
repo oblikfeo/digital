@@ -23,6 +23,7 @@ export default function Catalog() {
     const [currentPage, setCurrentPage] = useState(1) // текущая страница пагинации
     const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
     const [isLoading, setIsLoading] = useState(false)
+    const [check, setCheck] = useState(false)
 
     const [find, setFind] = useState<string>()
     const [sortBy, setSortBy] = useState<string>()
@@ -31,6 +32,7 @@ export default function Catalog() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setCheck(true)
         axiosInstance.get('/api/v1/user', {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
         }).then((response) => {
@@ -38,6 +40,7 @@ export default function Catalog() {
         }).catch((error) => {
             if (error.status === 401) {
                 localStorage.removeItem("USER_TOKEN")
+                setCheck(false)
                 redirect('/')
             }
         })
@@ -124,16 +127,16 @@ export default function Catalog() {
                 <Paw4 />
                 <Paw5 />
                 <Suspense fallback={<></>}>
-                    <CatalogHeader
+                    {check && <CatalogHeader
                         setView={setView}
                         setSortBy={setSortBy}
                         setFind={setFind}
                         setProductsFetch={setProductsFetch}
                         setSlug={setSlug}
-                    />
+                    />}
                 </Suspense>
 
-                <div className={view === 'list' ? styles.list : styles.square}>
+                {check && <div className={view === 'list' ? styles.list : styles.square}>
                     {isLoading ? (
                         <span className={styles.load}>загрузка товаров...</span>
                     ) : productsFetch.length === 0 && find ? (
@@ -144,11 +147,11 @@ export default function Catalog() {
                     ) : (
                         viewCatalog
                     )}
-                </div>
-                <div className={styles.footer}>
+                </div>}
+                {check && <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>
                     <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
-                </div>
+                </div>}
             </div>
             <Toaster />
         </div>

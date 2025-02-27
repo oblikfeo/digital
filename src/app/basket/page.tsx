@@ -33,7 +33,7 @@ export default function Basket() {
         }).then((response) => {
             dispatch(setUserData(response.data))
         }).catch((error) => {
-            if (error.code === 401) {
+            if (error.status === 401) {
                 redirect('/')
             }
         })
