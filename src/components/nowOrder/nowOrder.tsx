@@ -1,13 +1,27 @@
+"use client"
 import styles from "./nowOrder.module.css"
 import Image from "next/image"
 import img from '/img/product.png'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { axiosInstance } from "@/api/__API__"
 
 export default function NowOrder() {
 
     const [open, setOpen] = useState(false)
     const [open2, setOpen2] = useState(false)
     const [open3, setOpen3] = useState(false)
+
+
+
+    useEffect(() => {
+        axiosInstance.get('/api/v1/user/orders', {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
+            console.log(response.data)
+        }).catch(() => {
+            console.log("ошибка")
+        })
+    }, [])
 
     return (
         <>
