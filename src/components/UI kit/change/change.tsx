@@ -30,6 +30,8 @@ export default function Change() {
                 password_old: currentPassword,
                 password_confirmation: password,
                 password: repeatPassword
+            }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
             });
             toaster.create({
                 title: "Данные успешно изменены",

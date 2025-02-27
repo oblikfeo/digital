@@ -21,7 +21,9 @@ export default function ProductHeader() {
     const [fetch, setFetch] = useState(null)
 
     useEffect(() => {
-        axiosInstance.get(`/api/v1/shop/products/${slug}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products/${slug}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             setFetch(response.data.title)
         }).catch((error) => console.error(error))
     }, [])

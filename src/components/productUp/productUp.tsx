@@ -23,13 +23,17 @@ export default function ProductUp() {
     const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
 
     useEffect(() => {
-        axiosInstance.get(`/api/v1/shop/products/${slug}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products/${slug}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             setFetch(response.data)
         }).catch((error) => console.error(error))
     }, [])
 
     useEffect(() => {
-        axiosInstance.get(`/api/v1/shop/products?&query=${slug}}`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/products?&query=${slug}}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             setSimilar(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))

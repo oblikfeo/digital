@@ -19,7 +19,9 @@ export default function Product() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        axiosInstance.get('/api/v1/user').then((response) => {
+        axiosInstance.get('/api/v1/user', {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             dispatch(setUserData(response.data))
         }).catch((error) => {
             if (error.code === '401') {

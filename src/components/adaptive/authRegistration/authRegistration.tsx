@@ -19,7 +19,9 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
     const handleSubmit = async () => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone, password: 'user', password_confirmation: 'user' })
+            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone, password: 'user', password_confirmation: 'user' }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+            })
         } catch {
             setName('')
             setPhone('')
@@ -43,10 +45,10 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
                         {names}
                         <input className={styles.input} type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} required />
                     </div>
-                    <div className={styles.inputContainer}>
+                    <form className={styles.inputContainer}>
                         {tel}
                         <input className={styles.input} type="tel" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-                    </div>
+                    </form>
                     <div className={styles.inputContainer}>
                         {mail}
                         <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

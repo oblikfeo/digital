@@ -10,7 +10,9 @@ export default function CategoryAdaptive({ setCatalogButtonIpad, setSlug, setSor
     const [render, setRender] = useState(false)
 
     useEffect(() => {
-        axiosInstance.get(`/api/v1/shop/categories`).then((response) => {
+        axiosInstance.get(`/api/v1/shop/categories`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             setCategory(response.data)
         }).catch((error) => console.error(error))
     }, [])

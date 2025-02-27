@@ -21,7 +21,9 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
 
     useEffect(() => {
         const requests = cartItems.map((item) =>
-            axiosInstance.get(`/api/v1/shop/products?query=${item.id}`)
+            axiosInstance.get(`/api/v1/shop/products?query=${item.id},`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+            })
         );
         Promise.all(requests)
             .then((responses) => {

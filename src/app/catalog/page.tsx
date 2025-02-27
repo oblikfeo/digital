@@ -31,7 +31,9 @@ export default function Catalog() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        axiosInstance.get('/api/v1/user').then((response) => {
+        axiosInstance.get('/api/v1/user', {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             dispatch(setUserData(response?.data))
         }).catch((error) => {
             if (error.status === 401) {
@@ -48,7 +50,9 @@ export default function Catalog() {
             type: "success",
             duration: 2000,
         })
-        axiosInstance.get(getQueries(currentPage, find, sortBy, slug)).then((response) => {
+        axiosInstance.get(getQueries(currentPage, find, sortBy, slug), {
+            headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+        }).then((response) => {
             setProductsFetch(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
