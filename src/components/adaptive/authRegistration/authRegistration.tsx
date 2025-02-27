@@ -43,10 +43,10 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
                         {names}
                         <input className={styles.input} type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} required />
                     </div>
-                    <form className={styles.inputContainer}>
+                    <div className={styles.inputContainer}>
                         {tel}
                         <input className={styles.input} type="tel" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-                    </form>
+                    </div>
                     <div className={styles.inputContainer}>
                         {mail}
                         <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

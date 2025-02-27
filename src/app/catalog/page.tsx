@@ -32,9 +32,10 @@ export default function Catalog() {
 
     useEffect(() => {
         axiosInstance.get('/api/v1/user').then((response) => {
-            dispatch(setUserData(response.data))
+            dispatch(setUserData(response?.data))
         }).catch((error) => {
-            if (error.code === '401') {
+            if (error.status === 401) {
+                localStorage.removeItem("USER_TOKEN")
                 redirect('/')
             }
         })
