@@ -5,6 +5,6 @@ import axios from 'axios';
 export const axiosInstance = axios.create({
     baseURL: 'https://zoo.devsrv.ru',
     headers: {
-        Authorization: `Bearer ${localStorage.getItem('USER_TOKEN')}`
+        Authorization: `Bearer ${"123"}`
     }
 });
