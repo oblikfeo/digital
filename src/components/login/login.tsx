@@ -4,14 +4,16 @@ import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import Link from "next/link";
 import Category from "../category/category";
-import { useSelector } from 'react-redux';
-import { selectTotalQuantity } from '../../redux/slices/cartSlice';
-import { getUserData } from "@/redux/slices/userSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart, selectTotalQuantity } from '../../redux/slices/cartSlice';
+import { clearData, getUserData } from "@/redux/slices/userSlice";
 
 export default function Login({ setSlug }) {
 
     const totalQuantity = useSelector(selectTotalQuantity)
     const userName = useSelector(getUserData)
+
+    const dispatch = useDispatch()
 
     return (
         <div className={styles.sticky}>
@@ -36,7 +38,12 @@ export default function Login({ setSlug }) {
                     </div>
                 </div>
 
-                <div className={styles.buttons}>
+                <div onClick={() => {
+                    localStorage.removeItem("USER_TOKEN")
+                    dispatch(clearData())
+                    dispatch(clearCart())
+                }
+                } className={styles.buttons}>
                     <Link href="/">
                         <button className={styles.enter}>Выйти из личного кабинета</button>
                     </Link>
