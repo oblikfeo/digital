@@ -43,26 +43,26 @@ export default function LkHeader({ title, chapter, setChapter }) {
                     <div className={styles.sideA}></div>
                     <div className={styles.sideB}></div>
                     <div className={styles.text}>
-                        <Link href="/catalog">
-                            <div className={styles.back}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M15.4 7.4L14 6L8 12L14 18L15.4 16.6L10.8 12L15.4 7.4Z" fill="#264794" />
-                                </svg>
-                                Вернуться в каталог
-
-                            </div>
-                        </Link>
-                        <div onClick={() => {
-                            localStorage.removeItem("USER_TOKEN")
-                            dispatch(clearData())
-                            dispatch(clearCart())
-                        }
-                        }>
-                            <Link href="/" className={styles.exit}>
-                                {exit}
+                        <div className={styles.flex}>
+                            <Link href="/catalog">
+                                <div className={styles.back}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M15.4 7.4L14 6L8 12L14 18L15.4 16.6L10.8 12L15.4 7.4Z" fill="#264794" />
+                                    </svg>
+                                    Вернуться в каталог
+                                </div>
                             </Link>
+                            <div onClick={() => {
+                                localStorage.removeItem("USER_TOKEN")
+                                dispatch(clearData())
+                                dispatch(clearCart())
+                            }
+                            }>
+                                <Link href="/" className={styles.exit}>
+                                    {exit}
+                                </Link>
+                            </div>
                         </div>
-
                         <span>{title}</span>
                     </div>
                 </div>

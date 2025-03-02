@@ -4,6 +4,7 @@ import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
 import img2 from '../../../img/girlMobile.png'
+import wa from '../../../img/whatsapp.png'
 import { useState } from 'react';
 import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
 import AuthRegistration from '../adaptive/authRegistration/authRegistration';
@@ -30,6 +31,10 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>
+                    <a className={styles.link} href="https://wa.me/79048299202">
+                        <Image src={wa} alt='' width={24} height={24} />
+                        <span className={styles.font}>Перейти в чат</span>
+                    </a>
                     <a className={styles.link} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>

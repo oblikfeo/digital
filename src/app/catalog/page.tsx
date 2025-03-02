@@ -87,17 +87,6 @@ export default function Catalog() {
     }
 
 
-    // useEffect(() => {
-    //     toaster.create({
-    //         title: "Успешная авторизация",
-    //         description: "Добро пожаловать admin",
-    //         type: "success",
-    //         duration: 4000,
-    //     })
-    // }, [])
-
-
-
     // switch кейсы переключения вида каталога
     const [view, setView] = useState('list')
     let viewCatalog;

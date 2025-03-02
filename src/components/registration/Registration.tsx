@@ -2,9 +2,10 @@ import styles from './Registration.module.css'
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import mark from "../../../img/mark.png"
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import { axiosInstance } from '@/api/__API__';
+import IMask from 'imask';
 
 interface Props {
     setCurrentComponent: (value: string) => void;
@@ -16,19 +17,34 @@ export default function Registration({ setCurrentComponent }: Props) {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
 
+    const phoneInputRef = useRef(null);
+
+    useEffect(() => {
+        if (phoneInputRef.current) {
+            const maskOptions = {
+                mask: '+{7} (000) 000-00-00',
+            };
+            IMask(phoneInputRef.current, maskOptions);
+        }
+    }, []);
+
     const handleSubmit = async () => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone, password: 'user', password_confirmation: 'user' }, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
-            })
-        } catch {
+            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone })
             setName('')
             setPhone('')
             setEmail('')
             toaster.create({
-                title: "такой Email уже зарегистрирован",
-                description: "Пройдите процедуру восстановления пароля",
+                title: "Письмо успешно отправлено",
+                description: "Ожидайте, с вами свяжется менеджер",
+                type: "success",
+                duration: 5000,
+            })
+        } catch (error) {
+            toaster.create({
+                title: "Ошибка",
+                description: `${error.response.data.message}`,
                 type: "error",
                 duration: 5000,
             })
@@ -46,7 +62,7 @@ export default function Registration({ setCurrentComponent }: Props) {
                     </div>
                     <div className={styles.inputContainer}>
                         {tel}
-                        <input className={styles.input} type="tel" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                        <input className={styles.input} ref={phoneInputRef} type="text" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                     </div>
                     <div className={styles.inputContainer}>
                         {mail}

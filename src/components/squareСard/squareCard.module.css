@@ -44,6 +44,7 @@
 }
 
 .subPrice {
+    display: none;
     font-weight: 400;
     font-size: 14px;
     text-decoration: line-through;
@@ -215,6 +216,7 @@
     }
 
     .subPrice {
+        display: none;
         font-size: 11px;
     }
 
@@ -257,6 +259,7 @@
     }
 
     .subPrice {
+        display: none;
         font-size: 11px;
     }
 

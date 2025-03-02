@@ -2,28 +2,63 @@ import styles from "./ForgotPassword.module.css";
 import Image from "next/image";
 import logo from "../../../img/logo300.svg"
 import mark from "../../../img/mark.png"
+import { useState } from "react";
+import { axiosInstance } from "@/api/__API__";
+import { toaster } from "../Toaster/toaster";
 
 interface Props {
     setCurrentComponent: (value: string) => void;
 }
 
 export default function ForgotPassword({ setCurrentComponent }: Props) {
+
+    const [email, setEmail] = useState<string>("")
+    const [send, setSend] = useState(true)
+
+    const handleSubmit = async () => {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const response = await axiosInstance.post('/', { email })
+            setSend(false)
+            toaster.create({
+                title: "Письмо успешно отправлено",
+                description: "Проверьте входящие сообщения",
+                type: "success",
+                duration: 5000,
+            })
+        } catch {
+            setEmail('')
+            toaster.create({
+                title: "Попробуйте еще раз",
+                description: `Такого адреса ${email} в нашей базе нет.`,
+                type: "error",
+                duration: 5000,
+            })
+        }
+    };
+
     return (
         <div>
             <div className={styles.authorization}>
                 <h1 className={styles.h1}>Восстановление пароля</h1>
-                <div className={styles.text}>
+                {send && <div className={styles.text}>
                     Введите ваш адрес электронной почты и мы вышлем на него новый пароль
-                </div>
-                <form className={styles.form}>
+                </div>}
+                {!send && <div className={styles.text}>
+                    Ваш новый пароль отправлен по указанному адресу электронной почты <span className={styles.redEmail}>{email}</span>
+                </div>}
+                {!send && <div className={styles.text}>
+                    Проверьте входящие сообщения.
+                </div>}
+                {send && <form className={styles.form}>
                     <div className={styles.inputContainer}>
                         {mail}
-                        <input className={styles.input} type="email" placeholder="Email" required />
+                        <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
-                </form>
+                </form>}
 
-                <div className={styles.buttons}>
-                    <button className={styles.enter}>Отправить</button>
+                {send && <div className={styles.buttons}>
+                    <button onClick={handleSubmit} className={styles.enter}>Отправить</button>
                     <div
                         className={styles.back}
                         onClick={() => setCurrentComponent('authorization')}
@@ -31,7 +66,7 @@ export default function ForgotPassword({ setCurrentComponent }: Props) {
                         {back}
                         Вернуться к авторизации/регистрации
                     </div>
-                </div>
+                </div>}
                 <Image className={styles.logo} src={logo} alt="" />
                 <Image className={styles.mark} src={mark} alt="" />
             </div>

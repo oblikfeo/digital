@@ -218,6 +218,13 @@
     display: none;
 }
 
+.flex {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
 @media (max-width:1200px) {
     .welcomeContainer {
         padding: 20px 34px 0 34px;
