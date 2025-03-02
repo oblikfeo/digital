@@ -6,6 +6,7 @@ import { useState } from "react"
 import { axiosInstance } from "@/api/__API__"
 import { useDispatch } from "react-redux"
 import { addToCart } from "@/redux/slices/cartSlice"
+import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 export default function Orders({ item, order }) {
 
@@ -14,7 +15,7 @@ export default function Orders({ item, order }) {
 
     const handleSubmit = async () => {
         const requests = order.map((item) =>
-            axiosInstance.get(`/api/v1/shop/products?query=${item.id},`, {
+            axiosInstance.get(`/api/v1/shop/products?query=${item.items[0].title},`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
             })
         );
@@ -22,6 +23,12 @@ export default function Orders({ item, order }) {
             .then((responses) => {
                 const fetchedProducts = responses.map((response) => response.data.data[0]);
                 dispatch(addToCart(fetchedProducts[0]))
+                toaster.create({
+                    title: "Успешно",
+                    description: "Товары добавлены в корзину",
+                    type: "success",
+                    duration: 3000,
+                })
             })
             .catch((error) => {
                 console.error('Ошибка при получении данных:', error);
@@ -31,8 +38,8 @@ export default function Orders({ item, order }) {
     return (
         <>
             <div className={styles.order}>
-                <div onClick={() => setOpen(!open)} className={styles.box}>
-                    <div className={styles.left}>
+                <div className={styles.box}>
+                    <div onClick={() => setOpen(!open)} className={styles.left}>
                         <h1>Заказ № {item.id} от {item.created_at}</h1>
                         <div className={styles.dotes}></div>
                         {open ? up : down}
@@ -58,6 +65,7 @@ export default function Orders({ item, order }) {
                 </div>}
                 <button className={styles.repeat2}>Повторить заказ</button>
             </div>
+            <Toaster />
         </>
 
     )
