@@ -29,24 +29,34 @@ export default function Registration({ setCurrentComponent }: Props) {
     }, []);
 
     const handleSubmit = async () => {
-        try {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone })
-            setName('')
-            setPhone('')
-            setEmail('')
+        console.log(phone.length)
+        if (phone.length === 18) {
+            try {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const response = await axiosInstance.post('/api/v1/user/registration', { name, email, phone })
+                setName('')
+                setPhone('')
+                setEmail('')
+                toaster.create({
+                    title: "Письмо успешно отправлено",
+                    description: "Ожидайте, с вами свяжется менеджер",
+                    type: "success",
+                    duration: 5000,
+                })
+            } catch (error) {
+                toaster.create({
+                    title: `${error.response.data.message}`,
+                    description: "",
+                    type: "warning",
+                    duration: 5000,
+                })
+            }
+        } else {
             toaster.create({
-                title: "Письмо успешно отправлено",
-                description: "Ожидайте, с вами свяжется менеджер",
-                type: "success",
-                duration: 5000,
-            })
-        } catch (error) {
-            toaster.create({
-                title: "Ошибка",
-                description: `${error.response.data.message}`,
-                type: "error",
-                duration: 5000,
+                title: "Не корректный номер телефона",
+                description: "",
+                type: "warning",
+                duration: 3000,
             })
         }
     };
