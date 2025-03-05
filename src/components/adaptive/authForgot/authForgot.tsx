@@ -18,7 +18,7 @@ export default function AuthForgot({ setCurrentComponent }: Props) {
     const handleSubmit = async () => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const response = await axiosInstance.post('/', { email })
+            const response = await axiosInstance.post('/api/v1/user/reset-password', { email })
             setSend(false)
             toaster.create({
                 title: "Письмо успешно отправлено",
@@ -26,11 +26,11 @@ export default function AuthForgot({ setCurrentComponent }: Props) {
                 type: "success",
                 duration: 5000,
             })
-        } catch {
+        } catch (error) {
             setEmail('')
             toaster.create({
                 title: "Попробуйте еще раз",
-                description: `Такого адреса ${email} в нашей базе нет.`,
+                description: `${error?.response?.data?.message}`,
                 type: "error",
                 duration: 5000,
             })

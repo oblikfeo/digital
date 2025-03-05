@@ -53,7 +53,7 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
             }
         } else {
             toaster.create({
-                title: "Не корректный номер телефона",
+                title: "Некорректный номер телефона",
                 description: "",
                 type: "warning",
                 duration: 3000,

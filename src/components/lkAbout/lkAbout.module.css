@@ -67,3 +67,23 @@
         font-size: 14px;
     }
 }
+
+@media (max-width: 350px) {
+    .left {
+        font-size: 12px;
+        gap: 10px;
+    }
+
+    .right {
+        font-size: 12px;
+        gap: 10px;
+    }
+
+    .change {
+        font-size: 12px;
+    }
+
+    .wrapper {
+        padding: 10px;
+    }
+}
