@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, selectTotalQuantity } from '@/redux/slices/cartSlice';
 import { clearData } from '@/redux/slices/userSlice';
+import wa from '../../../img/whatsapp.png'
 
 export default function LkHeader({ title, chapter, setChapter }) {
 
@@ -22,6 +23,10 @@ export default function LkHeader({ title, chapter, setChapter }) {
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
+                    <a className={styles.link1} href="https://wa.me/79048299202">
+                        <Image src={wa} alt='' width={24} height={24} />
+                        <span className={styles.font}>Перейти в чат</span>
+                    </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>

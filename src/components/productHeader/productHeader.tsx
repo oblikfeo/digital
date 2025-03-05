@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '@/redux/slices/cartSlice';
 import { axiosInstance } from '@/api/__API__';
+import wa from '../../../img/whatsapp.png'
 
 export default function ProductHeader() {
 
@@ -38,6 +39,10 @@ export default function ProductHeader() {
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
+                    <a className={styles.link1} href="https://wa.me/79048299202">
+                        <Image src={wa} alt='' width={24} height={24} />
+                        <span className={styles.font}>Перейти в чат</span>
+                    </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>
