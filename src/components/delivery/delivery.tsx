@@ -2,7 +2,7 @@
 import { useState } from "react"
 import styles from "./delivery.module.css"
 
-export default function Delivery({ setModalChange, name, phone }) {
+export default function Delivery({ setModalChange, name, phone, address }) {
 
     const [pick, setPick] = useState(true)
     const [where, setWhere] = useState(true)
@@ -17,7 +17,7 @@ export default function Delivery({ setModalChange, name, phone }) {
             {pick && <div className={styles.mainFlex}>
                 <div onClick={() => setWhere(true)} className={styles.flex}>
                     {where ? redPick : whitePick}
-                    <div>Омск, проспект Комарова, 21</div>
+                    <div>{address}</div>
                 </div>
                 <div onClick={() => setWhere(false)} className={styles.flex}>
                     {where ? whitePick : redPick}

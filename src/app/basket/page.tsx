@@ -21,9 +21,11 @@ export default function Basket() {
     const [open, setOpen] = useState(false)
     const [modalSuccess, setModalSuccess] = useState(false)
     const [modalChange, setModalChange] = useState(false)
+    const [minOrder, setMinOrder] = useState(0)
 
-    const [name, setName] = useState("Иванов Иван Иванович")
-    const [phone, setPhone] = useState("+7 (913) 999 - 88 - 88")
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [address, setAdress] = useState("")
 
     const dispatch = useDispatch()
 
@@ -31,6 +33,10 @@ export default function Basket() {
         axiosInstance.get('/api/v1/user', {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
         }).then((response) => {
+            setMinOrder(response.data.min_order_amount)
+            setName(response.data.name)
+            setPhone(response.data.phone)
+            setAdress(response.data.address)
             dispatch(setUserData(response.data))
         }).catch((error) => {
             if (error.status === 401) {
@@ -56,6 +62,8 @@ export default function Basket() {
                     setModalChange={setModalChange}
                     name={name}
                     phone={phone}
+                    minOrder={minOrder}
+                    address={address}
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>

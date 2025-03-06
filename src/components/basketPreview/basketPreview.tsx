@@ -10,7 +10,7 @@ import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange, name, phone }) {
+export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange, name, phone, minOrder, address }) {
 
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
@@ -46,10 +46,10 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
     };
 
     useEffect(() => {
-        if (!quantity) {
+        if (!quantity || totalAmount < minOrder) {
             setOpen(false)
         }
-    }, [quantity])
+    }, [quantity, totalAmount])
 
     return (
         <div className={styles.open}>
@@ -68,10 +68,12 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                                 className={styles.button}>
                                 {minus}
                             </div>
-                            <div className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
+                            <div className={styles.number}>
+                                {cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт
+                            </div>
                             <div
                                 onClick={() => {
-                                    if (item?.stack === product?.find(elem => item?.id === elem.id).rests) {
+                                    if (item?.stack >= product?.find(elem => item?.id === elem.id).rests) {
                                         toaster.create({
                                             title: "Ошибка",
                                             description: "Добавлено максимальное количество",
@@ -112,6 +114,13 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                                     type: "error",
                                     duration: 3000,
                                 })
+                            } else if (totalAmount < minOrder) {
+                                toaster.create({
+                                    title: "Ошибка",
+                                    description: `Минимальный заказ ${minOrder} ₽`,
+                                    type: "warning",
+                                    duration: 3000,
+                                })
                             } else {
                                 setOpen(true)
                             }
@@ -133,7 +142,7 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                 </div>}
                 <Image className={styles.img} src={basketImg} alt="" />
             </div>
-            {open ? <Delivery setModalChange={setModalChange} name={name} phone={phone} /> : <></>}
+            {open ? <Delivery setModalChange={setModalChange} name={name} phone={phone} address={address} /> : <></>}
             <Toaster />
         </div>
 
