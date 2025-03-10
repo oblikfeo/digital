@@ -11,18 +11,20 @@ import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
 import { setUserData } from "@/redux/slices/userSlice"
 import { redirect } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
 export default function Product() {
 
     const dispatch = useDispatch()
+    const [minOrder, setMinOrder] = useState(0)
 
     useEffect(() => {
         axiosInstance.get('/api/v1/user', {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
         }).then((response) => {
             dispatch(setUserData(response.data))
+            setMinOrder(response.data.min_order_amount)
         }).catch((error) => {
             if (error.status === 401) {
                 redirect('/')
@@ -40,7 +42,7 @@ export default function Product() {
                 <Paw4 />
                 <Paw5 />
                 <ProductHeader />
-                <ProductUp />
+                <ProductUp minOrder={minOrder} />
             </div>
         </div>
     )

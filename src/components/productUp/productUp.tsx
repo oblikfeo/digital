@@ -12,7 +12,7 @@ import { Toaster, toaster } from "@/components/Toaster/toaster"
 import SquareCard from "../squareСard/squareCard";
 import { axiosInstance } from "@/api/__API__";
 
-export default function ProductUp() {
+export default function ProductUp({ minOrder }) {
 
     const pathname = usePathname()
     const slug = pathname.split('/').pop()
@@ -72,7 +72,7 @@ export default function ProductUp() {
                                 <Paragraph text={"Страна производитель:"} props={fetch?.country} />
                                 <Paragraph text={"Категория товара:"} props={fetch?.categories[0].title} />
                                 <Paragraph text={"Остаток:"} props={fetch?.rests ? fetch?.rests : "Нет в наличии"} />
-                                <Paragraph text={"Минимальный объем заказа:"} props={"2800 ₽"} />
+                                <Paragraph text={"Минимальный объем заказа:"} props={`${minOrder} ₽`} />
                             </div>
 
                             <div className={styles.right}>

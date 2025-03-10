@@ -22,6 +22,7 @@
     border-radius: 10px;
     width: 322px;
     height: 322px;
+    object-fit: contain;
 }
 
 .head {

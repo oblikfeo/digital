@@ -12,17 +12,19 @@
     height: 47vh;
     background-color: rgba(77, 104, 135, 1);
     padding: 40px 45px 55px 45px;
+    justify-content: space-between;
 }
 
 .h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 400;
     color: white;
-    margin-bottom: 40px;
 }
 
 .h1 span {
     font-weight: 700;
+    font-size: 32px;
+    line-height: 0.8;
 }
 
 .panel {
@@ -50,10 +52,8 @@
 }
 
 .buttons {
-    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     z-index: 1;
 }
 
