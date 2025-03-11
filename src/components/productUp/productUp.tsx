@@ -68,8 +68,8 @@ export default function ProductUp({ minOrder }) {
                         <div className={styles.description}>
 
                             <div className={styles.left}>
-                                <Paragraph text={"Производитель:"} props={fetch?.manufacturer} />
-                                <Paragraph text={"Страна производитель:"} props={fetch?.country} />
+                                <Paragraph text={"Производитель:"} props={fetch?.props[1].pivot.value} />
+                                <Paragraph text={"Страна производитель:"} props={fetch?.props[0].pivot.value} />
                                 <Paragraph text={"Категория товара:"} props={fetch?.categories[0].title} />
                                 <Paragraph text={"Остаток:"} props={fetch?.rests ? fetch?.rests : "Нет в наличии"} />
                                 <Paragraph text={"Минимальный объем заказа:"} props={`${minOrder} ₽`} />
