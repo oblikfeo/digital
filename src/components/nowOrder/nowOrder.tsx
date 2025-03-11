@@ -18,6 +18,8 @@ export default function NowOrder() {
         })
     }, [])
 
+    console.log(order)
+
     return (
         <>
             <div className={styles.wrapperLoading}>

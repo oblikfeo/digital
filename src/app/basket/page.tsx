@@ -12,11 +12,16 @@ import Paw2 from "@/components/UI kit/paws2/paws"
 import Paw3 from "@/components/UI kit/paws3/paws"
 import Paw4 from "@/components/UI kit/paws4/paws"
 import Paw5 from "@/components/UI kit/paws5/paws"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setUserData } from "@/redux/slices/userSlice"
 import { axiosInstance } from "@/api/__API__"
+import { Toaster, toaster } from "@/components/Toaster/toaster"
+import { selectCartItems, clearCart } from "@/redux/slices/cartSlice"
 
 export default function Basket() {
+
+    const [product, setProduct] = useState([])
+    const cartItems = useSelector(selectCartItems);
 
     const [open, setOpen] = useState(false)
     const [modalSuccess, setModalSuccess] = useState(false)
@@ -45,6 +50,45 @@ export default function Basket() {
         })
     }, [])
 
+    function createObject(item) {
+        return { id: item.id, qty: item.stack };
+    }
+
+    const buy = async () => {
+        try {
+            await axiosInstance.post('/api/v1/shop/checkout', {
+                recipient: {
+                    name: name,
+                    phone: phone
+                },
+                delivery: {
+                    type: "pickup"
+                },
+                cart: cartItems.map(createObject)
+            }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+            });
+            toaster.create({
+                title: "Успешно",
+                description: "Заказ оформлен!",
+                type: "success",
+                duration: 4000,
+            });
+            setModalSuccess(true)
+            setOpen(false)
+            dispatch(clearCart())
+        } catch (error) {
+            console.log(error.response.data.message)
+            toaster.create({
+                title: "Произошла ошибка, попробуйте позже",
+                description: `${error.response.data.message}`,
+                type: "error",
+                duration: 5000,
+            })
+        }
+    };
+
+
     return (
         <div className={styles.flexContainer}>
             <Login setSlug={undefined} />
@@ -58,12 +102,15 @@ export default function Basket() {
                 <BasketPreview
                     open={open}
                     setOpen={setOpen}
-                    setModalSuccess={setModalSuccess}
                     setModalChange={setModalChange}
                     name={name}
                     phone={phone}
                     minOrder={minOrder}
                     address={address}
+                    setProduct={setProduct}
+                    product={product}
+                    cartItems={cartItems}
+                    buy={buy}
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>
@@ -102,6 +149,7 @@ export default function Basket() {
                     }} className={styles.but}>Подтвердить</button>
                 </div>}
             </div>
+            <Toaster />
         </div>
     )
 }

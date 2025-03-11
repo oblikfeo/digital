@@ -4,20 +4,17 @@ import Image from 'next/image';
 import img from '/img/haventlogo.png'
 import basketImg from '../../../img/basketImg.png'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems, selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity, clearCart } from '../../redux/slices/cartSlice';
+import { selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalSuccess, setModalChange, name, phone, minOrder, address }) {
+export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, address, setProduct, product, cartItems, buy }) {
 
     const dispatch = useDispatch();
-    const cartItems = useSelector(selectCartItems);
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
-
-    const [product, setProduct] = useState([])
 
     useEffect(() => {
         const requests = cartItems.map((item) =>
@@ -35,7 +32,6 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
             });
     }, []);
 
-    console.log(product)
 
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
@@ -131,11 +127,7 @@ export default function BasketPreview({ open, setOpen, setModalSuccess, setModal
                 </div>}
                 {open && <div className={styles.next}>
                     <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
-                    <button onClick={() => {
-                        setModalSuccess(true)
-                        setOpen(false)
-                        dispatch(clearCart())
-                    }}
+                    <button onClick={() => buy()}
                         className={styles.but}>
                         Оформить заказ
                     </button>

@@ -4,25 +4,26 @@ import Image from "next/image"
 import img from '/img/newHaventLogo.svg'
 import { useState } from "react"
 import { axiosInstance } from "@/api/__API__"
-import { useDispatch } from "react-redux"
-import { addToCart } from "@/redux/slices/cartSlice"
+// import { useDispatch } from "react-redux"
+// import { addToCart } from "@/redux/slices/cartSlice"
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 
 export default function Orders({ item, order }) {
 
     const [open, setOpen] = useState(false)
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const handleSubmit = async () => {
         const requests = order.map((item) =>
-            axiosInstance.get(`/api/v1/shop/products?query=${item.items[0].title},`, {
+            axiosInstance.get(`/api/v1/shop/products?query=${item.items.map((product) => product.title)},`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
             })
         );
         Promise.all(requests)
             .then((responses) => {
-                const fetchedProducts = responses.map((response) => response.data.data[0]);
-                dispatch(addToCart(fetchedProducts[0]))
+                const fetchedProducts = responses.map((response) => response.data.data);
+                console.log(fetchedProducts)
+                // dispatch(addToCart(fetchedProducts))
                 toaster.create({
                     title: "Успешно",
                     description: "Товары добавлены в корзину",
@@ -46,19 +47,21 @@ export default function Orders({ item, order }) {
                     </div>
                     <button onClick={handleSubmit} className={styles.repeat}>Повторить заказ</button>
                 </div>
-                {open && <div className={styles.list}>
-                    <div className={styles.item}>
-                        <div className={styles.flex}>
-                            <Image src={img} alt="" height={60} width={60} />
-                            <div className={styles.discription}>{item.items.map((each) => each.title)}</div>
-                        </div>
-                        <div className={styles.prices}>
-                            <h2>{item.items.map((each) => each.total)}</h2>
-                            <h3>{item.items.map((each) => each.price)} ₽ x {item.items.map((each) => each?.["quantity "])}</h3>
-                            <h4></h4>
+                {open && item.items.map((each => (
+                    <div className={styles.list} key={each.id}>
+                        <div className={styles.item}>
+                            <div className={styles.flex}>
+                                <Image src={each.image || img} alt="" height={60} width={60} className={styles.img} />
+                                <div className={styles.discription}>{each.title}</div>
+                            </div>
+                            <div className={styles.prices}>
+                                <h2>{each.total.slice(0, -3)} ₽</h2>
+                                <h3>{each.price.slice(0, -3)} ₽ x {each?.["quantity "].slice(0, -3)}</h3>
+                                <h4></h4>
+                            </div>
                         </div>
                     </div>
-                </div>}
+                )))}
                 {open && <div className={styles.summ}>
                     <div className={styles.text}>Общая сумма заказа:</div>
                     <div className={styles.allPrice}>{item.total} ₽</div>

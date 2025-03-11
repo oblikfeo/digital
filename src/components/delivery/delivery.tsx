@@ -24,7 +24,7 @@ export default function Delivery({ setModalChange, name, phone, address }) {
                     <div>Другой адрес</div>
                 </div>
             </div>}
-            {!where && <div className={styles.position}>
+            {!where && pick && <div className={styles.position}>
                 <div className={styles.geoImg}>{geo}</div>
                 <input className={styles.writeAdress} type="text" placeholder="Адрес (город, улица, номер дома)" />
             </div>}

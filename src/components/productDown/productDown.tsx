@@ -7,7 +7,6 @@ export default function ProductDown({ fetch }) {
         <div className={styles.wrapper}>
             <h2 className={styles.h2}>Основные характеристики</h2>
             <div className={styles.flex}>
-
                 <Paragraph text={"Форма выпуска:"} props={fetch?.form} />
                 {/* <Paragraph text={"Возраст животного:"} props={fetch?.forage} /> */}
             </div>
