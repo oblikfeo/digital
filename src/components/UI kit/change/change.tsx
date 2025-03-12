@@ -54,10 +54,18 @@ export default function Change() {
         <div className={styles.wrapper}>
             <div className={styles.left}>
                 <h1>Изменение личных данных</h1>
-                <div className={styles.position}><input type="text" placeholder="Введите имя" value={name ?? undefined} onChange={(e) => setName(e.target.value)} /><div>{img}</div></div>
-                <div className={styles.position}><input type="text" placeholder="Введите адрес" value={address ?? undefined} onChange={(e) => setAddress(e.target.value)} />{img}</div>
-                <div className={styles.position}><input type="text" placeholder="Введите номер телефона" value={phone ?? undefined} onChange={(e) => setPhone(e.target.value)} />{img}</div>
-                <div className={styles.position}><input type="text" placeholder="Введите Email" value={email ?? undefined} onChange={(e) => setEmail(e.target.value)} />{img}</div>
+                <div className={styles.position}><input type="text" placeholder="Введите имя" value={name ?? undefined} onChange={(e) => setName(e.target.value)} />
+                    <div onClick={() => setName("")}>{img}</div>
+                </div>
+                <div className={styles.position}><input type="text" placeholder="Введите адрес" value={address ?? undefined} onChange={(e) => setAddress(e.target.value)} />
+                    <div onClick={() => setAddress("")}>{img}</div>
+                </div>
+                <div className={styles.position}><input type="text" placeholder="Введите номер телефона" value={phone ?? undefined} onChange={(e) => setPhone(e.target.value)} />
+                    <div onClick={() => setPhone("")}>{img}</div>
+                </div>
+                <div className={styles.position}><input type="text" placeholder="Введите Email" value={email ?? undefined} onChange={(e) => setEmail(e.target.value)} />
+                    <div onClick={() => setEmail("")}>{img}</div>
+                </div>
             </div>
             <div className={styles.right}>
                 <h1>Изменение пароля</h1>

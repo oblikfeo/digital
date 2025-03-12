@@ -7,14 +7,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, address, setProduct, product, cartItems, buy }) {
+export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, address, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress }) {
 
     const dispatch = useDispatch();
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
+
+    const [where, setWhere] = useState(true)
 
     useEffect(() => {
         const requests = cartItems.map((item) =>
@@ -133,14 +135,33 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                 </div>}
                 {open && <div className={styles.next}>
                     <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
-                    <button onClick={() => buy()}
+                    <button onClick={() => {
+                        if (where) {
+                            buy()
+                        }
+                        if (!where) {
+                            buy2()
+                        }
+                    }}
                         className={styles.but}>
                         Оформить заказ
                     </button>
                 </div>}
                 <Image className={styles.img} src={basketImg} alt="" />
             </div>
-            {open ? <Delivery setModalChange={setModalChange} name={name} phone={phone} address={address} /> : <></>}
+            {open ? <Delivery
+                setModalChange={setModalChange}
+                name={name}
+                phone={phone}
+                address={address}
+                setEntrance={setEntrance}
+                setFloor={setFloor}
+                setApartment={setApartment}
+                setComment={setComment}
+                where={where}
+                setWhere={setWhere}
+                setAdress={setAdress}
+            /> : <></>}
             <Toaster />
         </div>
 

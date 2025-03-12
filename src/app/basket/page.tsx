@@ -31,6 +31,10 @@ export default function Basket() {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAdress] = useState("")
+    const [entrance, setEntrance] = useState("")
+    const [floor, setFloor] = useState("")
+    const [apartment, setApartment] = useState("")
+    const [comment, setComment] = useState("")
 
     const dispatch = useDispatch()
 
@@ -88,6 +92,45 @@ export default function Basket() {
         }
     };
 
+    const buy2 = async () => {
+        try {
+            await axiosInstance.post('/api/v1/shop/checkout', {
+                recipient: {
+                    name: name,
+                    phone: phone
+                },
+                delivery: {
+                    type: "delivery",
+                    address: address,
+                    entrance: entrance,
+                    floor: floor,
+                    apartment: apartment,
+                    comment: comment
+                },
+                cart: cartItems.map(createObject)
+            }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+            });
+            toaster.create({
+                title: "Успешно",
+                description: "Заказ оформлен!",
+                type: "success",
+                duration: 4000,
+            });
+            setModalSuccess(true)
+            setOpen(false)
+            dispatch(clearCart())
+        } catch (error) {
+            console.log(error.response.data.message)
+            toaster.create({
+                title: "Произошла ошибка, попробуйте позже",
+                description: `${error.response.data.message}`,
+                type: "error",
+                duration: 5000,
+            })
+        }
+    };
+
 
     return (
         <div className={styles.flexContainer}>
@@ -107,10 +150,17 @@ export default function Basket() {
                     phone={phone}
                     minOrder={minOrder}
                     address={address}
+                    setAdress={setAdress}
                     setProduct={setProduct}
                     product={product}
                     cartItems={cartItems}
                     buy={buy}
+                    buy2={buy2}
+                    setEntrance={setEntrance}
+                    setFloor={setFloor}
+                    setApartment={setApartment}
+                    setComment={setComment}
+
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>300 ветмир</span>

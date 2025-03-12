@@ -2,10 +2,9 @@
 import { useState } from "react"
 import styles from "./delivery.module.css"
 
-export default function Delivery({ setModalChange, name, phone, address }) {
+export default function Delivery({ setModalChange, name, phone, address, setEntrance, setFloor, setApartment, setComment, where, setWhere, setAdress }) {
 
     const [pick, setPick] = useState(true)
-    const [where, setWhere] = useState(true)
 
     return (
         <div className={styles.wrapper}>
@@ -26,25 +25,25 @@ export default function Delivery({ setModalChange, name, phone, address }) {
             </div>}
             {!where && pick && <div className={styles.position}>
                 <div className={styles.geoImg}>{geo}</div>
-                <input className={styles.writeAdress} type="text" placeholder="Адрес (город, улица, номер дома)" />
+                <input onChange={(e) => setAdress(e.target.value)} className={styles.writeAdress} type="text" placeholder="Адрес (город, улица, номер дома)" />
             </div>}
             {pick && <div className={styles.details}>
                 <div className={styles.upInputs}>
                     <div>
                         <div className={styles.adress}>Подъезд</div>
-                        <input disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setEntrance(e.target.value)} disabled={where} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Этаж</div>
-                        <input disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setFloor(e.target.value)} disabled={where} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Квартира</div>
-                        <input disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setApartment(e.target.value)} disabled={where} className={styles.input} type="text" />
                     </div>
                 </div>
                 <div>
-                    <input disabled={where} className={styles.inputBig} type="text" placeholder="Комментарий курьеру" />
+                    <input onChange={(e) => setComment(e.target.value)} disabled={where} className={styles.inputBig} type="text" placeholder="Комментарий курьеру" />
                 </div>
             </div>}
             {!pick && <div>
