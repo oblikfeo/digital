@@ -69,8 +69,16 @@ export default function Catalog() {
             })
     }, [currentPage, find, sortBy, slug])
 
+    useEffect(() => {
+        if (productsFetch.length === 0 && currentPage !== 1) {
+            setCurrentPage(1); // Устанавливаем currentPage равной 1, если productsFetch пустой
+        }
+    }, [currentPage, productsFetch])
+
     const getQueries = (currentPage: number, find?: string, sortBy?: string, slug?: string) => {
+
         let baseUrl = `https://zoo.devsrv.ru/api/v1/shop/products?`
+
         if (currentPage) {
             baseUrl += `page=${currentPage}`
         }

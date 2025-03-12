@@ -37,7 +37,7 @@
     text-align: center;
     min-width: 101px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(114, 194, 247, 1);
     text-align: center;
 }
@@ -54,10 +54,9 @@
     display: flex;
     background-color: rgba(236, 245, 255, 1);
     border-radius: 6px;
-    min-width: 126px;
+    min-width: 190px;
     height: 34px;
     justify-content: space-between;
-    padding: 0 10px;
 }
 
 .number {
@@ -159,6 +158,13 @@
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+.superButton {
+    border-radius: 50%;
+    border: 2px solid rgba(38, 71, 148, 1);
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 @media (max-width:1350px) {
