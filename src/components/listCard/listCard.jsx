@@ -137,10 +137,10 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                         <div className={styles.price}>
                             <div>
                                 <div className={styles.mainPrice}>
-                                    {cartItems.find(cartItem => cartItem.id === item.id)?.stack ? item.price * cartItems.find(cartItem => cartItem.id === item.id)?.stack : 0} ₽
+                                    {item.price} ₽
                                 </div>
                                 <div className={styles.allPrice}>
-                                    {item.price} ₽ x 1
+                                    {cartItems.find(cartItem => cartItem.id === item.id)?.stack ? item.price * cartItems.find(cartItem => cartItem.id === item.id)?.stack : 0} ₽ x {cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
                                 </div>
                                 <div className={styles.subPrice}>
                                     { } ₽
