@@ -38,6 +38,7 @@ export default function Authorization({ email, setEmail, password, setPassword, 
                             placeholder="Email"
                             onKeyPress={handleKeyPress}
                             autoComplete="username"
+                            name="username"
                             required
                         />
                     </div>
@@ -55,6 +56,7 @@ export default function Authorization({ email, setEmail, password, setPassword, 
                             placeholder="Пароль"
                             onKeyPress={handleKeyPress}
                             autoComplete="current-password"
+                            name="password"
                             required
                         />
                     </div>
