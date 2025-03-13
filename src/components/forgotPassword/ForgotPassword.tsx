@@ -15,6 +15,13 @@ export default function ForgotPassword({ setCurrentComponent }: Props) {
     const [email, setEmail] = useState<string>("")
     const [send, setSend] = useState(true)
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSubmit()
+        }
+    };
+
     const handleSubmit = async () => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -53,7 +60,7 @@ export default function ForgotPassword({ setCurrentComponent }: Props) {
                 {send && <form className={styles.form}>
                     <div className={styles.inputContainer}>
                         {mail}
-                        <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyPress={handleKeyPress} required />
                     </div>
                 </form>}
 

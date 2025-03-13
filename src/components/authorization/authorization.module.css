@@ -30,6 +30,15 @@
     border: none;
 }
 
+.eye {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 13px;
+    left: 250px;
+    cursor: pointer;
+}
+
 .input:hover {
     border: 1px solid rgba(38, 71, 148, 0.3)
 }

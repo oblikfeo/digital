@@ -2,6 +2,7 @@ import styles from "./authAdaptive.module.css";
 import Image from "next/image";
 import logo from "../../../../img/logo300.svg"
 import mark from "../../../../img/mark.png"
+import { useState } from "react";
 
 interface Props {
     email: string;
@@ -13,6 +14,15 @@ interface Props {
 }
 
 export default function AuthAdaptive({ email, setEmail, password, setPassword, handleSubmit, setCurrentComponent }: Props) {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSubmit()
+        }
+    };
 
     return (
         <>
@@ -26,17 +36,25 @@ export default function AuthAdaptive({ email, setEmail, password, setPassword, h
                             onChange={(e) => setEmail(e.target.value)}
                             className={styles.input} type="email"
                             placeholder="Email"
+                            onKeyPress={handleKeyPress}
+                            autoComplete="username"
                             required
                         />
                     </div>
                     <div className={styles.inputContainer}>
                         {pass}
+                        {password.length !== 0 && <svg onClick={() => setShowPassword(!showPassword)} className={styles.eye} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>}
                         <input
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className={styles.input}
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder="Пароль"
+                            onKeyPress={handleKeyPress}
+                            autoComplete="current-password"
                             required
                         />
                     </div>

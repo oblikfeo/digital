@@ -146,7 +146,7 @@ export default function Catalog() {
                     )}
                 </div>}
                 {check && <div className={styles.footer}>
-                    <span className={styles.redline}>300 ветмир</span>
+                    <span className={styles.redline}>ЗооВетМир</span>
                     <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
                 </div>}
             </div>

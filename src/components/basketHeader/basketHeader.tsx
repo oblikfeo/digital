@@ -20,7 +20,7 @@ export default function BasketHeader({ title }) {
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
-                    <a className={styles.link1} href="https://wa.me/79048299202">
+                    <a className={styles.link1} href="https://wa.me/79048299202" target="_blank">
                         <Image src={wa} alt='' width={24} height={24} />
                         <span className={styles.font}>Перейти в чат</span>
                     </a>

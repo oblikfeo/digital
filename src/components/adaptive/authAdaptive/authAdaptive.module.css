@@ -33,6 +33,15 @@
     border: none;
 }
 
+.eye {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 13px;
+    left: 290px;
+    cursor: pointer;
+}
+
 .input:hover {
     border: 1px solid rgba(38, 71, 148, 0.3)
 }
@@ -139,6 +148,11 @@
 
 @media (max-width:500px) {
 
+    .eye {
+        top: 8px;
+        left: 210px;
+    }
+
     .h1 {
         font-size: 24px;
         margin-bottom: 20px;
@@ -180,6 +194,11 @@
 
 @media (max-width: 400px) {
 
+    .eye {
+        top: 8px;
+        left: 200px;
+    }
+
     .input {
         width: 230px;
         height: 40px;
@@ -196,6 +215,11 @@
 }
 
 @media (max-width: 370px) {
+
+    .eye {
+        top: 8px;
+        left: 180px;
+    }
 
     .input {
         width: 210px;

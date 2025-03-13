@@ -25,7 +25,7 @@ export default function NowOrder() {
             <div className={styles.wrapperLoading}>
                 {order?.map((item) => (
                     <>
-                        <Orders item={item} order={order} />
+                        <Orders item={item} />
                     </>
                 ))}
 

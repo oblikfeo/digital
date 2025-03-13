@@ -19,6 +19,13 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
 
     const phoneInputRef = useRef(null);
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSubmit()
+        }
+    };
+
     useEffect(() => {
         if (phoneInputRef.current) {
             const maskOptions = {
@@ -69,15 +76,15 @@ export default function AuthRegistration({ setCurrentComponent }: Props) {
                 <form className={styles.form}>
                     <div className={styles.inputContainer}>
                         {names}
-                        <input className={styles.input} type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} required />
+                        <input className={styles.input} type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} onKeyPress={handleKeyPress} required />
                     </div>
                     <div className={styles.inputContainer}>
                         {tel}
-                        <input className={styles.input} ref={phoneInputRef} type="text" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                        <input className={styles.input} ref={phoneInputRef} type="text" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} onKeyPress={handleKeyPress} required />
                     </div>
                     <div className={styles.inputContainer}>
                         {mail}
-                        <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <input className={styles.input} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyPress={handleKeyPress} required />
                     </div>
                 </form>
                 <div className={styles.buttons}>

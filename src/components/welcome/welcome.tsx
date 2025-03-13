@@ -31,7 +31,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>
-                    <a className={styles.link} href="https://wa.me/79048299202">
+                    <a className={styles.link} href="https://wa.me/79048299202" target="_blank">
                         <Image src={wa} alt='' width={24} height={24} />
                         <span className={styles.font}>Перейти в чат</span>
                     </a>
@@ -72,14 +72,14 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
                     {!toggle && currentComponent == "forgotPassword" && <AuthForgot setCurrentComponent={setCurrentComponent} />}
                     {toggle && <div className={styles.textContainer}>
                         <h2>Добро пожаловать</h2>
-                        <span className={styles.text}>На сайт магазина<br />«300 ветмир»</span>
+                        <span className={styles.text}>На сайт магазина<br />«ЗооВетМир»</span>
                         <span className={styles.subText}>Мы осознаем ценность жизни<br />ваших питомцев</span>
                     </div>}
                 </div>
             </div>
 
             <div className={styles.footer}>
-                <span className={styles.redline}>300 ветмир</span>
+                <span className={styles.redline}>ЗооВетМир</span>
                 <div className={styles.red2}></div>
                 <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
             </div>

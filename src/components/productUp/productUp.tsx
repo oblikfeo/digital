@@ -31,13 +31,13 @@ export default function ProductUp({ minOrder }) {
     }, [])
 
     useEffect(() => {
-        axiosInstance.get(`/api/v1/shop/products?&query=${slug}}`, {
+        axiosInstance.get(`/api/v1/shop/products?page=${currentPage}&query=${slug}}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
         }).then((response) => {
             setSimilar(response.data.data)
             setTotalPage(response.data.last_page)
         }).catch((error) => console.error(error))
-    }, [])
+    }, [currentPage, slug])
 
 
     const dispatch = useDispatch();
@@ -168,7 +168,7 @@ export default function ProductUp({ minOrder }) {
                 />
             </div>
             <div className={styles.footer}>
-                <span className={styles.redline}>300 ветмир</span>
+                <span className={styles.redline}>ЗооВетМир</span>
                 <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
             </div>
             <Toaster />

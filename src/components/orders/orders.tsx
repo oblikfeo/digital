@@ -3,38 +3,10 @@ import styles from "./orders.module.css"
 import Image from "next/image"
 import img from '/img/newHaventLogo.svg'
 import { useState } from "react"
-import { axiosInstance } from "@/api/__API__"
-// import { useDispatch } from "react-redux"
-// import { addToCart } from "@/redux/slices/cartSlice"
-import { Toaster, toaster } from "@/components/Toaster/toaster"
 
-export default function Orders({ item, order }) {
+export default function Orders({ item }) {
 
     const [open, setOpen] = useState(false)
-    // const dispatch = useDispatch();
-
-    const handleSubmit = async () => {
-        const requests = order.map((item) =>
-            axiosInstance.get(`/api/v1/shop/products?query=${item.items.map((product) => product.title)},`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
-            })
-        );
-        Promise.all(requests)
-            .then((responses) => {
-                const fetchedProducts = responses.map((response) => response.data.data);
-                console.log(fetchedProducts)
-                // dispatch(addToCart(fetchedProducts))
-                toaster.create({
-                    title: "Успешно",
-                    description: "Товары добавлены в корзину",
-                    type: "success",
-                    duration: 3000,
-                })
-            })
-            .catch((error) => {
-                console.error('Ошибка при получении данных:', error);
-            });
-    };
 
     return (
         <>
@@ -45,7 +17,6 @@ export default function Orders({ item, order }) {
                         <div className={styles.dotes}></div>
                         {open ? up : down}
                     </div>
-                    <button onClick={handleSubmit} className={styles.repeat}>Повторить заказ</button>
                 </div>
                 {open && item.items.map((each => (
                     <div className={styles.list} key={each.id}>
@@ -68,7 +39,6 @@ export default function Orders({ item, order }) {
                 </div>}
                 <button className={styles.repeat2}>Повторить заказ</button>
             </div>
-            <Toaster />
         </>
 
     )
