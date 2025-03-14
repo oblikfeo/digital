@@ -225,6 +225,17 @@
     padding-right: 15px;
 }
 
+.tg {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width:1300px) {
+    .font2 {
+        display: none;
+    }
+}
+
 @media (max-width:1200px) {
     .welcomeContainer {
         padding: 20px 34px 0 34px;

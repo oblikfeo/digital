@@ -18,8 +18,8 @@ export default function Login({ setSlug }) {
     return (
         <div className={styles.sticky}>
             <div className={styles.authorization}>
-                <h1 className={styles.h1}>Рады видеть вас <span>{userName?.name}</span></h1>
-
+                <h1 className={styles.h1}>Рады видеть вас,</h1>
+                <div className={styles.nameCompany}>{userName?.name}</div>
                 <div className={styles.panel}>
                     <div className={styles.panelMenu}>
                         {lkImg}

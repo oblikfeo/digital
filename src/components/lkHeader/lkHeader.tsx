@@ -23,18 +23,22 @@ export default function LkHeader({ title, chapter, setChapter }) {
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
+                    <a className={styles.link1} href="https://t.me/zoovetmir" target="_blank">
+                        {tg}
+                        <span className={styles.font2}>Мы в Telegram</span>
+                    </a>
                     <a className={styles.link1} href="https://wa.me/79048299202" target="_blank">
                         <Image src={wa} alt='' width={24} height={24} />
-                        <span className={styles.font}>Перейти в чат</span>
+                        <span className={styles.font2}>Перейти в чат</span>
                     </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
-                    <Link href="/lk">
+                    <Link className={styles.lkimg} href="/lk">
                         {lkImg}
                     </Link>
-                    <Link href="/basket">
+                    <Link className={styles.lkimg} href="/basket">
                         {basketImg}{totalQuantity === 0 ? "" : basketImg2}
                     </Link>
                     <a className={styles.link2} href="mailto:info@ozvm.ru">
@@ -106,4 +110,11 @@ const lkImg = <svg className={styles.lkimg} width="20" height="20" viewBox="0 0 
 const exit = <svg className={styles.exit} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="20" height="20" rx="4" fill="#C51A1A" />
     <path fillRule="evenodd" clipRule="evenodd" d="M12.3288 13.6574V15.4999C12.3288 15.7759 12.1163 16 11.8545 16H5.47432C5.21254 16 5 15.7764 5 15.4999V4.50009C5 4.22408 5.21205 4 5.47432 4H11.855C12.1168 4 12.3293 4.22357 12.3293 4.50009V6.34264H11.3807L11.3802 5.0002H5.94821V14.9998H11.3802V13.6574H12.3288ZM14.1184 10.5001L13.0157 11.6627L13.686 12.3694L15.5979 10.3537C15.7832 10.1584 15.7832 9.84177 15.5979 9.64697L13.6865 7.63074L13.0162 8.33743L14.1189 9.50001H7.95999V10.5002L14.1184 10.5001Z" fill="white" />
+</svg>
+
+const tg = <svg className={styles.tg} width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="120" r="120" fill="#1D93D2" />
+    <path d="M81.229,128.772l14.237,39.406s1.78,3.687,3.686,3.687,30.255-29.492,30.255-29.492l31.525-60.89L81.737,118.6Z" fill="#C8DAEA" />
+    <path d="M100.106,138.878l-2.733,29.046s-1.144,8.9,7.754,0,17.415-15.763,17.415-15.763" fill="#A9C6D8" />
+    <path d="M81.486,130.178,52.2,120.636s-3.5-1.42-2.373-4.64c.232-.664.7-1.229,2.1-2.2,6.489-4.523,120.106-45.36,120.106-45.36s3.208-1.081,5.1-.362a2.766,2.766,0,0,1,1.885,2.055,9.357,9.357,0,0,1,.254,2.585c-.009.752-.1,1.449-.169,2.542-.692,11.165-21.4,94.493-21.4,94.493s-1.239,4.876-5.678,5.043A8.13,8.13,0,0,1,146.1,172.5c-8.711-7.493-38.819-27.727-45.472-32.177a1.27,1.27,0,0,1-.546-.9c-.093-.469.417-1.05.417-1.05s52.426-46.6,53.821-51.492c.108-.379-.3-.566-.848-.4-3.482,1.281-63.844,39.4-70.506,43.607A3.21,3.21,0,0,1,81.486,130.178Z" fill="#FFF" />
 </svg>

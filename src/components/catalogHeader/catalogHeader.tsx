@@ -120,22 +120,27 @@ export default function CatalogHeader({ setView, setSortBy, setFind, setSlug }: 
                 <Image className={styles.logo} src={logo} alt='' />
             </Link>
             <div className={styles.header}>
+
                 <div className={styles.contacts}>
                     <div className={totalQuantity === 0 ? "" : styles.totalQuantity}>
                         <span>{totalQuantity === 0 ? "" : totalQuantity}</span>
                     </div>
+                    <a className={styles.link1} href="https://t.me/zoovetmir" target="_blank">
+                        {tg}
+                        <div className={styles.font2}>Мы в Telegram</div>
+                    </a>
                     <a className={styles.link1} href="https://wa.me/79048299202" target="_blank">
                         <Image src={wa} alt='' width={24} height={24} />
-                        <span className={styles.font}>Перейти в чат</span>
+                        <span className={styles.font2}>Перейти в чат</span>
                     </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
-                    <Link href="/lk">
+                    <Link className={styles.lkimg} href="/lk">
                         {lkImg}
                     </Link>
-                    <Link href="/basket">
+                    <Link className={styles.lkimg} href="/basket">
                         {basketImg}{totalQuantity === 0 ? "" : basketImg2}
                     </Link>
                     <a className={styles.link2} href="mailto:info@ozvm.ru">
@@ -243,4 +248,11 @@ const activeCatalog = <svg className={styles.catalogButton} width="40" height="4
     <rect width="40" height="40" rx="4" fill="#C51A1A" />
     <path fillRule="evenodd" clipRule="evenodd" d="M11.4419 13.7471C10.7033 13.7471 10.1047 14.3457 10.1047 15.0843V28.1253C10.1047 28.8637 10.7033 29.4625 11.4419 29.4625H28.5581C29.2967 29.4625 29.8953 28.8637 29.8953 28.1253V19.4652C29.8953 18.7267 29.2967 18.128 28.5581 18.128H21.0849C20.1472 18.128 19.2657 17.6811 18.7117 16.9247L16.7846 14.294C16.5327 13.9502 16.132 13.7471 15.7058 13.7471H11.4419ZM8.5 15.0843C8.5 13.4595 9.81712 12.1424 11.4419 12.1424H15.7058C16.6435 12.1424 17.5249 12.5894 18.079 13.3458L20.0061 15.9764C20.258 16.3202 20.6587 16.5234 21.0849 16.5234H28.5581C30.1829 16.5234 31.5 17.8405 31.5 19.4652V28.1253C31.5 29.75 30.1829 31.0671 28.5581 31.0671H11.4419C9.81712 31.0671 8.5 29.75 8.5 28.1253V15.0843Z" fill="white" />
     <path fillRule="evenodd" clipRule="evenodd" d="M10.1047 9.73543C10.1047 9.29232 10.4639 8.93311 10.907 8.93311H17.3105C18.2481 8.93311 19.1296 9.38007 19.6837 10.1365L21.6107 12.7671C21.8627 13.1109 22.2633 13.3141 22.6895 13.3141H30.1628C30.6059 13.3141 30.9651 13.6733 30.9651 14.1164C30.9651 14.5595 30.6059 14.9187 30.1628 14.9187H22.6895C21.7519 14.9187 20.8704 14.4718 20.3163 13.7154L18.3893 11.0847C18.1373 10.7409 17.7367 10.5378 17.3105 10.5378H10.907C10.4639 10.5378 10.1047 10.1785 10.1047 9.73543Z" fill="white" />
+</svg>
+
+const tg = <svg className={styles.tg} width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="120" r="120" fill="#1D93D2" />
+    <path d="M81.229,128.772l14.237,39.406s1.78,3.687,3.686,3.687,30.255-29.492,30.255-29.492l31.525-60.89L81.737,118.6Z" fill="#C8DAEA" />
+    <path d="M100.106,138.878l-2.733,29.046s-1.144,8.9,7.754,0,17.415-15.763,17.415-15.763" fill="#A9C6D8" />
+    <path d="M81.486,130.178,52.2,120.636s-3.5-1.42-2.373-4.64c.232-.664.7-1.229,2.1-2.2,6.489-4.523,120.106-45.36,120.106-45.36s3.208-1.081,5.1-.362a2.766,2.766,0,0,1,1.885,2.055,9.357,9.357,0,0,1,.254,2.585c-.009.752-.1,1.449-.169,2.542-.692,11.165-21.4,94.493-21.4,94.493s-1.239,4.876-5.678,5.043A8.13,8.13,0,0,1,146.1,172.5c-8.711-7.493-38.819-27.727-45.472-32.177a1.27,1.27,0,0,1-.546-.9c-.093-.469.417-1.05.417-1.05s52.426-46.6,53.821-51.492c.108-.379-.3-.566-.848-.4-3.482,1.281-63.844,39.4-70.506,43.607A3.21,3.21,0,0,1,81.486,130.178Z" fill="#FFF" />
 </svg>

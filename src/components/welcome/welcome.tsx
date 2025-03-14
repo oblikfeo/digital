@@ -5,7 +5,7 @@ import logo from '../../../img/miniLogo.svg'
 import img from '../../../img/GirlDog.png'
 import img2 from '../../../img/girlMobile.png'
 import wa from '../../../img/whatsapp.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AuthAdaptive from '../adaptive/authAdaptive/authAdaptive';
 import AuthRegistration from '../adaptive/authRegistration/authRegistration';
 import AuthForgot from '../adaptive/authForgot/authForgot';
@@ -25,24 +25,50 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
 
     const [toggle, setToggle] = useState(true)
 
+    useEffect(() => {
+        const handleResize = () => {
+            setToggle(window.innerWidth >= 1300);
+        };
+
+        // Установка начального состояния
+        handleResize();
+
+        // Добавление слушателя события
+        window.addEventListener('resize', handleResize);
+
+        // Очистка слушателя при размонтировании компонента
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     return (
         <div className={styles.welcomeContainer}>
             <Image className={styles.logo} src={logo} alt='' />
             <div className={styles.header}>
                 <div className={styles.contacts}>
+
+                    <a className={styles.link} href="https://t.me/zoovetmir" target="_blank">
+                        {tg}
+                        <span className={styles.font}>Мы в Telegram</span>
+                    </a>
+
                     <a className={styles.link} href="https://wa.me/79048299202" target="_blank">
                         <Image src={wa} alt='' width={24} height={24} />
                         <span className={styles.font}>Перейти в чат</span>
                     </a>
+
                     <a className={styles.link} href="tel:+79048299202">
                         {tel}
                         <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
+
                     <a className={styles.link} href="mailto:info@ozvm.ru">
                         {mail}
                         <span className={styles.font}>info@ozvm.ru</span>
                     </a>
+
                 </div>
             </div>
 
@@ -103,6 +129,13 @@ const white = <svg className={styles.whiteSvg} width="40" height="40" viewBox="0
 const toggleMenu = <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M4 0C1.79086 0 0 1.79086 0 4V36C0 38.2091 1.79086 40 4 40H36C38.2091 40 40 38.2091 40 36V4C40 1.79086 38.2091 0 36 0H4Z" fill="#4D6887" />
     <path fillRule="evenodd" clipRule="evenodd" d="M11 26H29V24H11V26ZM11 21H29V19H11V21ZM11 14V16H29V14H11Z" fill="white" />
+</svg>
+
+const tg = <svg className={styles.tg} width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="120" r="120" fill="#1D93D2" />
+    <path d="M81.229,128.772l14.237,39.406s1.78,3.687,3.686,3.687,30.255-29.492,30.255-29.492l31.525-60.89L81.737,118.6Z" fill="#C8DAEA" />
+    <path d="M100.106,138.878l-2.733,29.046s-1.144,8.9,7.754,0,17.415-15.763,17.415-15.763" fill="#A9C6D8" />
+    <path d="M81.486,130.178,52.2,120.636s-3.5-1.42-2.373-4.64c.232-.664.7-1.229,2.1-2.2,6.489-4.523,120.106-45.36,120.106-45.36s3.208-1.081,5.1-.362a2.766,2.766,0,0,1,1.885,2.055,9.357,9.357,0,0,1,.254,2.585c-.009.752-.1,1.449-.169,2.542-.692,11.165-21.4,94.493-21.4,94.493s-1.239,4.876-5.678,5.043A8.13,8.13,0,0,1,146.1,172.5c-8.711-7.493-38.819-27.727-45.472-32.177a1.27,1.27,0,0,1-.546-.9c-.093-.469.417-1.05.417-1.05s52.426-46.6,53.821-51.492c.108-.379-.3-.566-.848-.4-3.482,1.281-63.844,39.4-70.506,43.607A3.21,3.21,0,0,1,81.486,130.178Z" fill="#FFF" />
 </svg>
 
 

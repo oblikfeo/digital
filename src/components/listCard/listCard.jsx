@@ -81,6 +81,13 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                 type: "error",
                 duration: 3000,
             });
+        } else if (item.rests < 10) {
+            toaster.create({
+                title: "",
+                description: "Не удалось добавить товар х10",
+                type: "warning",
+                duration: 3000,
+            });
         } else {
             handleAddToCart(item);
             handleAddToCart(item);
@@ -92,6 +99,8 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
             handleAddToCart(item);
             handleAddToCart(item);
             handleAddToCart(item);
+            console.log(item.rests)
+            console.log(cartItems.find(cartItem => cartItem.id === item.id)?.stack || 10)
         }
     }
 

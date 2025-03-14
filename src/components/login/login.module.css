@@ -11,7 +11,7 @@
     width: 374px;
     height: 47vh;
     background-color: rgba(77, 104, 135, 1);
-    padding: 30px 45px 30px 45px;
+    padding: 10px 30px 20px 30px;
     justify-content: space-between;
 }
 
@@ -21,10 +21,12 @@
     color: white;
 }
 
-.h1 span {
+.nameCompany {
     font-weight: 700;
     font-size: 32px;
-    line-height: 0.8;
+    line-height: 1;
+    color: white;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 .panel {

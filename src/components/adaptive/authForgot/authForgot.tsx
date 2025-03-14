@@ -74,6 +74,11 @@ export default function AuthForgot({ setCurrentComponent }: Props) {
                         Вернуться к авторизации/регистрации
                     </div>
                 </div>}
+                <div className={styles.textContainer}>
+                    <h2>Добро пожаловать</h2>
+                    <span className={styles.text}>На сайт магазина<br />«ЗооВетМир»</span>
+                    <span className={styles.subText}>Мы осознаем ценность жизни<br />ваших питомцев</span>
+                </div>
             </div>
             <Image className={styles.logo} src={logo} alt="" />
             <Image className={styles.mark} src={mark} alt="" />

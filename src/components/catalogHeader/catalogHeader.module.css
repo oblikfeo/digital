@@ -154,6 +154,12 @@
     color: rgba(4, 13, 35, 1);
 }
 
+.font2 {
+    font-weight: 600;
+    color: rgba(4, 13, 35, 1);
+
+}
+
 .basketImg2 {
     display: none;
     position: absolute;
@@ -194,6 +200,17 @@
     min-height: 50px;
     min-width: 50px;
     cursor: pointer;
+}
+
+.tg {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width:1300px) {
+    .font2 {
+        display: none;
+    }
 }
 
 @media (max-width:1200px) {
