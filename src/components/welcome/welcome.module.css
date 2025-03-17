@@ -330,7 +330,7 @@
     }
 }
 
-@media (max-width:1440px) {
+@media (max-width:1441px) {
     .closeMobile {
         visibility: hidden;
         pointer-events: none;

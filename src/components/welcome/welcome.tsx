@@ -27,7 +27,7 @@ export default function Welcome({ email, setEmail, password, setPassword, handle
 
     useEffect(() => {
         const handleResize = () => {
-            setToggle(window.innerWidth >= 1440);
+            setToggle(window.innerWidth >= 1441);
         };
 
         // Установка начального состояния
