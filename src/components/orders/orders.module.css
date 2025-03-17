@@ -27,12 +27,13 @@
 }
 
 .discription {
-    width: 315px;
+    max-width: 400px;
 }
 
 .prices {
     display: flex;
     flex-direction: column;
+    min-width: 80px;
 }
 
 .prices h2 {
@@ -133,4 +134,50 @@
 
 .img {
     object-fit: contain;
+}
+
+@media (max-width: 700px) {
+    .discription {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    .discription {
+        font-size: 12px;
+    }
+
+    .prices h2 {
+        font-size: 14px;
+    }
+
+    .prices h3 {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .discription {
+        font-size: 11px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+
+    .allPrice {
+        font-size: 16px;
+    }
+
+    .prices {
+        min-width: 60px;
+    }
+
+    .prices h2 {
+        font-size: 13px;
+    }
+
+    .prices h3 {
+        font-size: 11px;
+    }
 }
