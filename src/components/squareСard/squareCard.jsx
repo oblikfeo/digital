@@ -117,10 +117,10 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                         </div>
                         <div className={styles.price}>
                             <div className={styles.priceArea}>
-                                <div className={styles.mainPrice}>{item.price} ₽  <span>{item.rests} шт</span></div>
+                                <div className={styles.mainPrice}>{item.price} ₽ </div>
                                 <div className={styles.subPrice}>нету</div>
                             </div>
-                            <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
+                            <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : `В наличии ${item.rests} шт`}</div>
                         </div>
                         <div className={styles.discription}>
                             <Link href={{
