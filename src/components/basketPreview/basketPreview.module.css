@@ -49,6 +49,8 @@
     align-items: center;
     font-weight: 400;
     font-size: 16px;
+    text-align: center;
+    line-height: 1;
 }
 
 .button {

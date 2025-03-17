@@ -141,12 +141,12 @@
 
 .calc {
     display: flex;
-    min-width: 220px;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .h4 {
     display: flex;
+    justify-content: end;
     margin-left: 10px;
     align-items: center;
     font-size: 16px;
@@ -215,6 +215,13 @@
     margin-top: 80px;
 }
 
+.superButton {
+    border-radius: 50%;
+    border: 1px solid rgba(38, 71, 148, 1);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
 @media (max-width: 1700px) {
     .description {
         flex-direction: column;
@@ -254,6 +261,13 @@
 
     .description {
         flex-direction: row;
+    }
+
+    .number {
+        text-align: center;
+        line-height: 1;
+        padding-left: 3px;
+        padding-right: 3px;
     }
 
 }

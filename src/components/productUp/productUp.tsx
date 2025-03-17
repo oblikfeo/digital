@@ -45,8 +45,44 @@ export default function ProductUp({ minOrder }) {
     const handleRemoveFromCart = (productId) => dispatch(removeFromCart(productId));
 
     const [open, setOpen] = useState(false)
+    const cartItems = useSelector((state: AppState) => state.cart.items);
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
+    const superPlus = (item) => {
+        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
+            toaster.create({
+                title: "",
+                description: "Не удалось добавить товар х10",
+                type: "warning",
+                duration: 3000,
+            });
+        } else if (item.rests === 0) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Товар отсутствует на складе",
+                type: "error",
+                duration: 3000,
+            });
+        } else if (item.rests < 10) {
+            toaster.create({
+                title: "",
+                description: "Не удалось добавить товар х10",
+                type: "warning",
+                duration: 3000,
+            });
+        } else {
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+        }
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -80,6 +116,35 @@ export default function ProductUp({ minOrder }) {
 
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
+
+                                        <div onClick={() => {
+                                            if (fetch.rests === 0) {
+                                                toaster.create({
+                                                    title: "Ошибка",
+                                                    description: "Товар отсутствует на складе",
+                                                    type: "error",
+                                                    duration: 3000,
+                                                })
+                                            } else {
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                                handleRemoveFromCart(item)
+                                            }
+                                        }}
+                                            className={styles.button}>
+                                            <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="20" height="20" fill="#ECF5FF" />
+                                                <rect x="5" y="9" width="10" height="2" fill="#264794" />
+                                            </svg>
+                                        </div>
+
                                         <div onClick={() => {
                                             if (fetch?.rests === 0) {
                                                 toaster.create({
@@ -97,7 +162,9 @@ export default function ProductUp({ minOrder }) {
                                                 <rect x="5" y="9" width="10" height="2" fill="#264794" />
                                             </svg>
                                         </div>
+
                                         <div className={styles.number}>{item?.stack || "0"} шт</div>
+
                                         <div onClick={() => {
                                             if (item?.stack === fetch?.rests || fetch?.rests === 0) {
                                                 toaster.create({
@@ -116,6 +183,15 @@ export default function ProductUp({ minOrder }) {
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
                                             </svg>
                                         </div>
+
+                                        <div onClick={() => { superPlus(item) }}
+                                            className={styles.button}>
+                                            <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="20" height="20" fill="#ECF5FF" />
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
+                                            </svg>
+                                        </div>
+
                                     </div>
                                     <div className={styles.h4}>= {fetch?.price * item?.stack || 0} ₽</div>
                                 </div>

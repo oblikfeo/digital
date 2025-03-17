@@ -422,3 +422,16 @@
     }
 
 }
+
+@media (max-width:328px) {
+    .flex {
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 380px) {
+    .contacts {
+        gap: 20px;
+    }
+}

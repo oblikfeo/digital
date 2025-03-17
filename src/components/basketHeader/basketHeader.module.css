@@ -292,6 +292,10 @@
         font-size: 22px;
         font-weight: 600;
     }
+
+    .contacts {
+        gap: 20px;
+    }
 }
 
 @media (max-width: 350px) {

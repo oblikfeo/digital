@@ -67,7 +67,7 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
     };
 
     const superPlus = (item) => {
-        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 >= item.rests) {
+        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
             toaster.create({
                 title: "",
                 description: "Не удалось добавить товар х10",

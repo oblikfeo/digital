@@ -64,6 +64,44 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
         );
     };
 
+    const superPlus = (item) => {
+        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
+            toaster.create({
+                title: "",
+                description: "Не удалось добавить товар х10",
+                type: "warning",
+                duration: 3000,
+            });
+        } else if (item.rests === 0) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Товар отсутствует на складе",
+                type: "error",
+                duration: 3000,
+            });
+        } else if (item.rests < 10) {
+            toaster.create({
+                title: "",
+                description: "Не удалось добавить товар х10",
+                type: "warning",
+                duration: 3000,
+            });
+        } else {
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            handleAddToCart(item);
+            console.log(item.rests)
+            console.log(cartItems.find(cartItem => cartItem.id === item.id)?.stack || 10)
+        }
+    }
+
     return (
         <>
             <div className={styles.square}>
@@ -79,7 +117,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                         </div>
                         <div className={styles.price}>
                             <div className={styles.priceArea}>
-                                <div className={styles.mainPrice}>{item.price} ₽</div>
+                                <div className={styles.mainPrice}>{item.price} ₽  <span>{item.rests} шт</span></div>
                                 <div className={styles.subPrice}>нету</div>
                             </div>
                             <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : 'В наличии'}</div>
@@ -93,7 +131,37 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                             </Link>
                         </div>
                         {cartItems.find(cartItem => cartItem.id === item.id)?.stack > 0 ?
+
                             <div key={item.id} className={styles.counter}>
+
+                                <div key={item.id} onClick={() => {
+                                    if (item.rests === 0) {
+                                        toaster.create({
+                                            title: "Ошибка",
+                                            description: "Товар отсутствует на складе",
+                                            type: "error",
+                                            duration: 3000,
+                                        })
+                                    } else {
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                        handleRemoveFromCart(item)
+                                    }
+                                }}
+                                    className={styles.button}>
+                                    <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="20" fill="#ECF5FF" />
+                                        <rect x="5" y="9" width="10" height="2" fill="#264794" />
+                                    </svg>
+                                </div>
+
                                 <div onClick={() => {
                                     if (item.rests === 0) {
                                         toaster.create({
@@ -112,7 +180,11 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                         <rect x="5" y="9" width="10" height="2" fill="#264794" />
                                     </svg>
                                 </div>
+
                                 <div key={item.id} className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
+
+
+
                                 <div onClick={() => {
                                     if (cartItems.find(cartItem => cartItem.id === item.id)?.stack === item.rests) {
                                         toaster.create({
@@ -131,6 +203,13 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                         <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
                                     </svg>
                                 </div>
+                                <div onClick={() => { superPlus(item) }}
+                                    className={styles.button}>
+                                    <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="20" fill="#ECF5FF" />
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
+                                    </svg>
+                                </div>
                             </div> :
                             <div onClick={() => {
                                 if (item.rests === 0) {
@@ -144,6 +223,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                     handleAddToCart(item)
                                 }
                             }}
+
                                 className={styles.buttonArea}>
                                 <button className={item.rests > 0 ? styles.add : styles.disableAdd}>
                                     <span>Добавить в корзину</span>
