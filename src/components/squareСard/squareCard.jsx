@@ -134,7 +134,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
 
                             <div key={item.id} className={styles.counter}>
 
-                                <div key={item.id} onClick={() => {
+                                <div onClick={() => {
                                     if (item.rests === 0) {
                                         toaster.create({
                                             title: "Ошибка",
