@@ -30,6 +30,10 @@
     border: none;
 }
 
+.input[type="text"] {
+    user-select: all;
+}
+
 .eye {
     position: absolute;
     width: 24px;
