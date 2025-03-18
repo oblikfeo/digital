@@ -8,6 +8,8 @@
     border-radius: 10px;
     gap: 20px;
     max-height: 670px;
+    position: sticky;
+    top: 30px;
 }
 
 .wrapper h1 {
@@ -141,6 +143,8 @@
     .wrapper {
         width: 395px;
         margin-bottom: 0;
+        position: relative;
+        top: 0;
     }
 }
 
