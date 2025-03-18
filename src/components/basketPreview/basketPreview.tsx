@@ -17,6 +17,60 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
     const quantity = useSelector(selectTotalQuantity);
 
     const [where, setWhere] = useState(true)
+    const [isChecking, setIsChecking] = useState(false)
+
+    const checkProductsAvailability = async () => {
+        setIsChecking(true);
+        try {
+            const requests = cartItems.map((item) =>
+                axiosInstance.get(`/api/v1/shop/products?query=${item.id},`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
+                })
+            );
+
+            const responses = await Promise.all(requests);
+            const fetchedProducts = responses.map((response) => response.data.data[0]);
+            
+            // Проверяем каждый товар
+            for (let i = 0; i < cartItems.length; i++) {
+                const cartItem = cartItems[i];
+                const fetchedProduct = fetchedProducts[i];
+                
+                if (cartItem.price !== fetchedProduct.price) {
+                    toaster.create({
+                        title: "Внимание",
+                        description: `Цена товара "${cartItem.title}" изменилась, обновите страницу`,
+                        type: "warning",
+                        duration: 4000,
+                    });
+                    return false;
+                }
+                
+                if (cartItem.stack > fetchedProduct.rests) {
+                    toaster.create({
+                        title: `${cartItem.title}`,
+                        description: `Товар отсутствует в достаточном количестве, доступно к заказу ${fetchedProduct.rests} шт`,
+                        type: "warning",
+                        duration: 4000,
+                    });
+                    return false;
+                }
+            }
+            
+            return true;
+        } catch (error) {
+            console.error('Ошибка при проверке товаров:', error);
+            toaster.create({
+                title: "Ошибка",
+                description: "Не удалось проверить доступность товаров",
+                type: "error",
+                duration: 3000,
+            });
+            return false;
+        } finally {
+            setIsChecking(false);
+        }
+    };
 
     useEffect(() => {
         const requests = cartItems.map((item) =>
@@ -135,16 +189,23 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                 </div>}
                 {open && <div className={styles.next}>
                     <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
-                    <button onClick={() => {
+                    <button onClick={async () => {
                         if (where) {
-                            buy()
+                            const isAvailable = await checkProductsAvailability();
+                            if (isAvailable) {
+                                buy();
+                            }
                         }
                         if (!where) {
-                            buy2()
+                            const isAvailable = await checkProductsAvailability();
+                            if (isAvailable) {
+                                buy2();
+                            }
                         }
                     }}
+                        disabled={isChecking}
                         className={styles.but}>
-                        Оформить заказ
+                        {isChecking ? "Проверка товаров..." : "Оформить заказ"}
                     </button>
                 </div>}
                 <Image className={styles.img} src={basketImg} alt="" />
