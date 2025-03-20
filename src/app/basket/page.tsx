@@ -59,6 +59,24 @@ export default function Basket() {
     }
 
     const buy = async () => {
+        if (!name.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите имя",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!phone.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите номер телефона",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
         try {
             await axiosInstance.post('/api/v1/shop/checkout', {
                 recipient: {
@@ -93,6 +111,60 @@ export default function Basket() {
     };
 
     const buy2 = async () => {
+        if (!name.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите имя",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!phone.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите номер телефона",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!address.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите адрес доставки",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!entrance.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите подъезд",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!floor.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите этаж",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
+        if (!apartment.trim()) {
+            toaster.create({
+                title: "Ошибка",
+                description: "Пожалуйста, введите номер квартиры",
+                type: "error",
+                duration: 5000,
+            });
+            return;
+        }
         try {
             await axiosInstance.post('/api/v1/shop/checkout', {
                 recipient: {

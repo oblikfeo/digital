@@ -52,7 +52,7 @@ export default function ProductUp({ minOrder }) {
         if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
             toaster.create({
                 title: "",
-                description: "Не удалось добавить товар х10",
+                description: "количество единиц товара превышает остаток на складе",
                 type: "warning",
                 duration: 3000,
             });
@@ -66,7 +66,7 @@ export default function ProductUp({ minOrder }) {
         } else if (item.rests < 10) {
             toaster.create({
                 title: "",
-                description: "Не удалось добавить товар х10",
+                description: "количество единиц товара превышает остаток на складе",
                 type: "warning",
                 duration: 3000,
             });
@@ -169,7 +169,7 @@ export default function ProductUp({ minOrder }) {
                                             if (item?.stack === fetch?.rests || fetch?.rests === 0) {
                                                 toaster.create({
                                                     title: "Ошибка",
-                                                    description: "Добавлено максимальное количество",
+                                                    description: "количество единиц товара превышает остаток на складе",
                                                     type: "error",
                                                     duration: 3000,
                                                 })

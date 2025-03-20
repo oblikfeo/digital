@@ -48,11 +48,6 @@ export default function Catalog() {
 
     useEffect(() => {
         setIsLoading(true)
-        toaster.create({
-            title: "Поиск...",
-            type: "success",
-            duration: 2000,
-        })
         axiosInstance.get(getQueries(currentPage, find, sortBy, slug), {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
         }).then((response) => {

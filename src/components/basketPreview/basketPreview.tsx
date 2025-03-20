@@ -30,12 +30,12 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
 
             const responses = await Promise.all(requests);
             const fetchedProducts = responses.map((response) => response.data.data[0]);
-            
+
             // Проверяем каждый товар
             for (let i = 0; i < cartItems.length; i++) {
                 const cartItem = cartItems[i];
                 const fetchedProduct = fetchedProducts[i];
-                
+
                 if (cartItem.price !== fetchedProduct.price) {
                     toaster.create({
                         title: "Внимание",
@@ -45,7 +45,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                     });
                     return false;
                 }
-                
+
                 if (cartItem.stack > fetchedProduct.rests) {
                     toaster.create({
                         title: `${cartItem.title}`,
@@ -56,7 +56,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                     return false;
                 }
             }
-            
+
             return true;
         } catch (error) {
             console.error('Ошибка при проверке товаров:', error);
@@ -134,7 +134,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                                     if (item?.stack >= product?.find(elem => item?.id === elem.id).rests) {
                                         toaster.create({
                                             title: "Ошибка",
-                                            description: "Добавлено максимальное количество",
+                                            description: "количество единиц товара превышает остаток на складе",
                                             type: "error",
                                             duration: 3000,
                                         })
