@@ -226,6 +226,17 @@
     .mark {
         left: 80px;
     }
+
+    .input[type="password"] {
+        padding-top: 22px;
+        font-size: 16px;
+        padding-right: 50px;
+    }
+
+    .input[type="password"]::placeholder {
+        transform: translateY(0px);
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 400px) {
