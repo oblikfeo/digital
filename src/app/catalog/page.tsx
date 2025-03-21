@@ -59,7 +59,7 @@ export default function Catalog() {
                 toaster.create({
                     title: "Каталог обновлен",
                     type: "success",
-                    duration: 3000,
+                    duration: 1000,
                 })
             })
     }, [currentPage, find, sortBy, slug])

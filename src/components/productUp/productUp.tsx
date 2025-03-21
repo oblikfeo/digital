@@ -49,21 +49,21 @@ export default function ProductUp({ minOrder }) {
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
     const superPlus = (item) => {
-        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
+        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > fetch?.rests) {
             toaster.create({
                 title: "",
                 description: "количество единиц товара превышает остаток на складе",
                 type: "warning",
                 duration: 3000,
             });
-        } else if (item.rests === 0) {
+        } else if (fetch?.rests === 0) {
             toaster.create({
                 title: "Ошибка",
                 description: "Товар отсутствует на складе",
                 type: "error",
                 duration: 3000,
             });
-        } else if (item.rests < 10) {
+        } else if (fetch?.rests < 10) {
             toaster.create({
                 title: "",
                 description: "количество единиц товара превышает остаток на складе",
@@ -184,7 +184,7 @@ export default function ProductUp({ minOrder }) {
                                             </svg>
                                         </div>
 
-                                        <div onClick={() => { superPlus(item) }}
+                                        <div onClick={() => { superPlus(fetch) }}
                                             className={styles.button}>
                                             <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect width="20" height="20" fill="#ECF5FF" />

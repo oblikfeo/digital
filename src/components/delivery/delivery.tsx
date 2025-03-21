@@ -2,49 +2,63 @@
 import { useState } from "react"
 import styles from "./delivery.module.css"
 
-export default function Delivery({ setModalChange, name, phone, address, setEntrance, setFloor, setApartment, setComment, where, setWhere, setAdress }) {
+export default function Delivery({ setModalChange, name, phone, setEntrance, setFloor, setApartment, setComment, setWhere, setAdress, address, show, setShow }) {
 
     const [pick, setPick] = useState(true)
+
+    const [initialAddress] = useState(address)
 
     return (
         <div className={styles.wrapper}>
             <h1>Доставка</h1>
             <div className={styles.way}>
-                <div onClick={() => setPick(true)} className={pick ? styles.pick : styles.ways}>Доставка</div>
-                <div onClick={() => setPick(false)} className={pick ? styles.ways : styles.pick}>Самовывоз</div>
+                <div onClick={() => {
+                    setPick(true)
+                    setWhere("Доставка")
+                }} className={pick ? styles.pick : styles.ways}>Доставка</div>
+                <div onClick={() => {
+                    setPick(false)
+                    setWhere("Самовывоз")
+                }} className={pick ? styles.ways : styles.pick}>Самовывоз</div>
             </div>
             {pick && <div className={styles.mainFlex}>
-                <div onClick={() => setWhere(true)} className={styles.flex}>
-                    {where ? redPick : whitePick}
-                    <div>{address}</div>
+                <div onClick={() => {
+                    setAdress(initialAddress)
+                    setShow(!show)
+                }} className={styles.flex}>
+                    {!show ? whitePick : redPick}
+                    <div>{initialAddress}</div>
                 </div>
-                <div onClick={() => setWhere(false)} className={styles.flex}>
-                    {where ? whitePick : redPick}
+                <div onClick={() => {
+                    setAdress("")
+                    setShow(!show)
+                }} className={styles.flex}>
+                    {show ? whitePick : redPick}
                     <div>Другой адрес</div>
                 </div>
             </div>}
-            {!where && pick && <div className={styles.position}>
+            {!show && pick && <div className={styles.position}>
                 <div className={styles.geoImg}>{geo}</div>
                 <input onChange={(e) => setAdress(e.target.value)} className={styles.writeAdress} type="text" placeholder="Адрес (город, улица, номер дома)" />
             </div>}
-            {pick && <div className={styles.details}>
+            {pick && !show && <div className={styles.details}>
                 <div className={styles.upInputs}>
                     <div>
                         <div className={styles.adress}>Подъезд</div>
-                        <input onChange={(e) => setEntrance(e.target.value)} disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setEntrance(e.target.value)} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Этаж</div>
-                        <input onChange={(e) => setFloor(e.target.value)} disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setFloor(e.target.value)} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Квартира</div>
-                        <input onChange={(e) => setApartment(e.target.value)} disabled={where} className={styles.input} type="text" />
+                        <input onChange={(e) => setApartment(e.target.value)} className={styles.input} type="text" />
                     </div>
                 </div>
-                <div>
-                    <input onChange={(e) => setComment(e.target.value)} disabled={where} className={styles.inputBig} type="text" placeholder="Комментарий курьеру" />
-                </div>
+            </div>}
+            {pick && <div>
+                <input onChange={(e) => setComment(e.target.value)} className={styles.inputBig} type="text" placeholder="Комментарий курьеру" />
             </div>}
             {!pick && <div>
                 <div>Ваш заказ будет готов в течении дня.</div>

@@ -35,6 +35,7 @@ export default function Basket() {
     const [floor, setFloor] = useState("")
     const [apartment, setApartment] = useState("")
     const [comment, setComment] = useState("")
+    const [show, setShow] = useState(true)
 
     const dispatch = useDispatch()
 
@@ -129,41 +130,34 @@ export default function Basket() {
             });
             return;
         }
-        if (!address.trim()) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Пожалуйста, введите адрес доставки",
-                type: "error",
-                duration: 5000,
-            });
-            return;
-        }
-        if (!entrance.trim()) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Пожалуйста, введите подъезд",
-                type: "error",
-                duration: 5000,
-            });
-            return;
-        }
-        if (!floor.trim()) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Пожалуйста, введите этаж",
-                type: "error",
-                duration: 5000,
-            });
-            return;
-        }
-        if (!apartment.trim()) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Пожалуйста, введите номер квартиры",
-                type: "error",
-                duration: 5000,
-            });
-            return;
+        if (!show) {
+            if (!entrance.trim()) {
+                toaster.create({
+                    title: "Ошибка",
+                    description: "Пожалуйста, введите подъезд",
+                    type: "error",
+                    duration: 5000,
+                });
+                return;
+            }
+            if (!floor.trim()) {
+                toaster.create({
+                    title: "Ошибка",
+                    description: "Пожалуйста, введите этаж",
+                    type: "error",
+                    duration: 5000,
+                });
+                return;
+            }
+            if (!apartment.trim()) {
+                toaster.create({
+                    title: "Ошибка",
+                    description: "Пожалуйста, введите номер квартиры",
+                    type: "error",
+                    duration: 5000,
+                });
+                return;
+            }
         }
         try {
             await axiosInstance.post('/api/v1/shop/checkout', {
@@ -174,9 +168,11 @@ export default function Basket() {
                 delivery: {
                     type: "delivery",
                     address: address,
-                    entrance: entrance,
-                    floor: floor,
-                    apartment: apartment,
+                    ...(address !== address && {
+                        entrance: entrance,
+                        floor: floor,
+                        apartment: apartment,
+                    }),
                     comment: comment
                 },
                 cart: cartItems.map(createObject)
@@ -203,7 +199,6 @@ export default function Basket() {
         }
     };
 
-
     return (
         <div className={styles.flexContainer}>
             <Login setSlug={undefined} />
@@ -221,7 +216,6 @@ export default function Basket() {
                     name={name}
                     phone={phone}
                     minOrder={minOrder}
-                    address={address}
                     setAdress={setAdress}
                     setProduct={setProduct}
                     product={product}
@@ -232,7 +226,9 @@ export default function Basket() {
                     setFloor={setFloor}
                     setApartment={setApartment}
                     setComment={setComment}
-
+                    address={address}
+                    show={show}
+                    setShow={setShow}
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>ЗооВетМир</span>

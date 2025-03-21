@@ -10,13 +10,13 @@ import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, address, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress }) {
+export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow }) {
 
     const dispatch = useDispatch();
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
 
-    const [where, setWhere] = useState(true)
+    const [where, setWhere] = useState("Доставка")
     const [isChecking, setIsChecking] = useState(false)
 
     const checkProductsAvailability = async () => {
@@ -109,6 +109,17 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
         }
     };
 
+    const scrollToTop = () => {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    };
+
+    useEffect(() => {
+        if (open) {
+            scrollToTop();
+        }
+    }, [open]);
+
     return (
         <div className={styles.open}>
             <div className={styles.wrapper}>
@@ -181,6 +192,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                                 })
                             } else {
                                 setOpen(true)
+                                scrollToTop();
                             }
                         }}
                         className={styles.but}>
@@ -190,13 +202,13 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                 {open && <div className={styles.next}>
                     <div className={styles.totalAmount}><span className={styles.itogo}>Итого:</span> {totalAmount} ₽</div>
                     <button onClick={async () => {
-                        if (where) {
+                        if (where === "Самовывоз") {
                             const isAvailable = await checkProductsAvailability();
                             if (isAvailable) {
                                 buy();
                             }
                         }
-                        if (!where) {
+                        if (where === "Доставка") {
                             const isAvailable = await checkProductsAvailability();
                             if (isAvailable) {
                                 buy2();
@@ -213,15 +225,16 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
             {open ? <Delivery
                 setModalChange={setModalChange}
                 name={name}
-                phone={phone}
                 address={address}
+                phone={phone}
                 setEntrance={setEntrance}
                 setFloor={setFloor}
                 setApartment={setApartment}
                 setComment={setComment}
-                where={where}
                 setWhere={setWhere}
                 setAdress={setAdress}
+                show={show}
+                setShow={setShow}
             /> : <></>}
             <Toaster />
         </div>
