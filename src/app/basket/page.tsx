@@ -238,6 +238,9 @@ export default function Basket() {
                     address={address}
                     show={show}
                     setShow={setShow}
+                    apartment={apartment}
+                    floor={floor}
+                    entrance={entrance}
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>ЗооВетМир</span>

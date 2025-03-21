@@ -10,7 +10,7 @@ import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow }) {
+export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow, apartment, floor, entrance }) {
 
     const dispatch = useDispatch();
     const totalAmount = useSelector(selectTotalAmount);
@@ -237,6 +237,9 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                 setAdress={setAdress}
                 show={show}
                 setShow={setShow}
+                apartment={apartment}
+                floor={floor}
+                entrance={entrance}
             /> : <></>}
             <Toaster />
         </div>
