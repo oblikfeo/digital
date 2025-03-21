@@ -134,7 +134,7 @@ export default function Basket() {
             if (!address.trim()) {
                 toaster.create({
                     title: "Ошибка",
-                    description: "Пожалуйста, введите новый адресс",
+                    description: "Пожалуйста, введите новый адрес",
                     type: "error",
                     duration: 5000,
                 });
