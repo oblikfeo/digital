@@ -29,6 +29,8 @@ export default function Catalog() {
     const [sortBy, setSortBy] = useState<string>()
     const [slug, setSlug] = useState<string>()
 
+    const [isFirstRender, setIsFirstRender] = useState(true)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -56,11 +58,14 @@ export default function Catalog() {
         }).catch((error) => console.error(error))
             .finally(() => {
                 setIsLoading(false)
-                toaster.create({
-                    title: "Каталог обновлен",
-                    type: "success",
-                    duration: 1000,
-                })
+                if (!isFirstRender) {
+                    toaster.create({
+                        title: "Каталог обновлен",
+                        type: "success",
+                        duration: 2000,
+                    })
+                }
+                setIsFirstRender(false)
             })
     }, [currentPage, find, sortBy, slug])
 
