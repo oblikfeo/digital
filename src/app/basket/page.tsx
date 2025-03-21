@@ -131,6 +131,15 @@ export default function Basket() {
             return;
         }
         if (!show) {
+            if (!address.trim()) {
+                toaster.create({
+                    title: "Ошибка",
+                    description: "Пожалуйста, введите новый адресс",
+                    type: "error",
+                    duration: 5000,
+                });
+                return;
+            }
             if (!entrance.trim()) {
                 toaster.create({
                     title: "Ошибка",

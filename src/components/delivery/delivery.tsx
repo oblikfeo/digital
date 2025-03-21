@@ -24,14 +24,14 @@ export default function Delivery({ setModalChange, name, phone, setEntrance, set
             {pick && <div className={styles.mainFlex}>
                 <div onClick={() => {
                     setAdress(initialAddress)
-                    setShow(!show)
+                    setShow(true)
                 }} className={styles.flex}>
                     {!show ? whitePick : redPick}
                     <div>{initialAddress}</div>
                 </div>
                 <div onClick={() => {
                     setAdress("")
-                    setShow(!show)
+                    setShow(false)
                 }} className={styles.flex}>
                     {show ? whitePick : redPick}
                     <div>Другой адрес</div>

@@ -206,12 +206,14 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                             const isAvailable = await checkProductsAvailability();
                             if (isAvailable) {
                                 buy();
+                                scrollToTop();
                             }
                         }
                         if (where === "Доставка") {
                             const isAvailable = await checkProductsAvailability();
                             if (isAvailable) {
                                 buy2();
+                                scrollToTop();
                             }
                         }
                     }}
