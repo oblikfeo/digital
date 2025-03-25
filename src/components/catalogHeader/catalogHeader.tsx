@@ -29,26 +29,21 @@ interface Props {
 
 function debounce(func, wait) {
     let timeout;
-
     return function (...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func.apply(this, args);
-        };
-
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(() => {
+            func.apply(this, args);
+        }, wait);
     };
 }
 
-export default function CatalogHeader({ 
-    setView, 
-    setSortBy, 
-    setFind, 
+export default function CatalogHeader({
+    setView,
+    setSortBy,
+    setFind,
     setSlug,
     initialFind = '',
     initialSortBy = 'По умолчанию',
-    initialSlug = '',
     initialView = 'list'
 }: Props) {
     const searchParams = useSearchParams()
