@@ -18,9 +18,28 @@ import { setUserData } from "@/redux/slices/userSlice";
 import { redirect, useSearchParams, useRouter } from "next/navigation";
 
 export default function Catalog() {
+    return (
+        <div className={styles.flexContainer}>
+            <Login setSlug={() => { }} />
+            <div className={styles.flex}>
+                <Paw1 />
+                <Paw2 />
+                <Paw3 />
+                <Paw4 />
+                <Paw5 />
+                <Suspense fallback={<div>Загрузка...</div>}>
+                    <CatalogContent />
+                </Suspense>
+            </div>
+            <Toaster />
+        </div>
+    );
+}
+
+function CatalogContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    
+
     const [productsFetch, setProductsFetch] = useState([])
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
     const [totalPage, setTotalPage] = useState(1)
@@ -36,7 +55,6 @@ export default function Catalog() {
 
     const dispatch = useDispatch()
 
-    // Обновляем URL при изменении параметров
     useEffect(() => {
         const params = new URLSearchParams();
         if (find) params.set('query', find);
@@ -44,7 +62,7 @@ export default function Catalog() {
         if (slug) params.set('slug', slug);
         if (view) params.set('view', view);
         if (currentPage > 1) params.set('page', currentPage.toString());
-        
+
         const newUrl = params.toString() ? `?${params.toString()}` : '';
         router.push(`/catalog${newUrl}`, { scroll: false });
     }, [find, sortBy, slug, view, currentPage, router]);
@@ -125,48 +143,34 @@ export default function Catalog() {
     }
 
     return (
-        <div className={styles.flexContainer}>
-            <Login
+        <>
+            {check && <CatalogHeader
+                setView={setView}
+                setSortBy={setSortBy}
+                setFind={setFind}
+                setProductsFetch={setProductsFetch}
                 setSlug={setSlug}
-            />
-            <div className={styles.flex}>
-                <Paw1 />
-                <Paw2 />
-                <Paw3 />
-                <Paw4 />
-                <Paw5 />
-                <Suspense fallback={<></>}>
-                    {check && <CatalogHeader
-                        setView={setView}
-                        setSortBy={setSortBy}
-                        setFind={setFind}
-                        setProductsFetch={setProductsFetch}
-                        setSlug={setSlug}
-                        initialFind={find}
-                        initialSortBy={sortBy}
-                        initialSlug={slug}
-                        initialView={view}
-                    />}
-                </Suspense>
-
-                {check && <div className={view === 'list' ? styles.list : styles.square}>
-                    {isLoading ? (
-                        <span className={styles.load}>загрузка товаров...</span>
-                    ) : productsFetch.length === 0 && find ? (
-                        <div className={styles.noFind}>
-                            <h1>Ошибка</h1>
-                            <h2>Такой запрос не найден.</h2>
-                        </div>
-                    ) : (
-                        viewCatalog
-                    )}
-                </div>}
-                {check && <div className={styles.footer}>
-                    <span className={styles.redline}>ЗооВетМир</span>
-                    <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
-                </div>}
-            </div>
-            <Toaster />
-        </div>
+                initialFind={find}
+                initialSortBy={sortBy}
+                initialSlug={slug}
+                initialView={view}
+            />}
+            {check && <div className={view === 'list' ? styles.list : styles.square}>
+                {isLoading ? (
+                    <span className={styles.load}>загрузка товаров...</span>
+                ) : productsFetch.length === 0 && find ? (
+                    <div className={styles.noFind}>
+                        <h1>Ошибка</h1>
+                        <h2>Такой запрос не найден.</h2>
+                    </div>
+                ) : (
+                    viewCatalog
+                )}
+            </div>}
+            {check && <div className={styles.footer}>
+                <span className={styles.redline}>ЗооВетМир</span>
+                <span className={styles.footerText}>ветеринарные препараты для всех видов животных</span>
+            </div>}
+        </>
     );
 }
