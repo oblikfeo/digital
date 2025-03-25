@@ -2,7 +2,7 @@
 import { useState } from "react"
 import styles from "./delivery.module.css"
 
-export default function Delivery({ setModalChange, name, phone, setEntrance, setFloor, setApartment, setComment, setWhere, setAdress, address, show, setShow, apartment, floor, entrance }) {
+export default function Delivery({ setModalChange, name, phone, setEntrance, setFloor, setApartment, setComment, setWhere, setAdress, address, show, setShow }) {
 
     const [pick, setPick] = useState(true)
 
@@ -45,15 +45,15 @@ export default function Delivery({ setModalChange, name, phone, setEntrance, set
                 <div className={styles.upInputs}>
                     <div>
                         <div className={styles.adress}>Подъезд</div>
-                        <input onChange={(e) => setEntrance(e.target.value)} className={entrance.length == 0 ? styles.redInput : styles.input} type="text" />
+                        <input onChange={(e) => setEntrance(e.target.value)} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Этаж</div>
-                        <input onChange={(e) => setFloor(e.target.value)} className={floor.length == 0 ? styles.redInput : styles.input} type="text" />
+                        <input onChange={(e) => setFloor(e.target.value)} className={styles.input} type="text" />
                     </div>
                     <div>
                         <div className={styles.adress}>Квартира</div>
-                        <input onChange={(e) => setApartment(e.target.value)} className={apartment.length == 0 ? styles.redInput : styles.input} type="text" />
+                        <input onChange={(e) => setApartment(e.target.value)} className={styles.input} type="text" />
                     </div>
                 </div>
             </div>}

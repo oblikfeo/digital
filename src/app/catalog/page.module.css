@@ -12,6 +12,7 @@
     background-image: url('../../../img/bcgWelcome.svg');
     background-size: 100%;
     background-repeat: repeat;
+    overflow: hidden;
 }
 
 .square {

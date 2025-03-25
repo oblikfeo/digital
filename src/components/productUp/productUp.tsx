@@ -116,82 +116,78 @@ export default function ProductUp({ minOrder }) {
 
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
+                                        <div className={styles.quantityControls}>
+                                            <button 
+                                                onClick={() => {
+                                                    if (fetch?.rests === 0) {
+                                                        toaster.create({
+                                                            title: "Ошибка",
+                                                            description: "Товар отсутствует на складе",
+                                                            type: "error",
+                                                            duration: 3000,
+                                                        })
+                                                    } else {
+                                                        handleRemoveFromCart(fetch)
+                                                    }
+                                                }}
+                                                className={styles.quantityButton}
+                                                aria-label="Уменьшить количество"
+                                            >
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="20" height="20" fill="#ECF5FF" />
+                                                    <rect x="5" y="9" width="10" height="2" fill="#264794" />
+                                                </svg>
+                                            </button>
 
-                                        <div onClick={() => {
-                                            if (fetch.rests === 0) {
-                                                toaster.create({
-                                                    title: "Ошибка",
-                                                    description: "Товар отсутствует на складе",
-                                                    type: "error",
-                                                    duration: 3000,
-                                                })
-                                            } else {
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                                handleRemoveFromCart(item)
-                                            }
-                                        }}
-                                            className={styles.button}>
-                                            <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="20" height="20" fill="#ECF5FF" />
-                                                <rect x="5" y="9" width="10" height="2" fill="#264794" />
-                                            </svg>
+                                            <input 
+                                                type="number"
+                                                min="0"
+                                                max={fetch?.rests}
+                                                value={item?.stack || 0}
+                                                onChange={(e) => {
+                                                    const newValue = parseInt(e.target.value) || 0;
+                                                    const currentValue = item?.stack || 0;
+                                                    
+                                                    if (newValue > currentValue) {
+                                                        const diff = newValue - currentValue;
+                                                        for (let i = 0; i < diff; i++) {
+                                                            if (newValue <= fetch?.rests) {
+                                                                handleAddToCart(fetch);
+                                                            }
+                                                        }
+                                                    } else if (newValue < currentValue) {
+                                                        const diff = currentValue - newValue;
+                                                        for (let i = 0; i < diff; i++) {
+                                                            handleRemoveFromCart(fetch);
+                                                        }
+                                                    }
+                                                }}
+                                                className={styles.quantityInput}
+                                                aria-label="Количество товара"
+                                            />
+
+                                            <button 
+                                                onClick={() => {
+                                                    if (item?.stack >= fetch?.rests) {
+                                                        toaster.create({
+                                                            title: "Ошибка",
+                                                            description: "количество единиц товара превышает остаток на складе",
+                                                            type: "error",
+                                                            duration: 3000,
+                                                        })
+                                                    } else {
+                                                        handleAddToCart(fetch)
+                                                    }
+                                                }}
+                                                className={styles.quantityButton}
+                                                aria-label="Увеличить количество"
+                                            >
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect width="20" height="20" fill="#ECF5FF" />
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
+                                                </svg>
+                                            </button>
                                         </div>
-
-                                        <div onClick={() => {
-                                            if (fetch?.rests === 0) {
-                                                toaster.create({
-                                                    title: "Ошибка",
-                                                    description: "Товар отсутствует на складе",
-                                                    type: "error",
-                                                    duration: 3000,
-                                                })
-                                            } else {
-                                                handleRemoveFromCart(fetch)
-                                            }
-                                        }} className={styles.button}>
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="20" height="20" fill="#ECF5FF" />
-                                                <rect x="5" y="9" width="10" height="2" fill="#264794" />
-                                            </svg>
-                                        </div>
-
-                                        <div className={styles.number}>{item?.stack || "0"} шт</div>
-
-                                        <div onClick={() => {
-                                            if (item?.stack === fetch?.rests || fetch?.rests === 0) {
-                                                toaster.create({
-                                                    title: "Ошибка",
-                                                    description: "количество единиц товара превышает остаток на складе",
-                                                    type: "error",
-                                                    duration: 3000,
-                                                })
-                                            } else {
-                                                handleAddToCart(fetch)
-                                            }
-                                        }}
-                                            className={styles.button}>
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="20" height="20" fill="#ECF5FF" />
-                                                <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
-                                            </svg>
-                                        </div>
-
-                                        <div onClick={() => { superPlus(fetch) }}
-                                            className={styles.button}>
-                                            <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="20" height="20" fill="#ECF5FF" />
-                                                <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
-                                            </svg>
-                                        </div>
-
                                     </div>
                                     <div className={styles.h4}>= {fetch?.price * item?.stack || 0} ₽</div>
                                 </div>

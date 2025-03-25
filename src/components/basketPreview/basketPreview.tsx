@@ -10,7 +10,7 @@ import Delivery from "../delivery/delivery";
 import { useEffect, useState } from "react";
 import { axiosInstance } from "@/api/__API__";
 
-export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow, apartment, floor, entrance }) {
+export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow }) {
 
     const dispatch = useDispatch();
     const totalAmount = useSelector(selectTotalAmount);
@@ -132,29 +132,68 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                             </div>
                         </div>
                         <div className={styles.counter}>
-                            <div
-                                onClick={() => handleRemoveFromCart(item)}
-                                className={styles.button}>
-                                {minus}
-                            </div>
-                            <div className={styles.number}>
-                                {cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт
-                            </div>
-                            <div
-                                onClick={() => {
-                                    if (item?.stack >= product?.find(elem => item?.id === elem.id).rests) {
-                                        toaster.create({
-                                            title: "Ошибка",
-                                            description: "количество единиц товара превышает остаток на складе",
-                                            type: "error",
-                                            duration: 3000,
-                                        })
-                                    } else {
-                                        handleAddToCart(item)
-                                    }
-                                }}
-                                className={styles.button}>
-                                {plus}
+                            <div className={styles.quantityControls}>
+                                <button
+                                    onClick={() => handleRemoveFromCart(item)}
+                                    className={styles.quantityButton}
+                                    aria-label="Уменьшить количество"
+                                >
+                                    {minus}
+                                </button>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max={product?.find(elem => item?.id === elem.id)?.rests || 0}
+                                    value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                    onChange={(e) => {
+                                        const newValue = parseInt(e.target.value) || 0;
+                                        const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
+                                        const maxRests = product?.find(elem => item?.id === elem.id).rests;
+
+                                        if (newValue > currentValue) {
+                                            const diff = newValue - currentValue;
+                                            for (let i = 0; i < diff; i++) {
+                                                if (newValue <= maxRests) {
+                                                    handleAddToCart(item);
+                                                }
+                                            }
+                                        } else if (newValue < currentValue) {
+                                            const diff = currentValue - newValue;
+                                            for (let i = 0; i < diff; i++) {
+                                                handleRemoveFromCart(item);
+                                            }
+                                        }
+                                    }}
+                                    className={styles.quantityInput}
+                                    aria-label="Количество товара"
+                                />
+
+                                <button
+                                    onClick={() => {
+                                        if (item.rests === 0) {
+                                            toaster.create({
+                                                title: "Ошибка",
+                                                description: "Товар отсутствует на складе",
+                                                type: "error",
+                                                duration: 3000,
+                                            })
+                                        } else if (cartItems.find(cartItem => cartItem.id === item.id)?.stack === item.rests) {
+                                            toaster.create({
+                                                title: "Ошибка",
+                                                description: "количество единиц товара превышает остаток на складе",
+                                                type: "error",
+                                                duration: 3000,
+                                            })
+                                        } else {
+                                            handleAddToCart(item)
+                                        }
+                                    }}
+                                    className={styles.quantityButton}
+                                    aria-label="Увеличить количество"
+                                >
+                                    {plus}
+                                </button>
                             </div>
                         </div>
                         <div className={styles.flex}>
@@ -237,9 +276,6 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                 setAdress={setAdress}
                 show={show}
                 setShow={setShow}
-                apartment={apartment}
-                floor={floor}
-                entrance={entrance}
             /> : <></>}
             <Toaster />
         </div>

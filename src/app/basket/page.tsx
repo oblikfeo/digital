@@ -140,33 +140,6 @@ export default function Basket() {
                 });
                 return;
             }
-            if (!entrance.trim()) {
-                toaster.create({
-                    title: "Ошибка",
-                    description: "Пожалуйста, введите подъезд",
-                    type: "error",
-                    duration: 5000,
-                });
-                return;
-            }
-            if (!floor.trim()) {
-                toaster.create({
-                    title: "Ошибка",
-                    description: "Пожалуйста, введите этаж",
-                    type: "error",
-                    duration: 5000,
-                });
-                return;
-            }
-            if (!apartment.trim()) {
-                toaster.create({
-                    title: "Ошибка",
-                    description: "Пожалуйста, введите номер квартиры",
-                    type: "error",
-                    duration: 5000,
-                });
-                return;
-            }
         }
         try {
             await axiosInstance.post('/api/v1/shop/checkout', {
@@ -238,9 +211,6 @@ export default function Basket() {
                     address={address}
                     show={show}
                     setShow={setShow}
-                    apartment={apartment}
-                    floor={floor}
-                    entrance={entrance}
                 />
                 <div className={styles.footer}>
                     <span className={styles.redline}>ЗооВетМир</span>

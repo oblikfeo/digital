@@ -20,6 +20,10 @@ interface Props {
     setSortBy: (value: string) => void;
     setFind: (value: string) => void;
     setSlug: (value: string) => void;
+    initialFind?: string;
+    initialSortBy?: string;
+    initialSlug?: string;
+    initialView?: string;
 }
 
 
@@ -37,23 +41,39 @@ function debounce(func, wait) {
     };
 }
 
-export default function CatalogHeader({ setView, setSortBy, setFind, setSlug }: Props) {
-
+export default function CatalogHeader({ 
+    setView, 
+    setSortBy, 
+    setFind, 
+    setSlug,
+    initialFind = '',
+    initialSortBy = 'По умолчанию',
+    initialSlug = '',
+    initialView = 'list'
+}: Props) {
     const searchParams = useSearchParams()
-
     const totalQuantity = useSelector(selectTotalQuantity)
 
-    const [borderList, setBorderList] = useState(true)
-    const [borderSquare, setBorderSquare] = useState(false)
+    const [borderList, setBorderList] = useState(initialView === 'list')
+    const [borderSquare, setBorderSquare] = useState(initialView === 'square')
     const [catalogButtonIpad, setCatalogButtonIpad] = useState(true)
-    const [inputText, setInputText] = useState('')
-    const [select, setSelect] = useState('По умолчанию')
+    const [inputText, setInputText] = useState(initialFind)
+    const [select, setSelect] = useState(initialSortBy)
 
     useEffect(() => {
-        if (searchParams.get("productSearch")) {
-            setInputText(searchParams.get("productSearch"))
+        if (searchParams.get("query")) {
+            setInputText(searchParams.get("query") || '')
         }
-    }, [searchParams])
+        if (searchParams.get("order")) {
+            setSelect(searchParams.get("order") || 'По умолчанию')
+        }
+        if (searchParams.get("view")) {
+            const view = searchParams.get("view") || 'list'
+            setView(view)
+            setBorderList(view === 'list')
+            setBorderSquare(view === 'square')
+        }
+    }, [searchParams, setView])
 
     const onResize = () => {
         if (window.screen.width < 800) {
@@ -135,7 +155,7 @@ export default function CatalogHeader({ setView, setSortBy, setFind, setSlug }: 
                     </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
-                        <span className={styles.font}>+7 904 829‑92‑02</span>
+                        <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
                     <Link className={styles.lkimg} href="/lk">
                         {lkImg}

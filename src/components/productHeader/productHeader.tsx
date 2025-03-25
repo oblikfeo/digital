@@ -4,21 +4,18 @@ import Image from 'next/image';
 import logo from '../../../img/miniLogo.svg'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useSelector } from 'react-redux';
 import { selectTotalQuantity } from '@/redux/slices/cartSlice';
 import { axiosInstance } from '@/api/__API__';
 import wa from '../../../img/whatsapp.png'
 
 export default function ProductHeader() {
-
     const totalQuantity = useSelector(selectTotalQuantity)
-
+    const searchParams = useSearchParams()
     const [productSearch, setProductSearch] = useState("")
-
     const pathname = usePathname()
     const slug = pathname.split('/').pop()
-
     const [fetch, setFetch] = useState(null)
 
     useEffect(() => {
@@ -29,9 +26,26 @@ export default function ProductHeader() {
         }).catch((error) => console.error(error))
     }, [])
 
+    // Получаем параметры из URL для возврата в каталог
+    const query = searchParams.get('query') || ''
+    const order = searchParams.get('order') || ''
+    const view = searchParams.get('view') || 'list'
+    const categorySlug = searchParams.get('slug') || ''
+
+    // Создаем объект с параметрами для URL каталога
+    const catalogParams = {
+        query: query,
+        order: order,
+        view: view,
+        slug: categorySlug
+    }
+
     return (
         <div className={styles.welcomeContainer}>
-            <Link href="/catalog" >
+            <Link href={{
+                pathname: "/catalog",
+                query: catalogParams
+            }}>
                 <Image className={styles.logo} src={logo} alt='' />
             </Link>
             <div className={styles.header}>
@@ -49,7 +63,7 @@ export default function ProductHeader() {
                     </a>
                     <a className={styles.link1} href="tel:+79048299202">
                         {tel}
-                        <span className={styles.font}>+7 904 829‑92‑02</span>
+                        <span className={styles.font}>+7 904 829‑92‑02</span>
                     </a>
                     <Link className={styles.lkimg} href="/lk">
                         {lkImg}
@@ -69,7 +83,13 @@ export default function ProductHeader() {
                     <div className={styles.sideB}></div>
                     <div className={styles.text}>
                         <div className={styles.flex}>
-                            <Link className={styles.flex} href="/catalog">
+                            <Link 
+                                className={styles.flex} 
+                                href={{
+                                    pathname: "/catalog",
+                                    query: catalogParams
+                                }}
+                            >
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M15.4 7.4L14 6L8 12L14 18L15.4 16.6L10.8 12L15.4 7.4Z" fill="#264794" />
                                 </svg>
@@ -90,13 +110,11 @@ export default function ProductHeader() {
                         />
                         <Link href={{
                             pathname: `/catalog`,
-                            query: { productSearch: productSearch }, // Передаем id через query параметры
+                            query: catalogParams
                         }}>
                             {searchIcon}
                         </Link>
                     </div>
-
-
                 </div>
             </div>
         </div>

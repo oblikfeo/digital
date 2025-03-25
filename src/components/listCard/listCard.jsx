@@ -5,11 +5,26 @@ import { toaster } from "@/components/Toaster/toaster"
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 export default function ListCard({ setCurrentPage, totalPage, currentPage, productsFetch }) {
-
+    const searchParams = useSearchParams()
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
+
+    // Получаем текущие параметры URL
+    const query = searchParams.get('query') || ''
+    const order = searchParams.get('order') || ''
+    const view = searchParams.get('view') || 'list'
+    const categorySlug = searchParams.get('slug') || ''
+
+    // Создаем объект с параметрами для URL
+    const catalogParams = {
+        query: query,
+        order: order,
+        view: view,
+        slug: categorySlug
+    }
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
@@ -113,105 +128,105 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                         {item.id == 1 ? skid : ""}
                         <Link href={{
                             pathname: `/catalog/${item.slug}`,
-                            query: { id: item.id }, // Передаем id через query параметры
+                            query: { 
+                                ...catalogParams,
+                                id: item.id 
+                            }
                         }}>
                             <Image props={item.id} className={styles.link} src={item.images[0] ?? img} alt='' width={60} height={60} />
                         </Link>
                         <div props={item.id} className={styles.discription}>
                             <Link href={{
                                 pathname: `/catalog/${item.slug}`,
-                                query: { id: item.id }, // Передаем id через query параметры
+                                query: { 
+                                    ...catalogParams,
+                                    id: item.id 
+                                }
                             }}>
                                 {item.title}
                             </Link>
                         </div>
                         <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : `Доступно ${item.rests} шт`}</div>
                         <div key={item.id} className={styles.counter}>
+                            <div className={styles.quantityControls}>
+                                <button 
+                                    onClick={() => {
+                                        if (item.rests === 0) {
+                                            toaster.create({
+                                                title: "Ошибка",
+                                                description: "Товар отсутствует на складе",
+                                                type: "error",
+                                                duration: 3000,
+                                            })
+                                        } else {
+                                            handleRemoveFromCart(item)
+                                        }
+                                    }}
+                                    className={styles.quantityButton}
+                                    aria-label="Уменьшить количество"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="20" fill="#ECF5FF" />
+                                        <rect x="5" y="9" width="10" height="2" fill="#264794" />
+                                    </svg>
+                                </button>
 
-                            <div onClick={() => {
-                                if (item.rests === 0) {
-                                    toaster.create({
-                                        title: "Ошибка",
-                                        description: "Товар отсутствует на складе",
-                                        type: "error",
-                                        duration: 3000,
-                                    })
-                                } else {
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                    handleRemoveFromCart(item)
-                                }
-                            }}
-                                className={styles.button}>
-                                <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <rect x="5" y="9" width="10" height="2" fill="#264794" />
-                                </svg>
+                                <input 
+                                    type="number"
+                                    min="0"
+                                    max={item.rests}
+                                    value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                    onChange={(e) => {
+                                        const newValue = parseInt(e.target.value) || 0;
+                                        const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
+                                        
+                                        if (newValue > currentValue) {
+                                            const diff = newValue - currentValue;
+                                            for (let i = 0; i < diff; i++) {
+                                                if (newValue <= item.rests) {
+                                                    handleAddToCart(item);
+                                                }
+                                            }
+                                        } else if (newValue < currentValue) {
+                                            const diff = currentValue - newValue;
+                                            for (let i = 0; i < diff; i++) {
+                                                handleRemoveFromCart(item);
+                                            }
+                                        }
+                                    }}
+                                    className={styles.quantityInput}
+                                    aria-label="Количество товара"
+                                />
+
+                                <button 
+                                    onClick={() => {
+                                        if (item.rests === 0) {
+                                            toaster.create({
+                                                title: "Ошибка",
+                                                description: "Товар отсутствует на складе",
+                                                type: "error",
+                                                duration: 3000,
+                                            })
+                                        } else if (cartItems.find(cartItem => cartItem.id === item.id)?.stack === item.rests) {
+                                            toaster.create({
+                                                title: "Ошибка",
+                                                description: "количество единиц товара превышает остаток на складе",
+                                                type: "error",
+                                                duration: 3000,
+                                            })
+                                        } else {
+                                            handleAddToCart(item)
+                                        }
+                                    }}
+                                    className={styles.quantityButton}
+                                    aria-label="Увеличить количество"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="20" height="20" fill="#ECF5FF" />
+                                        <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
+                                    </svg>
+                                </button>
                             </div>
-
-                            <div onClick={() => {
-                                if (item.rests === 0) {
-                                    toaster.create({
-                                        title: "Ошибка",
-                                        description: "Товар отсутствует на складе",
-                                        type: "error",
-                                        duration: 3000,
-                                    })
-                                } else {
-                                    handleRemoveFromCart(item)
-                                }
-                            }}
-                                className={styles.button}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <rect x="5" y="9" width="10" height="2" fill="#264794" />
-                                </svg>
-                            </div>
-
-                            <div key={item.id} className={styles.number}>{cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0} шт</div>
-
-                            <div onClick={() => {
-                                if (cartItems.find(cartItem => cartItem.id === item.id)?.stack >= item.rests) {
-                                    toaster.create({
-                                        title: "Ошибка",
-                                        description: "количество единиц товара превышает остаток на складе",
-                                        type: "error",
-                                        duration: 3000,
-                                    })
-                                } else if (item.rests === 0) {
-                                    toaster.create({
-                                        title: "Ошибка",
-                                        description: "Товар отсутствует на складе",
-                                        type: "error",
-                                        duration: 3000,
-                                    })
-                                } else {
-                                    handleAddToCart(item)
-                                }
-                            }}
-                                className={styles.button}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
-                                </svg>
-                            </div>
-
-                            <div onClick={() => { superPlus(item) }}
-                                className={styles.button}>
-                                <svg className={styles.superButton} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="20" height="20" fill="#ECF5FF" />
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M9 11V15H11V11H15V9H11V5H9V9H5V11H9Z" fill="#264794" />
-                                </svg>
-                            </div>
-
-
                         </div>
                         <div className={styles.price}>
                             <div>

@@ -15,23 +15,39 @@ import { Suspense } from 'react';
 import { axiosInstance } from "../../api/__API__";
 import { useDispatch } from "react-redux";
 import { setUserData } from "@/redux/slices/userSlice";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams, useRouter } from "next/navigation";
 
 export default function Catalog() {
-
-    const [productsFetch, setProductsFetch] = useState([]) // рендерим этот массив
-    const [currentPage, setCurrentPage] = useState(1) // текущая страница пагинации
-    const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    
+    const [productsFetch, setProductsFetch] = useState([])
+    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1)
+    const [totalPage, setTotalPage] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
     const [check, setCheck] = useState(false)
 
-    const [find, setFind] = useState<string>()
-    const [sortBy, setSortBy] = useState<string>()
-    const [slug, setSlug] = useState<string>()
+    const [find, setFind] = useState<string>(searchParams.get('query') || '')
+    const [sortBy, setSortBy] = useState<string>(searchParams.get('order') || '')
+    const [slug, setSlug] = useState<string>(searchParams.get('slug') || '')
+    const [view, setView] = useState(searchParams.get('view') || 'list')
 
     const [isFirstRender, setIsFirstRender] = useState(true)
 
     const dispatch = useDispatch()
+
+    // Обновляем URL при изменении параметров
+    useEffect(() => {
+        const params = new URLSearchParams();
+        if (find) params.set('query', find);
+        if (sortBy) params.set('order', sortBy);
+        if (slug) params.set('slug', slug);
+        if (view) params.set('view', view);
+        if (currentPage > 1) params.set('page', currentPage.toString());
+        
+        const newUrl = params.toString() ? `?${params.toString()}` : '';
+        router.push(`/catalog${newUrl}`, { scroll: false });
+    }, [find, sortBy, slug, view, currentPage, router]);
 
     useEffect(() => {
         setCheck(true)
@@ -71,12 +87,11 @@ export default function Catalog() {
 
     useEffect(() => {
         if (productsFetch.length === 0 && currentPage !== 1) {
-            setCurrentPage(1); // Устанавливаем currentPage равной 1, если productsFetch пустой
+            setCurrentPage(1);
         }
     }, [currentPage, productsFetch])
 
     const getQueries = (currentPage: number, find?: string, sortBy?: string, slug?: string) => {
-
         let baseUrl = `https://zoo.devsrv.ru/api/v1/shop/products?`
 
         if (currentPage) {
@@ -94,9 +109,6 @@ export default function Catalog() {
         return baseUrl
     }
 
-
-    // switch кейсы переключения вида каталога
-    const [view, setView] = useState('list')
     let viewCatalog;
     switch (view) {
         case "list":
@@ -130,6 +142,10 @@ export default function Catalog() {
                         setFind={setFind}
                         setProductsFetch={setProductsFetch}
                         setSlug={setSlug}
+                        initialFind={find}
+                        initialSortBy={sortBy}
+                        initialSlug={slug}
+                        initialView={view}
                     />}
                 </Suspense>
 

@@ -64,13 +64,24 @@
 }
 
 .discription {
-    max-height: 72px;
     width: 100%;
-    padding: 0px 10px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.discription a {
+    color: #264794;
+    text-decoration: none;
     font-size: 16px;
+    line-height: 24px;
     font-weight: 400;
-    color: rgba(4, 13, 35, 1);
-    cursor: pointer;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .buttonArea {
@@ -188,6 +199,50 @@
 
 .mainPrice span {
     color: black;
+}
+
+.quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ECF5FF;
+    border-radius: 4px;
+    padding: 4px;
+    width: fit-content;
+}
+
+.quantityButton {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ECF5FF;
+    border: none;
+    cursor: pointer;
+    transition: none;
+}
+
+.quantityButton:hover {
+    background: #ECF5FF;
+}
+
+.quantityInput {
+    width: 40px;
+    height: 24px;
+    text-align: center;
+    border: 1px solid #264794;
+    border-radius: 4px;
+    background: white;
+    font-size: 16px;
+    color: #264794;
+    -moz-appearance: textfield;
+}
+
+.quantityInput::-webkit-outer-spin-button,
+.quantityInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 @media (max-width:1200px) {
@@ -353,5 +408,22 @@
 @media (max-width:340px) {
     .cart {
         min-width: 144px;
+    }
+}
+
+@media (max-width:768px) {
+    .quantityControls {
+        padding: 2px;
+    }
+
+    .quantityButton {
+        width: 28px;
+        height: 28px;
+    }
+
+    .quantityInput {
+        width: 40px;
+        height: 28px;
+        font-size: 14px;
     }
 }
