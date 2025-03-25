@@ -45,44 +45,7 @@ export default function ProductUp({ minOrder }) {
     const handleRemoveFromCart = (productId) => dispatch(removeFromCart(productId));
 
     const [open, setOpen] = useState(false)
-    const cartItems = useSelector((state: AppState) => state.cart.items);
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
-
-    const superPlus = (item) => {
-        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > fetch?.rests) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else if (fetch?.rests === 0) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Товар отсутствует на складе",
-                type: "error",
-                duration: 3000,
-            });
-        } else if (fetch?.rests < 10) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else {
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-        }
-    }
 
     return (
         <div className={styles.wrapper}>
@@ -117,7 +80,7 @@ export default function ProductUp({ minOrder }) {
                                 <div className={styles.calc}>
                                     <div className={styles.counter}>
                                         <div className={styles.quantityControls}>
-                                            <button 
+                                            <button
                                                 onClick={() => {
                                                     if (fetch?.rests === 0) {
                                                         toaster.create({
@@ -139,7 +102,7 @@ export default function ProductUp({ minOrder }) {
                                                 </svg>
                                             </button>
 
-                                            <input 
+                                            <input
                                                 type="number"
                                                 min="0"
                                                 max={fetch?.rests}
@@ -147,7 +110,7 @@ export default function ProductUp({ minOrder }) {
                                                 onChange={(e) => {
                                                     const newValue = parseInt(e.target.value) || 0;
                                                     const currentValue = item?.stack || 0;
-                                                    
+
                                                     if (newValue > currentValue) {
                                                         const diff = newValue - currentValue;
                                                         for (let i = 0; i < diff; i++) {
@@ -166,7 +129,7 @@ export default function ProductUp({ minOrder }) {
                                                 aria-label="Количество товара"
                                             />
 
-                                            <button 
+                                            <button
                                                 onClick={() => {
                                                     if (item?.stack >= fetch?.rests) {
                                                         toaster.create({
