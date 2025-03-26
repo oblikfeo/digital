@@ -25,10 +25,9 @@ export default function ProductUp({ minOrder }) {
     const inputRef = useRef(null);
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
-    // Обработчик для предотвращения потери фокуса
+    // Обработчик для выделения текста при фокусе
     const handleInputFocus = (e) => {
-        e.stopPropagation(); // Останавливаем всплытие события
-        e.target.select(); // Выделяем текст
+        e.target.select();
     };
 
     useEffect(() => {
@@ -117,7 +116,6 @@ export default function ProductUp({ minOrder }) {
                                                 value={item?.stack || 0}
                                                 onFocus={handleInputFocus}
                                                 onChange={(e) => {
-                                                    e.stopPropagation(); // Останавливаем всплытие события
                                                     const newValue = parseInt(e.target.value) || 0;
                                                     const currentValue = item?.stack || 0;
 
