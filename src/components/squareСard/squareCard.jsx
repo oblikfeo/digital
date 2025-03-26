@@ -13,21 +13,6 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
     const inputRef = useRef(null);
-    const isFirstAdd = useRef(true);
-
-    // Обработчик для выделения текста при фокусе
-    const handleInputFocus = (e) => {
-        e.target.select();
-    };
-
-    useEffect(() => {
-        // Выделяем значение только при первом добавлении товара
-        if (cartItems.length > 0 && inputRef.current && isFirstAdd.current) {
-            inputRef.current.focus();
-            inputRef.current.select();
-            isFirstAdd.current = false;
-        }
-    }, [cartItems]);
 
     // Получаем текущие параметры URL
     const query = searchParams.get('query') || ''
