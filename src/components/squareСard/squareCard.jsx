@@ -164,6 +164,7 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                         value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
                                         onFocus={handleInputFocus}
                                         onChange={(e) => {
+                                            e.stopPropagation(); // Останавливаем всплытие события
                                             const newValue = parseInt(e.target.value) || 0;
                                             const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
                                             

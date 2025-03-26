@@ -117,6 +117,7 @@ export default function ProductUp({ minOrder }) {
                                                 value={item?.stack || 0}
                                                 onFocus={handleInputFocus}
                                                 onChange={(e) => {
+                                                    e.stopPropagation(); // Останавливаем всплытие события
                                                     const newValue = parseInt(e.target.value) || 0;
                                                     const currentValue = item?.stack || 0;
 
