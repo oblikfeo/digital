@@ -81,44 +81,6 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
         );
     };
 
-    const superPlus = (item) => {
-        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else if (item.rests === 0) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Товар отсутствует на складе",
-                type: "error",
-                duration: 3000,
-            });
-        } else if (item.rests < 10) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else {
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            console.log(item.rests)
-            console.log(cartItems.find(cartItem => cartItem.id === item.id)?.stack || 10)
-        }
-    }
-
     return (
         <>
             <div className={styles.wrapper}>
@@ -128,9 +90,9 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                         {item.id == 1 ? skid : ""}
                         <Link href={{
                             pathname: `/catalog/${item.slug}`,
-                            query: { 
+                            query: {
                                 ...catalogParams,
-                                id: item.id 
+                                id: item.id
                             }
                         }}>
                             <Image props={item.id} className={styles.link} src={item.images[0] ?? img} alt='' width={60} height={60} />
@@ -138,9 +100,9 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                         <div props={item.id} className={styles.discription}>
                             <Link href={{
                                 pathname: `/catalog/${item.slug}`,
-                                query: { 
+                                query: {
                                     ...catalogParams,
-                                    id: item.id 
+                                    id: item.id
                                 }
                             }}>
                                 {item.title}
@@ -149,7 +111,7 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                         <div className={item.rests > 0 ? styles.have : styles.havent}>{item.rests === 0 ? 'Нет в наличии' : `Доступно ${item.rests} шт`}</div>
                         <div key={item.id} className={styles.counter}>
                             <div className={styles.quantityControls}>
-                                <button 
+                                <button
                                     onClick={() => {
                                         if (item.rests === 0) {
                                             toaster.create({
@@ -171,15 +133,21 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                                     </svg>
                                 </button>
 
-                                <input 
-                                    type="number"
+                                <input
+                                    type="text"
                                     min="0"
                                     max={item.rests}
                                     value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === '0' && e.target.value === '') {
+                                            e.preventDefault();
+                                        }
+                                    }}
                                     onChange={(e) => {
-                                        const newValue = parseInt(e.target.value) || 0;
+                                        const value = e.target.value.replace(/[^0-9]/g, '');
+                                        const newValue = parseInt(value) || 0;
                                         const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
-                                        
+
                                         if (newValue > currentValue) {
                                             const diff = newValue - currentValue;
                                             for (let i = 0; i < diff; i++) {
@@ -192,13 +160,17 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                                             for (let i = 0; i < diff; i++) {
                                                 handleRemoveFromCart(item);
                                             }
+                                        } else if (newValue === 0 && currentValue > 0) {
+                                            for (let i = 0; i < currentValue; i++) {
+                                                handleRemoveFromCart(item);
+                                            }
                                         }
                                     }}
                                     className={styles.quantityInput}
                                     aria-label="Количество товара"
                                 />
 
-                                <button 
+                                <button
                                     onClick={() => {
                                         if (item.rests === 0) {
                                             toaster.create({
