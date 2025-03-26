@@ -240,8 +240,6 @@
 
     .counter {
         margin-top: 10px;
-        width: 189px;
-        padding: 19px 10px;
     }
 
     .card {
@@ -254,7 +252,7 @@
     .flex {
         position: absolute;
         right: 0;
-        bottom: 5px;
+        bottom: 10px;
     }
 
     .mainPrice {
@@ -276,11 +274,6 @@
 }
 
 @media (max-width: 380px) {
-    .counter {
-        margin-top: 10px;
-        width: 150px;
-        padding: 19px 10px;
-    }
 
     .description {
         font-size: 13px;
