@@ -79,6 +79,12 @@ export default function Basket() {
             return;
         }
         try {
+            toaster.create({
+                title: "Оформление заказа",
+                description: "Пожалуйста, подождите. Оформляем ваш заказ...",
+                type: "info",
+                duration: 4000,
+            });
             await axiosInstance.post('/api/v1/shop/checkout', {
                 recipient: {
                     name: name,
@@ -142,6 +148,12 @@ export default function Basket() {
             }
         }
         try {
+            toaster.create({
+                title: "Оформление заказа",
+                description: "Пожалуйста, подождите. Оформляем ваш заказ...",
+                type: "info",
+                duration: 4000,
+            });
             await axiosInstance.post('/api/v1/shop/checkout', {
                 recipient: {
                     name: name,
