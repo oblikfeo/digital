@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectTotalAmount, removeFromCart, addToCart, selectTotalQuantity } from '../../redux/slices/cartSlice';
 import { Toaster, toaster } from "@/components/Toaster/toaster"
 import Delivery from "../delivery/delivery";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { axiosInstance } from "@/api/__API__";
 
 export default function BasketPreview({ open, setOpen, setModalChange, name, phone, minOrder, setProduct, product, cartItems, buy, setEntrance, setFloor, setApartment, setComment, buy2, setAdress, address, show, setShow }) {
@@ -15,6 +15,8 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
     const dispatch = useDispatch();
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
+    const inputRef = useRef(null);
+    const isFirstAdd = useRef(true);
 
     const [where, setWhere] = useState("Доставка")
     const [isChecking, setIsChecking] = useState(false)
@@ -88,6 +90,14 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
             });
     }, []);
 
+    useEffect(() => {
+        // Выделяем значение только при первом добавлении товара
+        if (cartItems.length > 0 && inputRef.current && isFirstAdd.current) {
+            inputRef.current.focus();
+            inputRef.current.select();
+            isFirstAdd.current = false;
+        }
+    }, [cartItems]);
 
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
@@ -142,6 +152,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                                 </button>
 
                                 <input
+                                    ref={inputRef}
                                     type="number"
                                     min="0"
                                     max={product?.find(elem => item?.id === elem.id)?.rests || 0}

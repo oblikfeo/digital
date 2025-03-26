@@ -137,7 +137,8 @@ export default function ListCard({ setCurrentPage, totalPage, currentPage, produ
                                     type="text"
                                     min="0"
                                     max={item.rests}
-                                    value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                    value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0 || ""}
+                                    placeholder='0'
                                     onKeyDown={(e) => {
                                         if (e.key === '0' && e.target.value === '') {
                                             e.preventDefault();

@@ -4,7 +4,7 @@ import img from '/img/newHaventLogo.svg'
 import Image from "next/image";
 import Paragraph from "../UI kit/paragraph/paragraph";
 import ProductDown from "../productDown/productDown";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, AppState, removeFromCart } from '../../redux/slices/cartSlice';
@@ -21,6 +21,9 @@ export default function ProductUp({ minOrder }) {
     const [similar, setSimilar] = useState([])
     const [currentPage, setCurrentPage] = useState(1) // текущая страница пагинации
     const [totalPage, setTotalPage] = useState(1) // последняя страница пагинации
+
+    const inputRef = useRef(null);
+    const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
     useEffect(() => {
         axiosInstance.get(`/api/v1/shop/products/${slug}`, {
@@ -39,13 +42,11 @@ export default function ProductUp({ minOrder }) {
         }).catch((error) => console.error(error))
     }, [currentPage, slug])
 
-
     const dispatch = useDispatch();
     const handleAddToCart = (product) => dispatch(addToCart(product));
     const handleRemoveFromCart = (productId) => dispatch(removeFromCart(productId));
 
     const [open, setOpen] = useState(false)
-    const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
     return (
         <div className={styles.wrapper}>
@@ -103,10 +104,14 @@ export default function ProductUp({ minOrder }) {
                                             </button>
 
                                             <input
+                                                ref={inputRef}
                                                 type="number"
                                                 min="0"
                                                 max={fetch?.rests}
                                                 value={item?.stack || 0}
+                                                onFocus={(e) => {
+                                                    e.target.select(); // Выделяем весь текст при фокусе
+                                                }}
                                                 onChange={(e) => {
                                                     const newValue = parseInt(e.target.value) || 0;
                                                     const currentValue = item?.stack || 0;

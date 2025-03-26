@@ -6,11 +6,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/slices/cartSlice';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { useRef, useEffect } from 'react';
 
 export default function SquareCard({ productsFetch, currentPage, totalPage, setCurrentPage }) {
     const searchParams = useSearchParams()
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items);
+    const inputRef = useRef(null);
+    const isFirstAdd = useRef(true);
+
+    useEffect(() => {
+        // Выделяем значение только при первом добавлении товара
+        if (cartItems.length > 0 && inputRef.current && isFirstAdd.current) {
+            inputRef.current.focus();
+            inputRef.current.select();
+            isFirstAdd.current = false;
+        }
+    }, [cartItems]);
 
     // Получаем текущие параметры URL
     const query = searchParams.get('query') || ''
@@ -79,44 +91,6 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
         );
     };
 
-    const superPlus = (item) => {
-        if (cartItems.find(cartItem => cartItem.id === item.id)?.stack + 10 > item.rests) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else if (item.rests === 0) {
-            toaster.create({
-                title: "Ошибка",
-                description: "Товар отсутствует на складе",
-                type: "error",
-                duration: 3000,
-            });
-        } else if (item.rests < 10) {
-            toaster.create({
-                title: "",
-                description: "количество единиц товара превышает остаток на складе",
-                type: "warning",
-                duration: 3000,
-            });
-        } else {
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            handleAddToCart(item);
-            console.log(item.rests)
-            console.log(cartItems.find(cartItem => cartItem.id === item.id)?.stack || 10)
-        }
-    }
-
     return (
         <>
             <div className={styles.square}>
@@ -177,10 +151,14 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
                                     </button>
 
                                     <input 
+                                        ref={inputRef}
                                         type="number"
                                         min="0"
                                         max={item.rests}
                                         value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                        onFocus={(e) => {
+                                            e.target.select(); // Выделяем весь текст при фокусе
+                                        }}
                                         onChange={(e) => {
                                             const newValue = parseInt(e.target.value) || 0;
                                             const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
