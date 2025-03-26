@@ -25,6 +25,12 @@ export default function ProductUp({ minOrder }) {
     const inputRef = useRef(null);
     const item = useSelector((state: AppState) => state?.cart?.items?.find(item => item?.id === fetch?.id));
 
+    // Обработчик для предотвращения потери фокуса
+    const handleInputFocus = (e) => {
+        e.stopPropagation(); // Останавливаем всплытие события
+        e.target.select(); // Выделяем текст
+    };
+
     useEffect(() => {
         axiosInstance.get(`/api/v1/shop/products/${slug}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("USER_TOKEN")}` }
@@ -109,9 +115,7 @@ export default function ProductUp({ minOrder }) {
                                                 min="0"
                                                 max={fetch?.rests}
                                                 value={item?.stack || 0}
-                                                onFocus={(e) => {
-                                                    e.target.select(); // Выделяем весь текст при фокусе
-                                                }}
+                                                onFocus={handleInputFocus}
                                                 onChange={(e) => {
                                                     const newValue = parseInt(e.target.value) || 0;
                                                     const currentValue = item?.stack || 0;
