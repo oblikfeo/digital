@@ -14,6 +14,11 @@ export default function SquareCard({ productsFetch, currentPage, totalPage, setC
     const cartItems = useSelector((state) => state.cart.items);
     const inputRef = useRef(null);
 
+    // Обработчик для выделения текста при фокусе
+    const handleInputFocus = (e) => {
+        e.target.select();
+    };
+
     // Получаем текущие параметры URL
     const query = searchParams.get('query') || ''
     const order = searchParams.get('order') || ''
