@@ -16,10 +16,14 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
     const totalAmount = useSelector(selectTotalAmount);
     const quantity = useSelector(selectTotalQuantity);
     const inputRef = useRef(null);
-    const isFirstAdd = useRef(true);
 
     const [where, setWhere] = useState("Доставка")
     const [isChecking, setIsChecking] = useState(false)
+
+    // Обработчик для выделения текста при фокусе
+    const handleInputFocus = (e) => {
+        e.target.select();
+    };
 
     const checkProductsAvailability = async () => {
         setIsChecking(true);
@@ -90,15 +94,6 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
             });
     }, []);
 
-    useEffect(() => {
-        // Выделяем значение только при первом добавлении товара
-        if (cartItems.length > 0 && inputRef.current && isFirstAdd.current) {
-            inputRef.current.focus();
-            inputRef.current.select();
-            isFirstAdd.current = false;
-        }
-    }, [cartItems]);
-
     const handleRemoveFromCart = (productId) => {
         dispatch(removeFromCart(productId));
     };
@@ -157,6 +152,7 @@ export default function BasketPreview({ open, setOpen, setModalChange, name, pho
                                     min="0"
                                     max={product?.find(elem => item?.id === elem.id)?.rests || 0}
                                     value={cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0}
+                                    onFocus={handleInputFocus}
                                     onChange={(e) => {
                                         const newValue = parseInt(e.target.value) || 0;
                                         const currentValue = cartItems.find(cartItem => cartItem.id === item.id)?.stack || 0;
