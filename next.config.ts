@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
     domains: ["localhost"],
     unoptimized: true,
   },
-  distDir: "out",
 };
 
 export default nextConfig;
